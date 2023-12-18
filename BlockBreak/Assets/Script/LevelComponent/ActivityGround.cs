@@ -56,6 +56,7 @@ public class ActivityGround : MonoBehaviour
     {
         if(i==serialNumber)
         {
+            Debug.Log("移动开始第" + serialNumber + "号");
             startPoint = this.gameObject.transform.position;
             endPoint = this.gameObject.transform.position;//计算单次移动需要的两个位置
             switch (direction)
