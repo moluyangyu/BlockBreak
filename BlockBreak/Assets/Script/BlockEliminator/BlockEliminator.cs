@@ -23,13 +23,15 @@ public enum BlockState
 public class BlockEliminator : MonoBehaviour
 {
 
-    public GameObject blockPrefab;
     public float moveDuration;
 
     private int activatedBlocksCount = 0;
-    GameObject eliminateArea;
-    Vector3[] eliminatePos = new Vector3[3];
-    List<GameObject> activatedBlocks = new List<GameObject>();
+    private int actingBlocksCount = 0;
+    private GameObject eliminateArea;
+    private Vector3[] eliminatePos = new Vector3[3];
+    private List<GameObject> activatedBlocks = new List<GameObject>();
+
+    private List<Vector3> blockOriginPos = new List<Vector3>();
 
     private void Awake()
     {
@@ -74,23 +76,15 @@ public class BlockEliminator : MonoBehaviour
     private void MoveBlock(GameObject block)
     {
         BlockStatus status = block.GetComponent<BlockStatus>();
-        switch (status.state) {
-            case BlockState.original:
-                StartCoroutine(Move(block, block.transform.position, eliminatePos[activatedBlocksCount], moveDuration));
+        if(actingBlocksCount < 3 && !block.GetComponent<BlockStatus>().moving)
+        {
+            if (status.state == BlockState.original)
+            {
                 status.state = BlockState.activated;
                 activatedBlocks.Add(block);
-                activatedBlocksCount++;
-                if(activatedBlocksCount == 3)
-                {
-                    TryEliminate();
-                }
-                break;
-            case BlockState.activated:
-                StartCoroutine(Move(block, block.transform.position, status.originPos, moveDuration));
-                status.state = BlockState.original;
-                activatedBlocks.Remove(block);
-                activatedBlocksCount--;
-                break;
+                actingBlocksCount++;
+                StartCoroutine(Move(block, block.transform.position, eliminatePos[actingBlocksCount - 1], moveDuration, 1));
+            }
         }
     }
 
@@ -103,8 +97,14 @@ public class BlockEliminator : MonoBehaviour
                 continue;
             foreach(GameObject block in activatedBlocks)
             {
-                MoveBlock(block);
+                BlockStatus status = block.GetComponent<BlockStatus>();
+                status.state = BlockState.original;
+
+                StartCoroutine(Move(block, block.transform.position, status.originPos, moveDuration, -1));
             }
+            activatedBlocks.Clear();
+            //activatedBlocksCount=0;
+            actingBlocksCount=0;
             return;
         }
         Eliminate();
@@ -113,10 +113,26 @@ public class BlockEliminator : MonoBehaviour
     private void Eliminate()
     {
         Debug.Log("Eliminate!");
+        BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
+        foreach (GameObject block in activatedBlocks)
+        {
+            blockOriginPos.Add(block.GetComponent<BlockStatus>().originPos);
+            Destroy(block);
+        }
+        foreach (Vector3 pos in blockOriginPos)
+        {
+            BlockRefresher.Instance.CreateBlock(pos);
+        }
+        activatedBlocks.Clear();
+        activatedBlocksCount=0;
+        actingBlocksCount = 0;
+        //event
     }
 
-    private IEnumerator Move(GameObject obj, Vector3 startPos,  Vector3 endPos, float duration)
+    private IEnumerator Move(GameObject obj, Vector3 startPos,  Vector3 endPos, float duration, int dir)
     {
+        BlockStatus status = obj.GetComponent<BlockStatus>();
+        status.moving = true;
         float elapsedTime = 0f;
         while (obj.transform.position != endPos)
         {
@@ -125,17 +141,11 @@ public class BlockEliminator : MonoBehaviour
             yield return null;
             elapsedTime += Time.deltaTime;
         }
-    }
-
-    public class Block
-    {
-        public BlockType type;
-        public BlockState state;
-        public GameObject blockObject;
-        public Block(BlockType type)
+        status.moving = false;
+        activatedBlocksCount += dir;
+        if (activatedBlocksCount == 3)
         {
-            this.type = type;
-            state = BlockState.original;
+            TryEliminate();
         }
     }
 }
