@@ -90,3 +90,5 @@ UserSettings/
 
 # Upload ProjectSettings folder
 !ProjectSettings/
+*.asset
+BlockBreak/Assets/TextMesh Pro/Resources/Fonts & Materials/SourceHanSansSC-Light SDF.asset.meta
