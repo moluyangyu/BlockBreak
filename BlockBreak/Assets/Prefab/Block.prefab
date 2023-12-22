@@ -101,6 +101,7 @@ MonoBehaviour:
   originPos: {x: 0, y: 0, z: 0}
   type: 0
   state: 0
+  moving: 0
 --- !u!61 &-983299084229110078
 BoxCollider2D:
   m_ObjectHideFlags: 0

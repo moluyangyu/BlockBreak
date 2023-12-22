@@ -5,10 +5,9 @@ using UnityEngine;
 
 public enum BlockType
 {
-    moveLeft,
-    moveRight,
-    speedUp,
-    stop,
+    turn,
+    switchSpeed,
+    switchStop,
     landform,
     ui,
     easterEgg
@@ -28,10 +27,10 @@ public class BlockEliminator : MonoBehaviour
     private int activatedBlocksCount = 0;
     private int actingBlocksCount = 0;
     private GameObject eliminateArea;
-    private Vector3[] eliminatePos = new Vector3[3];
+    private Vector3[] eliminatePos = new Vector3[3]; 
     private List<GameObject> activatedBlocks = new List<GameObject>();
 
-    private List<Vector3> blockOriginPos = new List<Vector3>();
+    private List<GameObject> blockOriginPoints = new List<GameObject>();
 
     private void Awake()
     {
@@ -45,6 +44,7 @@ public class BlockEliminator : MonoBehaviour
         {
             eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
         }
+        
     }
 
     // Start is called before the first frame update
@@ -83,7 +83,7 @@ public class BlockEliminator : MonoBehaviour
                 status.state = BlockState.activated;
                 activatedBlocks.Add(block);
                 actingBlocksCount++;
-                StartCoroutine(Move(block, block.transform.position, eliminatePos[actingBlocksCount - 1], moveDuration, 1));
+                StartCoroutine(Move(block, block.transform.position, moveDuration, 1));
             }
         }
     }
@@ -100,7 +100,7 @@ public class BlockEliminator : MonoBehaviour
                 BlockStatus status = block.GetComponent<BlockStatus>();
                 status.state = BlockState.original;
 
-                StartCoroutine(Move(block, block.transform.position, status.originPos, moveDuration, -1));
+                StartCoroutine(Move(block, block.transform.position, moveDuration, -1));
             }
             activatedBlocks.Clear();
             //activatedBlocksCount=0;
@@ -116,31 +116,58 @@ public class BlockEliminator : MonoBehaviour
         BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
         foreach (GameObject block in activatedBlocks)
         {
-            blockOriginPos.Add(block.GetComponent<BlockStatus>().originPos);
+            blockOriginPoints.Add(block.GetComponent<BlockStatus>().refreshPoint);
             Destroy(block);
         }
-        foreach (Vector3 pos in blockOriginPos)
+        foreach (GameObject point in blockOriginPoints)
         {
-            BlockRefresher.Instance.CreateBlock(pos);
+            BlockRefresher.Instance.CreateBlock(point);
         }
         activatedBlocks.Clear();
         activatedBlocksCount=0;
         actingBlocksCount = 0;
         //event
+        switch (type)
+        {
+            case BlockType.turn:
+                PlayerController.Instance.Turn();
+                break;
+            case BlockType.switchSpeed:
+                PlayerController.Instance.SwitchSpeed();
+                break;
+            case BlockType.switchStop:
+                PlayerController.Instance.SwitchStop();
+                break;
+        }
     }
 
-    private IEnumerator Move(GameObject obj, Vector3 startPos,  Vector3 endPos, float duration, int dir)
+    private IEnumerator Move(GameObject obj, Vector3 startPos, float duration, int dir)
     {
         BlockStatus status = obj.GetComponent<BlockStatus>();
         status.moving = true;
         float elapsedTime = 0f;
-        while (obj.transform.position != endPos)
+        if (dir == 1)
         {
-            float t = elapsedTime / duration;
-            obj.transform.position = Vector3.Lerp(startPos, endPos, t);
-            yield return null;
-            elapsedTime += Time.deltaTime;
+            Vector3 endPos = eliminatePos[actingBlocksCount - 1];
+            while (obj.transform.position != endPos)
+            {
+                float t = elapsedTime / duration;
+                obj.transform.position = Vector3.Lerp(startPos, endPos, t);
+                yield return null;
+                elapsedTime += Time.deltaTime;
+            }
         }
+        else if (dir == -1)
+        {
+            while ((obj.transform.position - status.refreshPoint.transform.position).magnitude>0.01f)
+            {
+                float t = elapsedTime / duration;
+                obj.transform.position = Vector3.Lerp(startPos, status.refreshPoint.transform.position, t);
+                yield return null;
+                elapsedTime += Time.deltaTime;
+            }
+        }
+        
         status.moving = false;
         activatedBlocksCount += dir;
         if (activatedBlocksCount == 3)
@@ -148,4 +175,5 @@ public class BlockEliminator : MonoBehaviour
             TryEliminate();
         }
     }
+
 }
