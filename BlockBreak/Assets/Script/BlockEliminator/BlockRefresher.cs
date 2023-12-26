@@ -11,9 +11,13 @@ public class BlockRefresher : MonoBehaviour
     private GameObject refreshArea;
     private GameObject[] refreshPoints = new GameObject[99];
 
+
     public Sprite turn;
     public Sprite switchSpeed;
     public Sprite switchStop;
+    public Sprite ui;
+    public Sprite landform;
+    public Sprite easterEgg;
 
     private static BlockRefresher instance;
     public static BlockRefresher Instance
@@ -77,15 +81,25 @@ public class BlockRefresher : MonoBehaviour
         switch (status.type)
         {
             case BlockType.turn:
-                block.GetComponent<SpriteRenderer>().sprite = turn;
+                gameObject.GetComponent<SpriteRenderer>().sprite = turn;
                 break;
             case BlockType.switchSpeed:
-                block.GetComponent<SpriteRenderer>().sprite = switchSpeed;
+                gameObject.GetComponent<SpriteRenderer>().sprite = switchSpeed;
                 break;
             case BlockType.switchStop:
-                block.GetComponent<SpriteRenderer>().sprite = switchStop;
+                gameObject.GetComponent<SpriteRenderer>().sprite = switchStop;
+                break;
+            case BlockType.ui:
+                gameObject.GetComponent<SpriteRenderer>().sprite = ui;
+                break;
+            case BlockType.landform:
+                gameObject.GetComponent<SpriteRenderer>().sprite = landform;
+                break;
+            case BlockType.easterEgg:
+                gameObject.GetComponent<SpriteRenderer>().sprite = easterEgg;
                 break;
         }
+
     }
 
 }

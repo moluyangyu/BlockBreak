@@ -9,6 +9,10 @@ public class BlockStatus : MonoBehaviour
     public BlockState state;
     public bool moving;
 
+
+
+
+
     private void Update()
     {
         if(!moving && state == BlockState.original)
@@ -16,4 +20,5 @@ public class BlockStatus : MonoBehaviour
             transform.position = refreshPoint.transform.position;
         }
     }
+
 }
