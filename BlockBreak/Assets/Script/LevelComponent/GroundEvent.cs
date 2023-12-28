@@ -19,10 +19,24 @@ public class GroundEvent : MonoBehaviour
     //移动开始的事件
     public delegate void MoveStartHandler(int i);
     public event MoveStartHandler MoveStart;
+    /// <summary>
+    /// 移动开始
+    /// </summary>
     public void MoveStartIssue()
     {
-        Debug.Log("移动开始");
+        
         MoveStart?.Invoke(nowSerialNumber);
         nowSerialNumber++;
+    }
+    //触发彩蛋的事件
+    public delegate void TriggerEggHandler(string finishName);
+    public event TriggerEggHandler TriggerEgg;
+    /// <summary>
+    /// 彩蛋触发
+    /// </summary>
+    /// <param name="finishName"></param>触发的彩蛋名字
+    public void TriggerEggIssue(string finishName)
+    {
+        TriggerEgg?.Invoke(finishName);
     }
 }
