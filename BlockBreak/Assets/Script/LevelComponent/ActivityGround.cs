@@ -30,6 +30,7 @@ public class ActivityGround : MonoBehaviour
     [Header("触发延时"), Tooltip("单位为秒")]
     public float delayTime;
     [Header("-----分割线-----")]
+    public bool isPlay;
     public Vector3 startPoint;//计算移动用到的两个位置
     public Vector3 endPoint;
     public bool canCross;//是否可以通过
@@ -86,5 +87,27 @@ public class ActivityGround : MonoBehaviour
         }
         t = (t > 1) ? 1 : t + moveSpeed;
         this.gameObject.transform.position = Vector3.Lerp(startPoint, endPoint, t);
+    }
+    /// <summary>
+    /// 在数组中添加组件,新开批次
+    /// </summary>
+    /// <param name="a"></param>
+    public void AddGround1()
+    {
+        if(!isPlay)
+        {
+            isPlay = true;
+            groundEvent = GameObject.Find("GroundEvent");
+            serialNumber = groundEvent.GetComponent<GroundEvent>().AddGround1(this.gameObject);
+        }
+    }
+    public void AddGround2()
+    {
+        if(!isPlay)
+        {
+            isPlay = true;
+            groundEvent = GameObject.Find("GroundEvent");
+            serialNumber = groundEvent.GetComponent<GroundEvent>().AddGround2(this.gameObject);
+        }
     }
 }
