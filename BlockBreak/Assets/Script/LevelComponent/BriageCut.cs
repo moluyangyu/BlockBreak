@@ -6,6 +6,7 @@ public class BriageCut : MonoBehaviour
 {
     // Start is called before the first frame update
     private HingeJoint2D hingeJoint2d;
+    public GameObject ropeController;//线条绘制的类
     void Start()
     {
         hingeJoint2d = this.gameObject.GetComponent<HingeJoint2D>();
@@ -21,6 +22,7 @@ public class BriageCut : MonoBehaviour
     /// </summary>
     public void Cut()
     {
+        ropeController.GetComponent<RopeController>().Cut();
         hingeJoint2d.enabled = false;//关闭物理组件
     }
 }
