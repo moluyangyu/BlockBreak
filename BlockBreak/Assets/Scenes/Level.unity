@@ -512,6 +512,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLock: {fileID: 0}
   checkNumber: 0
+--- !u!1 &238066896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6910863681274928448, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
+  m_PrefabInstance: {fileID: 3783134099603727117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284167093
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,6 +3265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nowSerialNumber: 0
+  a: {fileID: 238066896}
 --- !u!4 &1472954689
 Transform:
   m_ObjectHideFlags: 0
@@ -4607,13 +4613,33 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
+      propertyPath: isPlay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
       propertyPath: distance
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
+      propertyPath: delayTime
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
+      propertyPath: direction
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
+      propertyPath: directioon
+      value: 5.75
       objectReference: {fileID: 0}
     - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
       propertyPath: groundEvent
       value: 
       objectReference: {fileID: 1472954687}
+    - target: {fileID: 3855438561484769121, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
+      propertyPath: a.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6910863681274928448, guid: 5dc7c998d99b82e4084c4ce05e40d194, type: 3}
       propertyPath: m_Name
       value: ActivityGround
