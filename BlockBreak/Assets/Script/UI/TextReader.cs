@@ -9,6 +9,7 @@ public class TextReader : MonoBehaviour
     public string[] textCut1;//按行分割以后的文本内容
     public TextMeshProUGUI tmpText;//unity的文本框
     public int pageNumber;//当前页码
+    public int id;//用来识别自己的所属
     // Start is called before the first frame update
     void Start()
     {
