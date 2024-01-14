@@ -32,8 +32,19 @@ public class UiSceneControl : MonoBehaviour
     {
         EditorSceneManager.CloseScene(ui, true);//卸载UI场景
     }
-    public void UpdateTextNames()
+    /// <summary>
+    /// 在多场景间同步这个数组
+    /// </summary>
+    /// <param name="a"></param>true为需要从静态处更新，false为不需要从静态处更新
+    public void UpdateTextNames(bool a)
     {
-        UiStatic.TextNamesStatic = textNames;//更新
+        if (a)
+        {
+            textNames = UiStatic.TextNamesStatic;
+        }
+        else
+        {
+            UiStatic.TextNamesStatic = textNames;//更新
+        }
     }
 }

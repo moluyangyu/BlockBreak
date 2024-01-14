@@ -12,7 +12,7 @@ public class UiSceneControlEditor : Editor
         //从脚本中获取变量
         textNames= serializedObject.FindProperty("textNames");
         UiSceneControl uiSceneControl = (UiSceneControl)target;
-        uiSceneControl.UpdateTextNames();
+        uiSceneControl.UpdateTextNames(true);
     }
     public override void OnInspectorGUI()
     {
@@ -29,7 +29,7 @@ public class UiSceneControlEditor : Editor
         }
         if (GUILayout.Button("应用标识名更改"))
         {
-            uiSceneControl.UpdateTextNames();
+            uiSceneControl.UpdateTextNames(false);
             Debug.Log("更改成功");
         }
         serializedObject.Update();
