@@ -5,20 +5,19 @@ using UnityEngine;
 public class BlockStatus : MonoBehaviour 
 {
     public GameObject refreshPoint;
-    public GameObject eliminatePoint;
     public BlockType type;
     public BlockState state;
     public bool moving;
-    public int ePointIndex;
+
 
 
 
 
     private void Update()
     {
-        if(!moving && state == BlockState.activated)
+        if(!moving && state == BlockState.original)
         {
-            transform.position = eliminatePoint.transform.position;
+            transform.position = refreshPoint.transform.position;
         }
     }
 

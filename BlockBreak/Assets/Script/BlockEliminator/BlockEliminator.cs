@@ -22,44 +22,29 @@ public enum BlockState
 public class BlockEliminator : MonoBehaviour
 {
 
-    private const int ELIMINATE_COUNT = 7;
-    private const int BLOCK_LAYER = 1 << 8;
-
     public float moveDuration;
 
     private int activatedBlocksCount = 0;
     private int actingBlocksCount = 0;
     private GameObject eliminateArea;
-    //private Vector3[] eliminatePos = new Vector3[3]; 
+    private Vector3[] eliminatePos = new Vector3[3]; 
     private List<GameObject> activatedBlocks = new List<GameObject>();
 
     private List<GameObject> blockOriginPoints = new List<GameObject>();
-    private GameObject[] eliminatePoints = new GameObject[ELIMINATE_COUNT];
-    private bool[] eliminatejudge = new bool[ELIMINATE_COUNT];
 
     private void Awake()
     {
-        Initialize();
         GetEliminateArea();
     }
 
     private void GetEliminateArea()
     {
         eliminateArea = GameObject.Find("BlockEliminateArea");
-        for (int i = 0; i < ELIMINATE_COUNT; i++)
+        for (int i = 0; i < 3; i++)
         {
-            //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
-            eliminatePoints[i] = eliminateArea.transform.GetChild(i).gameObject;
+            eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
         }
         
-    }
-
-    private void Initialize()
-    {
-        for (int i = 0; i < ELIMINATE_COUNT; i++)
-        {
-            eliminatejudge[i] = true;
-        }
     }
 
     // Start is called before the first frame update
@@ -79,7 +64,7 @@ public class BlockEliminator : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Ray check = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(check.origin.x, check.origin.y), Vector2.down, 0.01f, BLOCK_LAYER);
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(check.origin.x, check.origin.y), Vector2.down, 0.01f, 1<<8);
             if (hit.collider)
             {
                 GameObject nowBlock = hit.collider.gameObject;
@@ -91,21 +76,14 @@ public class BlockEliminator : MonoBehaviour
     private void MoveBlock(GameObject block)
     {
         BlockStatus status = block.GetComponent<BlockStatus>();
-        if(!block.GetComponent<BlockStatus>().moving)
+        if(actingBlocksCount < 3 && !block.GetComponent<BlockStatus>().moving)
         {
-            if (status.state == BlockState.original && actingBlocksCount < ELIMINATE_COUNT)
+            if (status.state == BlockState.original)
             {
                 status.state = BlockState.activated;
                 activatedBlocks.Add(block);
                 actingBlocksCount++;
                 StartCoroutine(Move(block, block.transform.position, moveDuration, 1));
-            }
-            else if(status.state == BlockState.activated)
-            {
-                status.state = BlockState.original;
-                activatedBlocks.Remove(block);
-                actingBlocksCount--;
-                StartCoroutine(Move(block, block.transform.position, moveDuration, -1));
             }
         }
     }
@@ -117,19 +95,18 @@ public class BlockEliminator : MonoBehaviour
         {
             if (type == activatedBlocks[i].GetComponent<BlockStatus>().type)
                 continue;
-            //foreach(GameObject block in activatedBlocks)
-            //{
-            //    BlockStatus status = block.GetComponent<BlockStatus>();
-            //    status.state = BlockState.original;
+            foreach(GameObject block in activatedBlocks)
+            {
+                BlockStatus status = block.GetComponent<BlockStatus>();
+                status.state = BlockState.original;
 
-            //    StartCoroutine(Move(block, block.transform.position, moveDuration, -1));
-            //}
-            
+                StartCoroutine(Move(block, block.transform.position, moveDuration, -1));
+            }
+            activatedBlocks.Clear();
+            //activatedBlocksCount=0;
+            actingBlocksCount=0;
             return;
         }
-        activatedBlocks.Clear();
-        //activatedBlocksCount=0;
-        actingBlocksCount = 0;
         Eliminate();
     }
 
@@ -142,10 +119,10 @@ public class BlockEliminator : MonoBehaviour
             blockOriginPoints.Add(block.GetComponent<BlockStatus>().refreshPoint);
             Destroy(block);
         }
-        //foreach (GameObject point in blockOriginPoints)
-        //{
-        //    BlockRefresher.Instance.CreateBlock(point);
-        //}
+        foreach (GameObject point in blockOriginPoints)
+        {
+            BlockRefresher.Instance.CreateBlock(point);
+        }
         activatedBlocks.Clear();
         activatedBlocksCount=0;
         actingBlocksCount = 0;
@@ -171,21 +148,18 @@ public class BlockEliminator : MonoBehaviour
         float elapsedTime = 0f;
         if (dir == 1)
         {
-            status.ePointIndex = FindEliminatePoint();
-            status.eliminatePoint = eliminatePoints[status.ePointIndex];
-            eliminatejudge[status.ePointIndex] = false;
-            while ((obj.transform.position - status.eliminatePoint.transform.position).magnitude > 0.01f)
+            Vector3 endPos = eliminatePos[actingBlocksCount - 1];
+            while (obj.transform.position != endPos)
             {
                 float t = elapsedTime / duration;
-                obj.transform.position = Vector3.Lerp(startPos, status.eliminatePoint.transform.position, t);
+                obj.transform.position = Vector3.Lerp(startPos, endPos, t);
                 yield return null;
                 elapsedTime += Time.deltaTime;
             }
         }
         else if (dir == -1)
         {
-            eliminatejudge[status.ePointIndex] = true;
-            while ((obj.transform.position - status.refreshPoint.transform.position).magnitude > 0.01f)
+            while ((obj.transform.position - status.refreshPoint.transform.position).magnitude>0.01f)
             {
                 float t = elapsedTime / duration;
                 obj.transform.position = Vector3.Lerp(startPos, status.refreshPoint.transform.position, t);
@@ -196,22 +170,10 @@ public class BlockEliminator : MonoBehaviour
         
         status.moving = false;
         activatedBlocksCount += dir;
-        if (activatedBlocksCount == ELIMINATE_COUNT)
+        if (activatedBlocksCount == 3)
         {
             TryEliminate();
         }
-    }
-
-    private int FindEliminatePoint()
-    {
-        for(int i = 0; i< ELIMINATE_COUNT; i++)
-        {
-            if (eliminatejudge[i] == true)
-            {
-                return i;
-            }
-        }
-        return -1;
     }
 
 }

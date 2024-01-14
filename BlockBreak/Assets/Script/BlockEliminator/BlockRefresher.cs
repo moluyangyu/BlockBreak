@@ -47,7 +47,7 @@ public class BlockRefresher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //RefreshAll();
+        RefreshAll();
     }
 
     private void RefreshAll()
@@ -81,22 +81,22 @@ public class BlockRefresher : MonoBehaviour
         switch (status.type)
         {
             case BlockType.turn:
-                status.GetComponent<SpriteRenderer>().sprite = turn;
+                gameObject.GetComponent<SpriteRenderer>().sprite = turn;
                 break;
             case BlockType.switchSpeed:
-                status.GetComponent<SpriteRenderer>().sprite = switchSpeed;
+                gameObject.GetComponent<SpriteRenderer>().sprite = switchSpeed;
                 break;
             case BlockType.switchStop:
-                status.GetComponent<SpriteRenderer>().sprite = switchStop;
+                gameObject.GetComponent<SpriteRenderer>().sprite = switchStop;
                 break;
             case BlockType.ui:
-                status.GetComponent<SpriteRenderer>().sprite = ui;
+                gameObject.GetComponent<SpriteRenderer>().sprite = ui;
                 break;
             case BlockType.landform:
-                status.GetComponent<SpriteRenderer>().sprite = landform;
+                gameObject.GetComponent<SpriteRenderer>().sprite = landform;
                 break;
             case BlockType.easterEgg:
-                status.GetComponent<SpriteRenderer>().sprite = easterEgg;
+                gameObject.GetComponent<SpriteRenderer>().sprite = easterEgg;
                 break;
         }
 
