@@ -11,9 +11,9 @@ public class SerializableListList
 public class GroundEvent : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int nowSerialNumber;//当前触发的号码
+    public int nowStepNumber;//当前触发的台阶号码
+    public int nowBollardNumber;//当前触发的升降柱的号码
     public SerializableListList activityGroundGroup;//演出方块的分组
-    public GameObject a;
     void Start()
     {
         
@@ -24,17 +24,24 @@ public class GroundEvent : MonoBehaviour
     {
         
     }
+    public void TestIssue()
+    {
+        //测试用方法
+        MoveStartIssue(FloorClass.bollard);
+    }
     //移动开始的事件
-    public delegate void MoveStartHandler(int i);
+    public delegate void MoveStartHandler(int i, FloorClass a);
     public event MoveStartHandler MoveStart;
     /// <summary>
     /// 移动开始
     /// </summary>
-    public void MoveStartIssue()
+    public void MoveStartIssue(FloorClass a)
     {
-        
-        MoveStart?.Invoke(nowSerialNumber);
-        nowSerialNumber++;
+        switch(a)
+        {
+            case FloorClass.step: MoveStart?.Invoke(nowStepNumber,a); nowStepNumber++; break;
+            case FloorClass.bollard: MoveStart?.Invoke(nowBollardNumber,a);nowBollardNumber++; break;
+        }
     }
     //触发彩蛋的事件
     public delegate void TriggerEggHandler(string finishName);
@@ -54,9 +61,6 @@ public class GroundEvent : MonoBehaviour
     {
         Debug.Log("初始化");
         activityGroundGroup = new();
-        activityGroundGroup.a = new();
-        activityGroundGroup.a.Add(new List<GameObject>());
-        activityGroundGroup.a[0].Add(a);
     }
     /// <summary>
     /// 在数组中添加组件，新开批次

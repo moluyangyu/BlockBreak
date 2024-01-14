@@ -14,6 +14,7 @@ public class UIControl : MonoBehaviour
     public GameObject levelLock;
     [Header("当前关卡数")]
     public int checkNumber;
+    public GameObject dex;
     void Start()
     {
       //  win = GameObject.Find("Win");
@@ -62,8 +63,25 @@ public class UIControl : MonoBehaviour
             SceneManager.LoadScene(i);
         }
     }
+    /// <summary>
+    /// 退出游戏
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();
+    }
+    /// <summary>
+    /// 打开图鉴
+    /// </summary>
+    public void OpenDex()
+    {
+        dex.SetActive(true);
+    }
+    /// <summary>
+    /// 关闭图鉴
+    /// </summary>
+    public void CloseDex()
+    {
+        dex.SetActive(false);
     }
 }
