@@ -5,14 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float originSpeed;
+    public float origin_acc;
     public float fastSpeed;
+    public float fast_acc;
     private float speed;
     //public float stateDuration;
     public int direction = 1;
     public bool isFast = false;
     public bool stop = false;
+    Rigidbody2D rb;
 
-    GameObject background;
     public enum ActionType
     {
         turn,
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         speed = originSpeed;
-        background = GameObject.Find("BackGround");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
@@ -53,12 +55,28 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         if (!stop)
-            background.transform.Translate(Vector3.right * speed * -direction * Time.deltaTime);
+        {
+            if(isFast)
+            {
+                if (Mathf.Abs(rb.velocity.x) < fastSpeed)
+                {
+                    rb.AddForce(new Vector2(fast_acc * direction, 0));
+                }
+            }
+            else
+            {
+                if (Mathf.Abs(rb.velocity.x) < originSpeed)
+                {
+                    rb.AddForce(new Vector2(origin_acc * direction, 0));
+                }
+            }
+        }
     }
     
     public void Turn()
     {
         direction = -direction;
+        rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
     }
 
     public void SwitchSpeed()
