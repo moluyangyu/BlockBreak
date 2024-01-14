@@ -566,6 +566,7 @@ MonoBehaviour:
   textNames:
   - 111
   - 222
+  - 333
   textInt: 0
   testInts: 000000000100000002000000
 --- !u!1 &1472954687

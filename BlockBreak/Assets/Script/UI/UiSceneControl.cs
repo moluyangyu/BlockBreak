@@ -40,11 +40,13 @@ public class UiSceneControl : MonoBehaviour
     {
         if (a)
         {
+            UiStatic.LoadFromCSV("Assets/Text/标识名.csv");
             textNames = UiStatic.TextNamesStatic;
         }
         else
         {
             UiStatic.TextNamesStatic = textNames;//更新
+            UiStatic.SaveToCSV("Assets/Text/标识名.csv");
         }
     }
 }
