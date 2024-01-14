@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+[System.Serializable]
+public class SerializableListList
+{
+    public List<List<GameObject>> a;
+}
 
 public class GroundEvent : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int nowSerialNumber;//当前触发的号码
-    public List<List<GameObject>> activityGroundGroup;//演出方块的分组
+    public int nowStepNumber;//当前触发的台阶号码
+    public int nowBollardNumber;//当前触发的升降柱的号码
+    public SerializableListList activityGroundGroup;//演出方块的分组
     void Start()
     {
         
@@ -18,17 +24,24 @@ public class GroundEvent : MonoBehaviour
     {
         
     }
+    public void TestIssue()
+    {
+        //测试用方法
+        MoveStartIssue(FloorClass.bollard);
+    }
     //移动开始的事件
-    public delegate void MoveStartHandler(int i);
+    public delegate void MoveStartHandler(int i, FloorClass a);
     public event MoveStartHandler MoveStart;
     /// <summary>
     /// 移动开始
     /// </summary>
-    public void MoveStartIssue()
+    public void MoveStartIssue(FloorClass a)
     {
-        
-        MoveStart?.Invoke(nowSerialNumber);
-        nowSerialNumber++;
+        switch(a)
+        {
+            case FloorClass.step: MoveStart?.Invoke(nowStepNumber,a); nowStepNumber++; break;
+            case FloorClass.bollard: MoveStart?.Invoke(nowBollardNumber,a);nowBollardNumber++; break;
+        }
     }
     //触发彩蛋的事件
     public delegate void TriggerEggHandler(string finishName);
@@ -42,17 +55,26 @@ public class GroundEvent : MonoBehaviour
         TriggerEgg?.Invoke(finishName);
     }
     /// <summary>
+    /// 初始化
+    /// </summary>
+    public void StartGroup()
+    {
+        Debug.Log("初始化");
+        activityGroundGroup = new();
+    }
+    /// <summary>
     /// 在数组中添加组件，新开批次
     /// </summary>
     /// <param name="a"></param>
     /// <returns></returns>
     public int AddGround1(GameObject a)
     {
-        activityGroundGroup.Add(new List<GameObject>());//新开批次就新增行
-        int i = activityGroundGroup.Count;
-        activityGroundGroup[i].Add(a);
+        
+        activityGroundGroup?.a.Add(new List<GameObject>());//新开批次就新增行
+        int i = activityGroundGroup.a.Count;
+        activityGroundGroup.a[i].Add(a);
         EditorUtility.SetDirty(this);
-        return activityGroundGroup.Count;
+        return activityGroundGroup.a.Count;
     }
     /// <summary>
     /// 在数组中添加组件，同一批次
@@ -61,10 +83,10 @@ public class GroundEvent : MonoBehaviour
     /// <returns></returns>
     public int AddGround2(GameObject a)
     {
-        int i = activityGroundGroup.Count;
-        activityGroundGroup[i].Add(a);
+        int i = activityGroundGroup.a.Count;
+        activityGroundGroup.a[i]?.Add(a);
         EditorUtility.SetDirty(this);
-        return activityGroundGroup.Count;
+        return activityGroundGroup.a.Count;
     }
     /// <summary>
     /// 依据目前的数组配置刷新组件触发顺序
@@ -72,7 +94,7 @@ public class GroundEvent : MonoBehaviour
     public void UpdateGround()
     {
         int i = 0;
-        foreach(List<GameObject> a in activityGroundGroup)
+        foreach(List<GameObject> a in activityGroundGroup.a)
         {
             i++;
             foreach(GameObject b in a)//这里嵌套一下,b是活动组件
