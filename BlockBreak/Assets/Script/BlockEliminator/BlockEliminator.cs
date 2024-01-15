@@ -115,6 +115,7 @@ public class BlockEliminator : MonoBehaviour
         BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
         for(int i = 1; i < activatedBlocksCount; i++)
         {
+            if (activatedBlocks[i].GetComponent<BlockStatus>().order == i)
             if (type == activatedBlocks[i].GetComponent<BlockStatus>().type)
                 continue;
             //foreach(GameObject block in activatedBlocks)
