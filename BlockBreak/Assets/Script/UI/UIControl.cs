@@ -14,7 +14,7 @@ public class UIControl : MonoBehaviour
     public GameObject levelLock;
     [Header("当前关卡数")]
     public int checkNumber;
-    public GameObject dex;
+    public GameObject dex;//图鉴游戏体
     void Start()
     {
       //  win = GameObject.Find("Win");

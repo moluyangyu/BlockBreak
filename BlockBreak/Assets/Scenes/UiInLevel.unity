@@ -526,9 +526,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1331674023}
   - component: {fileID: 1331674025}
+  - component: {fileID: 1331674026}
   - component: {fileID: 1331674024}
   m_Layer: 5
-  m_Name: "\u56FE\u9274"
+  m_Name: GameDex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,6 +593,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331674022}
   m_CullTransparentMesh: 1
+--- !u!114 &1331674026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331674022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0ff8fe5e33a2245a4176be9449592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536334582
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +751,7 @@ GameObject:
   - component: {fileID: 1831492040}
   - component: {fileID: 1831492039}
   m_Layer: 5
-  m_Name: "\u6253\u5F00\u56FE\u9274"
+  m_Name: OpenGameDex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -868,7 +881,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1240438068799007238, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Name
-      value: "\u5BF9\u8BDD\u6C14\u6CE1"
+      value: ConversationBubble
       objectReference: {fileID: 0}
     - target: {fileID: 4798904366829903095, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Pivot.x
@@ -950,6 +963,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5559298149845411137, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 5559298149845411137, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5559298149845411137, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

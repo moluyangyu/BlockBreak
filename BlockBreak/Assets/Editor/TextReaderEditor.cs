@@ -10,6 +10,16 @@ public class TextReaderEditor : Editor
     private void OnEnable()
     {
         //从脚本中获取变量
+        TextReader textReader = (TextReader)target;
+        if(textReader.readedText!=null)
+        {
+#if UNITY_EDITOR
+            string path = AssetDatabase.GetAssetPath(textReader.readedText);
+            Debug.Log("Path of TextAsset: " + path);
+            int i=UiStatic.LoadId(path);
+            textReader.id = i;
+#endif
+        }
         readedText = serializedObject.FindProperty("readedText");
     }
     public override void OnInspectorGUI()
@@ -18,7 +28,11 @@ public class TextReaderEditor : Editor
         TextReader textReader = (TextReader)target;
         serializedObject.Update();
         EditorGUILayout.PropertyField(readedText, new GUIContent("文本文件"));
-        if(UiStatic.TextNamesStatic==null)
+        if (GUILayout.Button("应用标识名更改"))
+        {
+            SaveData();
+        }
+        if (UiStatic.TextNamesStatic==null)
         {
             Debug.Log("没有可用的标识名，请先到UiControl组件中更新表示名才会有标识名显示");
         }else
@@ -32,5 +46,15 @@ public class TextReaderEditor : Editor
             textReader.id = EditorGUILayout.IntPopup("标识名", textReader.id, UiStatic.TextNamesStatic, iiis);
         }
         serializedObject.ApplyModifiedProperties();
+    }
+    private void SaveData()
+    {
+        TextReader textReader = (TextReader)target;
+#if UNITY_EDITOR
+        string path = AssetDatabase.GetAssetPath(textReader.readedText);
+        Debug.Log("Path of TextAsset: " + path);
+        UiStatic.UpdateCSVAtLine(path, 0, textReader.id.ToString());
+#endif
+
     }
 }

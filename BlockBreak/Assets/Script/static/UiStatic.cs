@@ -12,6 +12,10 @@ public static class UiStatic
         get { return textNamesStatic; }
         set { textNamesStatic = value;}
     }
+    /// <summary>
+    /// 把静态的标识数组写入CSV文件
+    /// </summary>
+    /// <param name="filePath"></param>
     public static void SaveToCSV(string filePath)
     {
         if (textNamesStatic == null || textNamesStatic.Length == 0)
@@ -40,6 +44,10 @@ public static class UiStatic
             Debug.LogError("Error saving CSV file: " + ex.Message);
         }
     }
+    /// <summary>
+    /// 从CSV里面拿出来静态的表示数组
+    /// </summary>
+    /// <param name="filePath"></param>
     public static void LoadFromCSV(string filePath)
     {
         try
@@ -69,4 +77,77 @@ public static class UiStatic
             
         }
     }
+    /// <summary>
+    /// 对话气泡写入标识符要用到的函数，后面也可以拿来干别的
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <param name="lineIndex"></param>写入指定的第几行
+    /// <param name="newData"></param>写入的内容
+    public static void UpdateCSVAtLine(string filePath, int lineIndex, string newData)
+    {
+        try
+        {
+            // 读取文件的所有行
+            string[] lines = File.ReadAllLines(filePath);
+
+            // 修改指定行的数据
+            lines[lineIndex] = newData;
+
+            // 写回文件
+            File.WriteAllLines(filePath, lines);
+
+            //Debug.Log("CSV file updated successfully at line " + lineIndex + ": " + filePath);
+        }
+        catch (System.Exception ex)
+        {
+           // Debug.LogError("Error updating CSV file: " + ex.Message);
+        }
+    }
+    /// <summary>
+    /// 加载ID用来加载标识符
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
+    public static int LoadId(string filePath)
+    {
+        try
+        {
+            // 读取文件的所有行
+            string[] lines = File.ReadAllLines(filePath);
+            // 创建一个字符串数组来存储CSV文件的内容
+            List<string> data = new List<string>();
+
+            // 遍历每一行并添加到数组中
+            for (int i = 0; i < lines.Length; i++)
+            {
+                data.Add(lines[i]);
+            }
+
+            // 将 List 转为数组
+            string[] dataArray = data.ToArray();
+            int result;
+            if (int.TryParse(dataArray[0], out result))
+            {
+                return result;
+            }
+            return 0;
+        }
+        catch (System.Exception ex)
+        {
+            //   Debug.LogError("Error loading CSV file: " + ex.Message);
+            return 0;
+        }
+    }
+    //激活图鉴的事件
+    public delegate void GameDexTriggerHandler(int i);
+    public static event GameDexTriggerHandler GameDexTrigger;
+    /// <summary>
+    /// 激活图鉴
+    /// </summary>
+    /// <param name="i"></param>这个为激活了第几个标记，单一游戏场景内使用的
+    public static void GameDexTriggerIssue(int i)
+    {
+        GameDexTrigger?.Invoke(i);
+    }
+
 }
