@@ -162,6 +162,12 @@ public class BlockEliminator : MonoBehaviour
             case BlockType.switchStop:
                 PlayerController.Instance.SwitchStop();
                 break;
+            case BlockType.landform:
+                //landform();
+                break;
+            case BlockType.easterEgg:
+                //easterEgg();
+                break;
         }
     }
 
