@@ -10,6 +10,8 @@ public class TextReader : MonoBehaviour
     public TextMeshProUGUI tmpText;//unity的文本框
     public int pageNumber;//当前页码
     public int id;//用来识别自己的所属
+    public string textName;//用来存储识别代码谨防被编辑器初始化
+    public bool nextPageSwitch;//下一页的开关
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +40,6 @@ public class TextReader : MonoBehaviour
     {
         textCut1 = readedText.text.Split('\n');//按行分割文本
         NextPage();
+      //  int.TryParse(textCut1[0], out id);
     }
 }

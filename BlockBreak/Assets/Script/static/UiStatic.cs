@@ -69,4 +69,54 @@ public static class UiStatic
             
         }
     }
+    public static void UpdateCSVAtLine(string filePath, int lineIndex, string newData)
+    {
+        try
+        {
+            // 读取文件的所有行
+            string[] lines = File.ReadAllLines(filePath);
+
+            // 修改指定行的数据
+            lines[lineIndex] = newData;
+
+            // 写回文件
+            File.WriteAllLines(filePath, lines);
+
+            //Debug.Log("CSV file updated successfully at line " + lineIndex + ": " + filePath);
+        }
+        catch (System.Exception ex)
+        {
+           // Debug.LogError("Error updating CSV file: " + ex.Message);
+        }
+    }
+    public static int LoadId(string filePath)
+    {
+        try
+        {
+            // 读取文件的所有行
+            string[] lines = File.ReadAllLines(filePath);
+            // 创建一个字符串数组来存储CSV文件的内容
+            List<string> data = new List<string>();
+
+            // 遍历每一行并添加到数组中
+            for (int i = 0; i < lines.Length; i++)
+            {
+                data.Add(lines[i]);
+            }
+
+            // 将 List 转为数组
+            string[] dataArray = data.ToArray();
+            int result;
+            if (int.TryParse(dataArray[0], out result))
+            {
+                return result;
+            }
+            return 0;
+        }
+        catch (System.Exception ex)
+        {
+            //   Debug.LogError("Error loading CSV file: " + ex.Message);
+            return 0;
+        }
+    }
 }
