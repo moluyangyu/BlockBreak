@@ -526,6 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331674023}
   - component: {fileID: 1331674025}
+  - component: {fileID: 1331674026}
   - component: {fileID: 1331674024}
   m_Layer: 5
   m_Name: GameDex
@@ -592,6 +593,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331674022}
   m_CullTransparentMesh: 1
+--- !u!114 &1331674026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331674022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0ff8fe5e33a2245a4176be9449592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536334582
 GameObject:
   m_ObjectHideFlags: 0
