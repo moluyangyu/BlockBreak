@@ -22,7 +22,7 @@ public enum BlockState
 public class BlockEliminator : MonoBehaviour
 {
 
-    private const int ELIMINATE_COUNT = 7;
+    private const int ELIMINATE_COUNT = 3;
     private const int BLOCK_LAYER = 1 << 8;
 
     public float moveDuration;
@@ -115,6 +115,7 @@ public class BlockEliminator : MonoBehaviour
         BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
         for(int i = 1; i < activatedBlocksCount; i++)
         {
+            if (activatedBlocks[i].GetComponent<BlockStatus>().order == i)
             if (type == activatedBlocks[i].GetComponent<BlockStatus>().type)
                 continue;
             //foreach(GameObject block in activatedBlocks)

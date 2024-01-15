@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BlockStatus : MonoBehaviour 
 {
-    public GameObject refreshPoint;
-    public GameObject eliminatePoint;
+    [HideInInspector] public GameObject refreshPoint;
+    [HideInInspector] public GameObject eliminatePoint;
+    [HideInInspector] public BlockState state;
+    [HideInInspector] public bool moving;
+    [HideInInspector] public int ePointIndex;
     public BlockType type;
-    public BlockState state;
-    public bool moving;
-    public int ePointIndex;
+    public int order;
 
 
 
