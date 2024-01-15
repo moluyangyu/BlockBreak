@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockStatus : MonoBehaviour 
 {
-    [HideInInspector] public GameObject refreshPoint;
+    public GameObject refreshPoint;
     [HideInInspector] public GameObject eliminatePoint;
     [HideInInspector] public BlockState state;
     [HideInInspector] public bool moving;
