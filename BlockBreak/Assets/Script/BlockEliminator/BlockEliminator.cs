@@ -22,7 +22,7 @@ public enum BlockState
 public class BlockEliminator : MonoBehaviour
 {
 
-    private const int ELIMINATE_COUNT = 7;
+    private const int ELIMINATE_COUNT = 3;
     private const int BLOCK_LAYER = 1 << 8;
 
     public float moveDuration;

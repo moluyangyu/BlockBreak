@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool isFast = false;
     public bool stop = false;
     Rigidbody2D rb;
-
+    Animator anim;
     public enum ActionType
     {
         turn,
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         speed = originSpeed;
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         direction = -direction;
         rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     public void SwitchSpeed()
@@ -84,11 +87,23 @@ public class PlayerController : MonoBehaviour
         isFast = !isFast;
         if (isFast) speed = fastSpeed;
         else speed = originSpeed;
+        anim.SetBool("isFast", isFast);
     }
 
     public void SwitchStop()
     {
         stop = !stop;
+        anim.SetBool("stop", stop);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Die")
+            Die();
+    }
+
+    private void Die()
+    {
+        anim.SetTrigger("die");
+    }
 }
