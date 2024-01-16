@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c5f6e3ed6b1644e91d97ad5c297bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
+  distance: 3
   number: 0
 --- !u!61 &1061396900308931331
 BoxCollider2D:

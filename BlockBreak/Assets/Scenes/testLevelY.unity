@@ -2533,10 +2533,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3061974088838722769, guid: e211633fa370ee3418e2ca629ad522e6, type: 3}
-      propertyPath: distance
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4297525585623434821, guid: e211633fa370ee3418e2ca629ad522e6, type: 3}
       propertyPath: m_Name
       value: GameDexTrigger
