@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIControl : MonoBehaviour
+public class UIControlTest : MonoBehaviour
 {
     // Start is called before the first frame update
     //获胜界面
@@ -14,8 +14,6 @@ public class UIControl : MonoBehaviour
     private GameObject levelLock;
     //[Header("当前关卡数")]
     //public int checkNumber;
-    public GameObject dex;//图鉴游戏体
-    public GameObject dexButton;//打开图鉴的按钮
     void Start()
     {
         //  win = GameObject.Find("Win");
@@ -23,12 +21,10 @@ public class UIControl : MonoBehaviour
         //  lose = GameObject.Find("Lose");
         //   lose?.SetActive(false);
         //levelLock = GameObject.Find("LevelLock");
-        
-        UiStatic.GameDexTrigger += OpenDex;
-        dex.SetActive(false);
-        dexButton.SetActive(false);
+
+
     }
-    
+
     /// <summary>
     /// 开关胜负界面
     /// </summary>
@@ -38,7 +34,7 @@ public class UIControl : MonoBehaviour
         if (a)
         {
             win.SetActive(true);
-          //  levelLock.GetComponent<LevelLock>().AddNumber(checkNumber);//通关了就解锁新的关卡
+            //  levelLock.GetComponent<LevelLock>().AddNumber(checkNumber);//通关了就解锁新的关卡
         }
         else
         {
@@ -53,10 +49,10 @@ public class UIControl : MonoBehaviour
     {
         if (levelLock != null)
         {
-           /* if (i <= levelLock.GetComponent<LevelLock>().levelNumber)
-            {
-                SceneManager.LoadScene(i);
-            }*/
+            /* if (i <= levelLock.GetComponent<LevelLock>().levelNumber)
+             {
+                 SceneManager.LoadScene(i);
+             }*/
         }
         else
         {
@@ -70,26 +66,5 @@ public class UIControl : MonoBehaviour
     {
         Application.Quit();
     }
-    /// <summary>
-    /// 打开图鉴
-    /// </summary>
-    public void OpenDex(int i)
-    {
-        dex.SetActive(true);
-        dexButton.SetActive(true);
-        UiStatic.GameDexTrigger -= OpenDex;
-        UiStatic.GameDexTriggerIssue(i);//在图鉴游戏体打开以后再传一次消息才能接收到
-        UiStatic.GameDexTrigger += OpenDex;
-    }
-    public void OpenDex()//UI界面按钮用的重载
-    {
-        dex.GetComponent<GameDexControl>().UpdateDex(dex.GetComponent<GameDexControl>().pageNumber);//打开上一次打开的页码
-    }
-    /// <summary>
-    /// 关闭图鉴
-    /// </summary>
-    public void CloseDex()
-    {
-        dex.SetActive(false);
-    }
+  
 }
