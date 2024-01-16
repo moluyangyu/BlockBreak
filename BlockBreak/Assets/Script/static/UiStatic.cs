@@ -149,5 +149,21 @@ public static class UiStatic
     {
         GameDexTrigger?.Invoke(i);
     }
-
+    //鼠标点击推进对话的事件
+    public delegate void TalkKickHandler(int id);
+    public static event TalkKickHandler TalkKick;
+    /// <summary>
+    /// 鼠标点击以后就推进所有相同标识名的对话框往下进行一步
+    /// </summary>
+    /// <param name="idName"></param>
+    public static void TalkKickIssue(string idName)
+    {
+        for(int j=0;j< TextNamesStatic.Length;j++)
+        {
+            if(TextNamesStatic[j].Equals(idName))
+            {
+                TalkKick?.Invoke(j);//将标识名转化为int的id然后送去对比
+            }
+        }
+    }
 }

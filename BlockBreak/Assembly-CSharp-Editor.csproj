@@ -64,6 +64,7 @@
     <Compile Include="Assets\Editor\UiSceneControlEditor.cs" />
     <Compile Include="Assets\Editor\GroundEventEditor.cs" />
     <Compile Include="Assets\Editor\ActivityGroundEditor.cs" />
+    <Compile Include="Assets\Editor\GameDexControlEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Localization\commontypes.ko.txt" />

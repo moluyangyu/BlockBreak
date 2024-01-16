@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextReader : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public class TextReader : MonoBehaviour
     public int pageNumber;//当前页码
     public int id;//用来识别自己的所属
     public string textName;//用来存储识别代码谨防被编辑器初始化
-    public bool nextPageSwitch;//下一页的开关
+    public bool isOpen;//对话框的开关
+    public RawImage bubbleImage;//气泡的图片
     // Start is called before the first frame update
     void Start()
     {
         pageNumber = 0;
-        tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
+        // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
+        bubbleImage = this.gameObject.GetComponent<RawImage>();
         ReadText();
+        CloseTalk();
+        UiStatic.TalkKick += TalkKick;
     }
 
     // Update is called once per frame
@@ -41,5 +46,39 @@ public class TextReader : MonoBehaviour
         textCut1 = readedText.text.Split('\n');//按行分割文本
         NextPage();
       //  int.TryParse(textCut1[0], out id);
+    }
+    /// <summary>
+    /// 订阅突推进对话的函数
+    /// </summary>
+    public void TalkKick(int i)
+    {
+        if(i==id)
+        {
+            if(tmpText.text.Equals("0"))
+            {
+                CloseTalk();
+            }else if(!isOpen)
+            {
+                OpenTalk();//如果有字了还关着就打开
+            }
+            NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
+        }
+    }
+    /// <summary>
+    /// 关闭对话框用的
+    /// </summary>
+    public void CloseTalk()
+    {
+        isOpen = false;
+        tmpText.text = "";
+        bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
+    }
+    /// <summary>
+    /// 打开对话框
+    /// </summary>
+    public void OpenTalk()
+    {
+        isOpen = true;
+        bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
     }
 }
