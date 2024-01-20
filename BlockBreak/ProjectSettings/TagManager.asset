@@ -8,6 +8,10 @@ TagManager:
   - BlockEliminatePoint
   - BlockRefreshPoint
   - Turn
+  - Jump
+  - Lose
+  - Win
+  - Talk
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Block
   - 
   - 
   - 
