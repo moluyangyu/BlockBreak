@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5361898253570976322}
   - component: {fileID: 7194422515025262639}
   - component: {fileID: -1388874762436864487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshPoint: {fileID: 0}
   eliminatePoint: {fileID: 0}
-  type: 0
   state: 0
   moving: 0
   ePointIndex: 0
+  type: 0
   order: 0

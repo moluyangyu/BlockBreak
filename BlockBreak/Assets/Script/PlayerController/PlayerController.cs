@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,11 +12,14 @@ public class PlayerController : MonoBehaviour
     public float fast_acc;
     private float speed;
     //public float stateDuration;
+    public float jumpForce;
     public int direction = 1;
     public bool isFast = false;
     public bool stop = false;
-    Rigidbody2D rb;
-    Animator anim;
+    private Rigidbody2D rb;
+    private Animator anim;
+
+    private int talkingIndex = 0;
     public enum ActionType
     {
         turn,
@@ -52,6 +56,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        anim.SetBool("stop", stop);
+        anim.SetBool("isFast", isFast);
     }
 
     private void Move()
@@ -72,6 +78,10 @@ public class PlayerController : MonoBehaviour
                     rb.AddForce(new Vector2(origin_acc * direction, 0));
                 }
             }
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
         }
     }
     
@@ -100,10 +110,27 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Die")
             Die();
+        else if (collision.gameObject.tag == "Jump")
+            Jump();
+        else if (collision.gameObject.tag == "Talk")
+            Talk();
+    }
+
+    private void Talk()
+    {
+        stop = true;
+        UiStatic.GameDexTriggerIssue(talkingIndex);
+        talkingIndex++;
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(new Vector2 (0, jumpForce));
     }
 
     private void Die()
     {
+        stop = true;
         anim.SetTrigger("die");
     }
 }
