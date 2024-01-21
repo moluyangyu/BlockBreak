@@ -7,7 +7,6 @@ public class GuardController : MonoBehaviour
     public float speed;
     private int dir = 1;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +25,18 @@ public class GuardController : MonoBehaviour
         {
             dir = -dir;
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 0f);
+        }
+        if (collision.gameObject.name == "Window")
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Window")
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }

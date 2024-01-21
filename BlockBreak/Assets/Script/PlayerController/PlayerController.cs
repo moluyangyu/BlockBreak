@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    private int talkingIndex = 0;
+    public string idName;
+
     public enum ActionType
     {
         turn,
@@ -119,8 +120,7 @@ public class PlayerController : MonoBehaviour
     private void Talk()
     {
         stop = true;
-        UiStatic.GameDexTriggerIssue(talkingIndex);
-        talkingIndex++;
+        UiStatic.TalkKickIssue(idName);
     }
 
     private void Jump()

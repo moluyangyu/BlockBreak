@@ -28,6 +28,7 @@ public class GameDexTrigger : MonoBehaviour
         if(collision.gameObject.tag=="Player")
         {
             UiStatic.GameDexTriggerIssue(number);
+            PlayerController.Instance.stop = true;
         }
     }
     /// <summary>
