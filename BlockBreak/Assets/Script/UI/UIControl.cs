@@ -83,6 +83,7 @@ public class UIControl : MonoBehaviour
     }
     public void OpenDex()//UI界面按钮用的重载
     {
+        dex.SetActive(true);
         dex.GetComponent<GameDexControl>().UpdateDex(dex.GetComponent<GameDexControl>().pageNumber);//打开上一次打开的页码
     }
     /// <summary>
