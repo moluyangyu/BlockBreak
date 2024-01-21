@@ -17,10 +17,18 @@ public class BlockStatus : MonoBehaviour
 
     private void Update()
     {
-        if(!moving && state == BlockState.activated)
+        if(!moving)
         {
-            transform.position = eliminatePoint.transform.position;
+            if (state == BlockState.activated)
+            {
+                transform.position = eliminatePoint.transform.position;
+            }
+            else
+            {
+                transform.position = refreshPoint.transform.position;
+            }
         }
+        
     }
 
 }
