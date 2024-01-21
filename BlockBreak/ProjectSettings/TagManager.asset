@@ -12,6 +12,7 @@ TagManager:
   - Lose
   - Win
   - Talk
+  - block
   layers:
   - Default
   - TransparentFX

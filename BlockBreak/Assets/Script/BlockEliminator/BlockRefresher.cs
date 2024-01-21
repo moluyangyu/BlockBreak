@@ -11,13 +11,14 @@ public class BlockRefresher : MonoBehaviour
     private GameObject refreshArea;
     private GameObject[] refreshPoints = new GameObject[99];
 
+    private GameObject[] blocks = new GameObject[99];
 
-    public Sprite turn;
-    public Sprite switchSpeed;
-    public Sprite switchStop;
-    public Sprite ui;
-    public Sprite landform;
-    public Sprite easterEgg;
+    //public Sprite turn;
+    //public Sprite switchSpeed;
+    //public Sprite switchStop;
+    //public Sprite ui;
+    //public Sprite landform;
+    //public Sprite easterEgg;
 
     private static BlockRefresher instance;
     public static BlockRefresher Instance
@@ -33,6 +34,12 @@ public class BlockRefresher : MonoBehaviour
     private void Awake()
     {
         GetRefreshArea();
+        GetBlocks();
+    }
+
+    private void GetBlocks()
+    {
+        blocks = GameObject.FindGameObjectsWithTag("block");
     }
 
     private void GetRefreshArea()
@@ -50,17 +57,26 @@ public class BlockRefresher : MonoBehaviour
         //RefreshAll();
     }
 
-    private void RefreshAll()
+    public void RefreshAll()
     {
-        GameObject[] blockArray = GameObject.FindGameObjectsWithTag("Block");
-        foreach (GameObject block in blockArray)
-        {
-            Destroy(block);
+        foreach (GameObject block in blocks) {
+            block.SetActive(true);
+            BlockStatus status = block.GetComponent<BlockStatus>();
+            if (!status.moving)
+            {
+                status.state = BlockState.original;
+            }
         }
-        for (int i = 0;i < refreshArea.transform.childCount; i++)
-        {
-            CreateBlock(refreshPoints[i]);
-        }
+
+        //GameObject[] blockArray = GameObject.FindGameObjectsWithTag("Block");
+        //foreach (GameObject block in blockArray)
+        //{
+        //    Destroy(block);
+        //}
+        //for (int i = 0;i < refreshArea.transform.childCount; i++)
+        //{
+        //    CreateBlock(refreshPoints[i]);
+        //}
     }
 
     // Update is called once per frame
@@ -78,27 +94,27 @@ public class BlockRefresher : MonoBehaviour
         status.state = BlockState.original;
         status.moving = false;
         status.type = (BlockType)UnityEngine.Random.Range(0, Enum.GetNames(typeof(BlockType)).Length);
-        switch (status.type)
-        {
-            case BlockType.turn:
-                status.GetComponent<SpriteRenderer>().sprite = turn;
-                break;
-            case BlockType.switchSpeed:
-                status.GetComponent<SpriteRenderer>().sprite = switchSpeed;
-                break;
-            case BlockType.switchStop:
-                status.GetComponent<SpriteRenderer>().sprite = switchStop;
-                break;
-            case BlockType.ui:
-                status.GetComponent<SpriteRenderer>().sprite = ui;
-                break;
-            case BlockType.landform:
-                status.GetComponent<SpriteRenderer>().sprite = landform;
-                break;
-            case BlockType.easterEgg:
-                status.GetComponent<SpriteRenderer>().sprite = easterEgg;
-                break;
-        }
+        //switch (status.type)
+        //{
+        //    case BlockType.turn:
+        //        status.GetComponent<SpriteRenderer>().sprite = turn;
+        //        break;
+        //    case BlockType.switchSpeed:
+        //        status.GetComponent<SpriteRenderer>().sprite = switchSpeed;
+        //        break;
+        //    case BlockType.switchStop:
+        //        status.GetComponent<SpriteRenderer>().sprite = switchStop;
+        //        break;
+        //    case BlockType.ui:
+        //        status.GetComponent<SpriteRenderer>().sprite = ui;
+        //        break;
+        //    case BlockType.landform:
+        //        status.GetComponent<SpriteRenderer>().sprite = landform;
+        //        break;
+        //    case BlockType.easterEgg:
+        //        status.GetComponent<SpriteRenderer>().sprite = easterEgg;
+        //        break;
+        //}
 
     }
 

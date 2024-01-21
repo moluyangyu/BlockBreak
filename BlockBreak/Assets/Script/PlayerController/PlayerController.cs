@@ -132,5 +132,6 @@ public class PlayerController : MonoBehaviour
     {
         stop = true;
         anim.SetTrigger("die");
+        BlockRefresher.Instance.RefreshAll();
     }
 }
