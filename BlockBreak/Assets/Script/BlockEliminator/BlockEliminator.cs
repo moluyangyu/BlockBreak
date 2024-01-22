@@ -118,7 +118,7 @@ public class BlockEliminator : MonoBehaviour
         {
             
             BlockStatus status = activatedBlocks[i].GetComponent<BlockStatus>();
-            if (status.order == status.ePointIndex + 1)
+            if (status.order == status.ePointIndex + 1 || status.order == 0)
             {
                 
                 if (type == status.type)
