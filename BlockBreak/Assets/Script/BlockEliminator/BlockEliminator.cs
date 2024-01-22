@@ -151,6 +151,7 @@ public class BlockEliminator : MonoBehaviour
         {
             //blockOriginPoints.Add(block.GetComponent<BlockStatus>().refreshPoint);
             //Destroy(block);
+            eliminatejudge[block.GetComponent<BlockStatus>().ePointIndex] = true;
             block.SetActive(false);
         }
         //foreach (GameObject point in blockOriginPoints)
