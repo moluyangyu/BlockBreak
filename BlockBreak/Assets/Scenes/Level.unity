@@ -1949,6 +1949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Block (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6533894414774973401, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7258583997365270161, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
       propertyPath: order
       value: 2
@@ -2091,6 +2095,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Block (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6533894414774973401, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7258583997365270161, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
       propertyPath: order
       value: 3
@@ -2175,6 +2183,10 @@ PrefabInstance:
     - target: {fileID: 6380687614866096957, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533894414774973401, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7258583997365270161, guid: 386cf433c8d9697458602fb53c54b1b8, type: 3}
       propertyPath: order
