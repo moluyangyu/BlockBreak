@@ -3292,7 +3292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2142725091216790583, guid: fca77d54c657931479b20b6f9b9cdb95, type: 3}
       propertyPath: idName
-      value: test2
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2142725091216790583, guid: fca77d54c657931479b20b6f9b9cdb95, type: 3}
       propertyPath: fast_acc
@@ -3308,7 +3308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2142725091216790583, guid: fca77d54c657931479b20b6f9b9cdb95, type: 3}
       propertyPath: originSpeed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3483913895435340044, guid: fca77d54c657931479b20b6f9b9cdb95, type: 3}
       propertyPath: m_SortingOrder
@@ -4290,7 +4290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 1
-  idname: test2
+  idname: 222
 --- !u!4 &1362178780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5361898253570976322, guid: ef964833ce3a3bc49a6fe2103b7e4468, type: 3}
