@@ -147,20 +147,20 @@ public class BlockEliminator : MonoBehaviour
     private void Eliminate()
     {
         BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
-        foreach (GameObject block in activatedBlocks)
-        {
+        ////foreach (GameObject block in activatedBlocks)
+        ////{
             //blockOriginPoints.Add(block.GetComponent<BlockStatus>().refreshPoint);
             //Destroy(block);
-            eliminatejudge[block.GetComponent<BlockStatus>().ePointIndex] = true;
-            block.SetActive(false);
-        }
+        ////    eliminatejudge[block.GetComponent<BlockStatus>().ePointIndex] = true;
+        ////    block.SetActive(false);
+        ////}
         //foreach (GameObject point in blockOriginPoints)
         //{
         //    BlockRefresher.Instance.CreateBlock(point);
         //}
-        activatedBlocks.Clear();
-        activatedBlocksCount=0;
-        actingBlocksCount = 0;
+        //activatedBlocks.Clear();
+        ////activatedBlocksCount=0;
+        ////actingBlocksCount = 0;//【150~163行，消除方块配对成功后，销毁自身】
         //event
         switch (type)
         {
