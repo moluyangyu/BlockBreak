@@ -158,9 +158,9 @@ public static class UiStatic
     /// <param name="idName"></param>
     public static void TalkKickIssue(string idName)
     {
-        for(int j=0;j< TextNamesStatic.Length;j++)
+        for(int j=0;j< textNamesStatic.Length;j++)
         {
-            if(TextNamesStatic[j].Equals(idName))
+            if(textNamesStatic[j].Equals(idName))
             {
                 TalkKick?.Invoke(j);//将标识名转化为int的id然后送去对比
             }

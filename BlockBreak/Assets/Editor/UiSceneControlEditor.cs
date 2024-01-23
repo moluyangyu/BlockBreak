@@ -41,4 +41,9 @@ public class UiSceneControlEditor : Editor
         EditorGUILayout.PropertyField(textNames, new GUIContent("对话气泡标识名"));
         serializedObject.ApplyModifiedProperties();
     }
+    private void OnDisable()
+    {
+        UiSceneControl uiSceneControl = (UiSceneControl)target;
+        uiSceneControl.UpdateTextNames(false);
+    }
 }

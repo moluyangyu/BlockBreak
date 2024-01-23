@@ -407,11 +407,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   readedText: {fileID: 4900000, guid: 642d937c2c44a34499acf8f86e38bf89, type: 3}
   textCut1: []
-  tmpText: {fileID: 0}
+  tmpText: {fileID: 3744437728658819990}
   pageNumber: 0
   id: 2
   textName: 
-  nextPageSwitch: 0
+  isOpen: 0
+  bubbleImage: {fileID: 0}
 --- !u!114 &99342783462744880
 MonoBehaviour:
   m_ObjectHideFlags: 0
