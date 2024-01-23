@@ -94,5 +94,6 @@ public class UIControl : MonoBehaviour
     public void CloseDex()
     {
         dex.SetActive(false);
+        UiStatic.UiOpenIssue();
     }
 }
