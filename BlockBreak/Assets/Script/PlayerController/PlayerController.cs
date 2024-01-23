@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UiStatic.UiOpen += SwitchStop;
     }
 
     // Update is called once per frame

@@ -409,10 +409,10 @@ MonoBehaviour:
   textCut1: []
   tmpText: {fileID: 3744437728658819990}
   pageNumber: 0
-  id: 2
+  id: 1
   textName: 
   isOpen: 0
-  bubbleImage: {fileID: 0}
+  bubbleImage: {fileID: 99342783462744880}
 --- !u!114 &99342783462744880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 46d4b9b95ab4bde4ebf4adb03562e87f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

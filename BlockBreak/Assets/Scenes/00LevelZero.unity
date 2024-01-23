@@ -5593,6 +5593,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1886482514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 99342783462744880, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+  m_PrefabInstance: {fileID: 1998136328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916810983 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2632262580297260180, guid: bb53ae59587f30347bc5f47665a73011, type: 3}
@@ -6136,6 +6147,10 @@ PrefabInstance:
       propertyPath: readedText
       value: 
       objectReference: {fileID: 4900000, guid: 75ddb1bc9de06474ba465a38e1b752df, type: 3}
+    - target: {fileID: 1868002276878138930, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: bubbleImage
+      value: 
+      objectReference: {fileID: 1886482514}
     - target: {fileID: 3744437728658819990, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_fontAsset
       value: 

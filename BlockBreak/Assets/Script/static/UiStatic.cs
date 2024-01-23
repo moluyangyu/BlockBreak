@@ -138,13 +138,20 @@ public static class UiStatic
             return 0;
         }
     }
+    //激活UI的事件
+    public delegate void UiOpenHandler();
+    public static event UiOpenHandler UiOpen;
+    public static void UiOpenIssue()
+    {
+        UiOpen?.Invoke();
+    }
     //激活图鉴的事件
     public delegate void GameDexTriggerHandler(int i);
     public static event GameDexTriggerHandler GameDexTrigger;
     /// <summary>
     /// 激活图鉴
     /// </summary>
-    /// <param name="i"></param>这个为激活了第几个标记，单一游戏场景内使用的
+    /// <param name="i"></param>这个为激活了第几个标记，非单一游戏场景内使用的
     public static void GameDexTriggerIssue(int i)
     {
         GameDexTrigger?.Invoke(i);
