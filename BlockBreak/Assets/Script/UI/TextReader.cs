@@ -33,10 +33,18 @@ public class TextReader : MonoBehaviour
     /// <summary>
     /// 加载下一页的内容
     /// </summary>
-    public void NextPage()
+    public bool NextPage()
     {
         pageNumber++;
-        tmpText.text = textCut1[pageNumber];
+        if(pageNumber<textCut1.Length)//翻页倒头了停止翻页
+        {
+            tmpText.text = textCut1[pageNumber];
+        }
+        else
+        {
+            return true;
+        }
+        return false;
     }
     /// <summary>
     /// 依据预设分割获取文本
@@ -50,19 +58,25 @@ public class TextReader : MonoBehaviour
     /// <summary>
     /// 订阅突推进对话的函数
     /// </summary>
-    public void TalkKick(int i)
+    public bool TalkKick(int i)
     {
         if(i==id)
         {
-            if(tmpText.text.Equals("0"))
+            if(tmpText.text.Equals("0")|| tmpText.text.Equals("关闭对话框"))
             {
                 CloseTalk();
-            }else if(!isOpen)
+            }
+            else if(!isOpen)
             {
                 OpenTalk();//如果有字了还关着就打开
             }
-            NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
+            bool b=NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
+            if(b)
+            {
+                return true;
+            }
         }
+        return false;
     }
     /// <summary>
     /// 关闭对话框用的

@@ -10,7 +10,7 @@ public static class UiStatic
     public static string[] TextNamesStatic
     {
         get { return textNamesStatic; }
-        set { textNamesStatic = value;}
+        set {if(value!=null){textNamesStatic = value;}}
     }
     /// <summary>
     /// 把静态的标识数组写入CSV文件
@@ -150,20 +150,22 @@ public static class UiStatic
         GameDexTrigger?.Invoke(i);
     }
     //鼠标点击推进对话的事件
-    public delegate void TalkKickHandler(int id);
+    public delegate bool TalkKickHandler(int id);
     public static event TalkKickHandler TalkKick;
     /// <summary>
     /// 鼠标点击以后就推进所有相同标识名的对话框往下进行一步
     /// </summary>
     /// <param name="idName"></param>
-    public static void TalkKickIssue(string idName)
+    public static bool TalkKickIssue(string idName)
     {
         for(int j=0;j< textNamesStatic.Length;j++)
         {
             if(textNamesStatic[j].Equals(idName))
             {
-                TalkKick?.Invoke(j);//将标识名转化为int的id然后送去对比
+                bool i=TalkKick(j);//将标识名转化为int的id然后送去对比
+                return i;
             }
         }
+        return false;
     }
 }

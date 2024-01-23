@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool stop = false;
     private Rigidbody2D rb;
     private Animator anim;
-
+    public bool isTalk = false;
     public string idName;
 
     public enum ActionType
@@ -84,6 +84,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
+        if(isTalk&&Input.GetMouseButtonDown(0))
+        {
+            bool i=UiStatic.TalkKickIssue(idName);
+            if(i)
+            {
+                isTalk = false;
+                stop = false;
+            }
+        }
     }
     
     public void Turn()
@@ -120,6 +129,7 @@ public class PlayerController : MonoBehaviour
     private void Talk()
     {
         stop = true;
+        isTalk = true;
         UiStatic.TalkKickIssue(idName);
     }
 
