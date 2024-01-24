@@ -40,6 +40,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private static GameObject player;
+    public static GameObject Player
+    {
+        get {
+            if (player == null)
+                player = GameObject.Find("Player");
+            return player;
+        }
+    }
+
     private void Awake()
     {
         speed = originSpeed;
