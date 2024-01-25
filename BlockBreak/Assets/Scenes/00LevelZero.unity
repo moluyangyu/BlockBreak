@@ -4561,13 +4561,9 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3744437728658819990, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 3744437728658819990, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4798904366829903095, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6151,14 +6147,6 @@ PrefabInstance:
       propertyPath: bubbleImage
       value: 
       objectReference: {fileID: 1886482514}
-    - target: {fileID: 3744437728658819990, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 3744437728658819990, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4798904366829903095, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6274,6 +6262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.5
+  nextScenePos: 0
 --- !u!4 &2056032802
 Transform:
   m_ObjectHideFlags: 0

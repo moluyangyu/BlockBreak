@@ -62,7 +62,7 @@ public class TextReader : MonoBehaviour
     {
         if(i==id)
         {
-            if(tmpText.text.Equals("0")|| tmpText.text.Equals("关闭对话框"))
+            if (textCut1[pageNumber] == "0"|| textCut1[pageNumber]=="#")
             {
                 CloseTalk();
             }
@@ -70,9 +70,10 @@ public class TextReader : MonoBehaviour
             {
                 OpenTalk();//如果有字了还关着就打开
             }
-            bool b=NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
-            if(b)
+            bool b = NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
+            if (b)
             {
+                CloseTalk();
                 return true;
             }
         }

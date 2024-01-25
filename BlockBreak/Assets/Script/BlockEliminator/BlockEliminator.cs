@@ -83,7 +83,7 @@ public class BlockEliminator : MonoBehaviour
             for (int i = 0; i < ELIMINATE_COUNT; i++)
             {
                 //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
-                eliminatePoints[i].transform.position = nextArea.transform.GetChild(i).position;
+              //  eliminatePoints[i].transform.position = nextArea.transform.GetChild(i).position;
             }
         }
         

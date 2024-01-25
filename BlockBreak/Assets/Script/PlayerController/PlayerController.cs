@@ -125,6 +125,26 @@ public class PlayerController : MonoBehaviour
         stop = !stop;
         anim.SetBool("stop", stop);
     }
+    public void SwitchStop(int a)
+    {
+        if(a==0)//
+        {
+            
+        }
+        switch (a)
+        {
+            case 0:
+                stop = true;
+                anim.SetBool("stop", stop);break;
+            case 1:
+                stop = false;
+                anim.SetBool("stop", stop);break;
+            case 2:
+                SwitchStop();break;
+        }
+        
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

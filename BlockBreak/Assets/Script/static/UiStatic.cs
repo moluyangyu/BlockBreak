@@ -139,11 +139,19 @@ public static class UiStatic
         }
     }
     //激活UI的事件
-    public delegate void UiOpenHandler();
+    public delegate void UiOpenHandler(int a);//用于主角状态机器，传入0就设置为true，1为false，2就是直接反转
     public static event UiOpenHandler UiOpen;
+    public static void UiOpenIssue(bool a)
+    {
+        if(a)
+        {
+            UiOpen?.Invoke(0);
+        }
+        
+    }
     public static void UiOpenIssue()
     {
-        UiOpen?.Invoke();
+        UiOpen?.Invoke(2);
     }
     //激活图鉴的事件
     public delegate void GameDexTriggerHandler(int i);
