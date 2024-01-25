@@ -36,9 +36,21 @@ public class TextReader : MonoBehaviour
     public bool NextPage()
     {
         pageNumber++;
-        if(pageNumber<textCut1.Length)//翻页倒头了停止翻页
+        if(pageNumber<(textCut1.Length-1))//翻页倒头了停止翻页
         {
-            tmpText.text = textCut1[pageNumber];
+            if (textCut1[pageNumber] == "0\r" || textCut1[pageNumber] == "#")
+            {
+                CloseTalk();
+            }
+            else if (!isOpen)
+            {
+                tmpText.text = textCut1[pageNumber];
+                OpenTalk();//如果有字了还关着就打开
+            }else
+            {
+                tmpText.text = textCut1[pageNumber];
+            }
+            
         }
         else
         {
@@ -62,14 +74,7 @@ public class TextReader : MonoBehaviour
     {
         if(i==id)
         {
-            if (textCut1[pageNumber] == "0"|| textCut1[pageNumber]=="#")
-            {
-                CloseTalk();
-            }
-            else if(!isOpen)
-            {
-                OpenTalk();//如果有字了还关着就打开
-            }
+            
             bool b = NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
             if (b)
             {
