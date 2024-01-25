@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 public static class UiStatic
@@ -94,7 +95,7 @@ public static class UiStatic
             lines[lineIndex] = newData;
 
             // Ð´»ØÎÄ¼þ
-            File.WriteAllLines(filePath, lines);
+            File.WriteAllLines(filePath, lines, Encoding.UTF8);
 
             //Debug.Log("CSV file updated successfully at line " + lineIndex + ": " + filePath);
         }
