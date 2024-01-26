@@ -11,7 +11,7 @@ public static class UiStatic
     public static string[] TextNamesStatic
     {
         get { return textNamesStatic; }
-        set {if(value!=null){textNamesStatic = value;}}
+        set { if (value != null) { textNamesStatic = value; } }
     }
     /// <summary>
     /// 把静态的标识数组写入CSV文件
@@ -68,14 +68,14 @@ public static class UiStatic
             // 将 List 转为数组
             string[] dataArray = data.ToArray();
 
-           // Debug.Log("CSV file loaded successfully: " + filePath);
+            // Debug.Log("CSV file loaded successfully: " + filePath);
 
-            textNamesStatic=dataArray;
+            textNamesStatic = dataArray;
         }
         catch (System.Exception ex)
         {
-         //   Debug.LogError("Error loading CSV file: " + ex.Message);
-            
+            //   Debug.LogError("Error loading CSV file: " + ex.Message);
+
         }
     }
     /// <summary>
@@ -101,7 +101,7 @@ public static class UiStatic
         }
         catch (System.Exception ex)
         {
-           // Debug.LogError("Error updating CSV file: " + ex.Message);
+            // Debug.LogError("Error updating CSV file: " + ex.Message);
         }
     }
     /// <summary>
@@ -144,11 +144,11 @@ public static class UiStatic
     public static event UiOpenHandler UiOpen;
     public static void UiOpenIssue(bool a)
     {
-        if(a)
+        if (a)
         {
             UiOpen?.Invoke(0);
         }
-        
+
     }
     public static void UiOpenIssue()
     {
@@ -174,15 +174,15 @@ public static class UiStatic
     /// <param name="idName"></param>
     public static bool TalkKickIssue(string idName)
     {
-        for(int j=0;j< textNamesStatic.Length;j++)
-        { 
-            foreach (TalkKickHandler handler in TalkKick.GetInvocationList())
+        foreach (TalkKickHandler handler in TalkKick.GetInvocationList())
+        {
+            int TalkResult = 0;
+            for (int j = 0; j < textNamesStatic.Length; j++)
             {
-                int TalkResult=0;
                 if (textNamesStatic[j].Equals(idName))
                 {
                     bool i = TalkKick(j);//将标识名转化为int的id然后送去对比
-                    if(i)
+                    if (i)
                     {
                         TalkResult += 0;
                     }
@@ -196,6 +196,7 @@ public static class UiStatic
                     }
                 }
             }
+
         }
         return false;
     }
