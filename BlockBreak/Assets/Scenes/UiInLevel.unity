@@ -1562,6 +1562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u5BF9\u8BDD\u6C14\u6CE1UI\u9ED8\u8BA4\u4F4D\u7F6E"
       objectReference: {fileID: 0}
+    - target: {fileID: 1240438068799007238, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4798904366829903095, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1667,6 +1671,30 @@ PrefabInstance:
     - target: {fileID: 1240438068799007238, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Name
       value: ConversationBubble (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1240438068799007238, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640562941194212330, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640562941194212330, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640562941194212330, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640562941194212330, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640562941194212330, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4798904366829903095, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Pivot.x
@@ -2242,7 +2270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240438068799007238, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1868002276878138930, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: profile
