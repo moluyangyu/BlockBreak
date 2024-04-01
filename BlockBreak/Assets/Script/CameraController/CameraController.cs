@@ -9,10 +9,12 @@ public class CameraController : MonoBehaviour
     public float offset_max;
     public float x_min;
     public float x_max;
-
+    static GameObject SceneBlacking;
     private void Awake()
     {
         player = GameObject.Find("Player");
+        SceneBlacking=GameObject.Find("SceneBlacking");
+        SceneBlacking.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -27,4 +29,20 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, player.transform.position.x + offset_min, player.transform.position.x + offset_max), transform.position.y, transform.position.z);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, x_min, x_max), transform.position.y, transform.position.z);
     }
+    /// <summary>
+    /// 让场景变暗与否
+    /// </summary>
+    /// <param name="a"></param>决定开关状态的变量
+    public static void SceneBlack(bool a)
+    {
+        if (a)
+        {
+            SceneBlacking.SetActive(true);
+        }
+        else
+        {
+            SceneBlacking.SetActive(false);
+        }
+    }
+
 }

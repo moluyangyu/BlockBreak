@@ -53,7 +53,7 @@ public class GameDexControl : MonoBehaviour
         }
         pageNumber = i;
 
-        tmpText.text = textCut1[pageNumber];
+      //  tmpText.text = textCut1[pageNumber];
         pageImage.GetComponent<Image>().sprite = sprites[i];
     }
     /// <summary>

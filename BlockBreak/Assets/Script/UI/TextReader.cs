@@ -14,6 +14,7 @@ public class TextReader : MonoBehaviour
     public string textName;//用来存储识别代码谨防被编辑器初始化
     public bool isOpen;//对话框的开关
     public RawImage bubbleImage;//气泡的图片
+    public Image profile;//人物头像
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +93,7 @@ public class TextReader : MonoBehaviour
         isOpen = false;
         tmpText.text = "";
         bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
+        profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
     }
     /// <summary>
     /// 打开对话框
@@ -100,5 +102,6 @@ public class TextReader : MonoBehaviour
     {
         isOpen = true;
         bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+        profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
     }
 }
