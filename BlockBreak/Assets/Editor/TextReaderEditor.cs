@@ -7,6 +7,7 @@ using UnityEngine;
 public class TextReaderEditor : Editor
 {
     SerializedProperty readedText;
+    SerializedProperty c_speed;
     private void OnEnable()
     {
         //从脚本中获取变量
@@ -21,6 +22,7 @@ public class TextReaderEditor : Editor
 #endif
         }
         readedText = serializedObject.FindProperty("readedText");
+        c_speed= serializedObject.FindProperty("c_speed");
     }
     public override void OnInspectorGUI()
     {
@@ -28,6 +30,7 @@ public class TextReaderEditor : Editor
         TextReader textReader = (TextReader)target;
         serializedObject.Update();
         EditorGUILayout.PropertyField(readedText, new GUIContent("文本文件"));
+        EditorGUILayout.PropertyField(c_speed, new GUIContent("文本显示间隔时间"));
         if (GUILayout.Button("应用标识名更改"))
         {
             SaveData();
