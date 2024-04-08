@@ -78,12 +78,17 @@ public class UIControl : MonoBehaviour
         dex.SetActive(true);
         dexButton.SetActive(true);
         UiStatic.GameDexTrigger -= OpenDex;
+        //UiStatic.UiOpenIssue(true);
         UiStatic.GameDexTriggerIssue(i);//在图鉴游戏体打开以后再传一次消息才能接收到
         UiStatic.GameDexTrigger += OpenDex;
+        
     }
     public void OpenDex()//UI界面按钮用的重载
     {
+        dex.SetActive(true);
         dex.GetComponent<GameDexControl>().UpdateDex(dex.GetComponent<GameDexControl>().pageNumber);//打开上一次打开的页码
+        dexButton.SetActive(false);
+        UiStatic.UiOpenIssue();
     }
     /// <summary>
     /// 关闭图鉴
@@ -91,5 +96,7 @@ public class UIControl : MonoBehaviour
     public void CloseDex()
     {
         dex.SetActive(false);
+        dexButton.SetActive(true);
+        UiStatic.UiOpenIssue();
     }
 }

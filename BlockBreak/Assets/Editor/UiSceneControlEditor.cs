@@ -34,7 +34,7 @@ public class UiSceneControlEditor : Editor
         }
         if (GUILayout.Button("读取标识名"))
         {
-            uiSceneControl.UpdateTextNames(false);
+            uiSceneControl.UpdateTextNames(true);
             Debug.Log("更改成功");
         }
         serializedObject.Update();

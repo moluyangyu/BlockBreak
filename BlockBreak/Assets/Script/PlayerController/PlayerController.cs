@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour
     public bool stop = false;
     private Rigidbody2D rb;
     private Animator anim;
+    public bool isTalk = false;
+    public string idName;
 
-    private int talkingIndex = 0;
     public enum ActionType
     {
         turn,
@@ -39,6 +40,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private static GameObject player;
+    public static GameObject Player
+    {
+        get {
+            if (player == null)
+                player = GameObject.Find("Player");
+            return player;
+        }
+    }
+
     private void Awake()
     {
         speed = originSpeed;
@@ -49,7 +60,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UiStatic.UiOpen += SwitchStop;
     }
 
     // Update is called once per frame
@@ -83,6 +94,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
+        if(isTalk&&Input.GetMouseButtonDown(0))
+        {
+            bool i=UiStatic.TalkKickIssue(idName);
+            if(i)
+            {
+                isTalk = false;
+                stop = false;
+            }
+        }
     }
     
     public void Turn()
@@ -105,6 +125,26 @@ public class PlayerController : MonoBehaviour
         stop = !stop;
         anim.SetBool("stop", stop);
     }
+    public void SwitchStop(int a)
+    {
+        if(a==0)//
+        {
+            
+        }
+        switch (a)
+        {
+            case 0:
+                stop = true;
+                anim.SetBool("stop", stop);break;
+            case 1:
+                stop = false;
+                anim.SetBool("stop", stop);break;
+            case 2:
+                SwitchStop();break;
+        }
+        
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -119,8 +159,8 @@ public class PlayerController : MonoBehaviour
     private void Talk()
     {
         stop = true;
-        UiStatic.GameDexTriggerIssue(talkingIndex);
-        talkingIndex++;
+        isTalk = true;
+        UiStatic.TalkKickIssue(idName);
     }
 
     private void Jump()
@@ -132,5 +172,6 @@ public class PlayerController : MonoBehaviour
     {
         stop = true;
         anim.SetTrigger("die");
+        BlockRefresher.Instance.RefreshAll();
     }
 }

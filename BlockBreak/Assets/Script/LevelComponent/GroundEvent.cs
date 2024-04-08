@@ -73,7 +73,7 @@ public class GroundEvent : MonoBehaviour
         activityGroundGroup?.a.Add(new List<GameObject>());//新开批次就新增行
         int i = activityGroundGroup.a.Count;
         activityGroundGroup.a[i].Add(a);
-        EditorUtility.SetDirty(this);
+      //  EditorUtility.SetDirty(this);
         return activityGroundGroup.a.Count;
     }
     /// <summary>
@@ -85,7 +85,7 @@ public class GroundEvent : MonoBehaviour
     {
         int i = activityGroundGroup.a.Count;
         activityGroundGroup.a[i]?.Add(a);
-        EditorUtility.SetDirty(this);
+      //  EditorUtility.SetDirty(this);
         return activityGroundGroup.a.Count;
     }
     /// <summary>

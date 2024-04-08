@@ -27,6 +27,9 @@ public class BlockEliminator : MonoBehaviour
 
     public float moveDuration;
 
+    public float nextScenePos;
+    private bool nextScene = false;
+
     private int activatedBlocksCount = 0;
     private int actingBlocksCount = 0;
     private GameObject eliminateArea;
@@ -36,11 +39,13 @@ public class BlockEliminator : MonoBehaviour
     private List<GameObject> blockOriginPoints = new List<GameObject>();
     private GameObject[] eliminatePoints = new GameObject[ELIMINATE_COUNT];
     private bool[] eliminatejudge = new bool[ELIMINATE_COUNT];
-
+    private GameObject player;
+    private GameObject nextArea;
     private void Awake()
     {
         Initialize();
         GetEliminateArea();
+        player = PlayerController.Player;
     }
 
     private void GetEliminateArea()
@@ -72,6 +77,16 @@ public class BlockEliminator : MonoBehaviour
     void Update()
     {
         CheckClick();
+        if(player.transform.position.x >= nextScenePos && !nextScene)
+        {
+            nextArea = GameObject.Find("NextArea");
+            for (int i = 0; i < ELIMINATE_COUNT; i++)
+            {
+                //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
+              //  eliminatePoints[i].transform.position = nextArea.transform.GetChild(i).position;
+            }
+        }
+        
     }
 
     private void CheckClick()
@@ -112,12 +127,22 @@ public class BlockEliminator : MonoBehaviour
 
     private void TryEliminate()
     {
+        
         BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
-        for(int i = 1; i < activatedBlocksCount; i++)
+        for(int i = 0; i < activatedBlocksCount; i++)
         {
-            if (activatedBlocks[i].GetComponent<BlockStatus>().order == i)
-            if (type == activatedBlocks[i].GetComponent<BlockStatus>().type)
-                continue;
+            
+            BlockStatus status = activatedBlocks[i].GetComponent<BlockStatus>();
+            if (status.order == status.ePointIndex + 1 || status.order == 0)
+            {
+                
+                if (type == status.type)
+                {
+                    continue;
+                }
+                    
+            }
+            
             //foreach(GameObject block in activatedBlocks)
             //{
             //    BlockStatus status = block.GetComponent<BlockStatus>();
@@ -128,28 +153,29 @@ public class BlockEliminator : MonoBehaviour
             
             return;
         }
-        activatedBlocks.Clear();
+        
         //activatedBlocksCount=0;
-        actingBlocksCount = 0;
+        //actingBlocksCount = 0;
         Eliminate();
     }
 
     private void Eliminate()
     {
-        Debug.Log("Eliminate!");
         BlockType type = activatedBlocks[0].GetComponent<BlockStatus>().type;
         foreach (GameObject block in activatedBlocks)
         {
-            blockOriginPoints.Add(block.GetComponent<BlockStatus>().refreshPoint);
-            Destroy(block);
+            //blockOriginPoints.Add(block.GetComponent<BlockStatus>().refreshPoint);
+            //Destroy(block);
+            //eliminatejudge[block.GetComponent<BlockStatus>().ePointIndex] = true;
+            //block.SetActive(false);
         }
         //foreach (GameObject point in blockOriginPoints)
         //{
         //    BlockRefresher.Instance.CreateBlock(point);
         //}
-        activatedBlocks.Clear();
-        activatedBlocksCount=0;
-        actingBlocksCount = 0;
+        //activatedBlocks.Clear();
+        //activatedBlocksCount=0;
+        //actingBlocksCount = 0;
         //event
         switch (type)
         {
