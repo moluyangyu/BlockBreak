@@ -62,9 +62,15 @@
   <ItemGroup>
     <Compile Include="Assets\Editor\TextReaderEditor.cs" />
     <Compile Include="Assets\Editor\UiSceneControlEditor.cs" />
+    <Compile Include="Assets\Editor\AssetProcess.cs" />
+    <Compile Include="Assets\Editor\PickJsonDataWindow.cs" />
+    <Compile Include="Assets\Editor\UnityEditor.cs" />
     <Compile Include="Assets\Editor\GroundEventEditor.cs" />
+    <Compile Include="Assets\Editor\UnityArmatureEditor.cs" />
     <Compile Include="Assets\Editor\ActivityGroundEditor.cs" />
+    <Compile Include="Assets\Editor\DragonBonesIcons.cs" />
     <Compile Include="Assets\Editor\GameDexControlEditor.cs" />
+    <Compile Include="Assets\Editor\ShowSlotsWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
