@@ -17,10 +17,11 @@ public class PlayerController : MonoBehaviour
     public bool isFast = false;
     public bool stop = false;
     private Rigidbody2D rb;
-    private Animator anim;
+    //private Animator anim;
     public bool isTalk = false;
     public string idName;
 
+    private DragonBones.UnityArmatureComponent animDB;
     public enum ActionType
     {
         turn,
@@ -54,21 +55,22 @@ public class PlayerController : MonoBehaviour
     {
         speed = originSpeed;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
+        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         UiStatic.UiOpen += SwitchStop;
+        AnimPlay();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        anim.SetBool("stop", stop);
-        anim.SetBool("isFast", isFast);
+        
     }
 
     private void Move()
@@ -117,33 +119,47 @@ public class PlayerController : MonoBehaviour
         isFast = !isFast;
         if (isFast) speed = fastSpeed;
         else speed = originSpeed;
-        anim.SetBool("isFast", isFast);
+        //anim.SetBool("isFast", isFast);
+        AnimPlay();
     }
 
     public void SwitchStop()
     {
         stop = !stop;
-        anim.SetBool("stop", stop);
+        //anim.SetBool("stop", stop);
+        AnimPlay();
     }
     public void SwitchStop(int a)
     {
-        if(a==0)//
-        {
-            
-        }
         switch (a)
         {
             case 0:
                 stop = true;
-                anim.SetBool("stop", stop);break;
+                AnimPlay();
+                break;
             case 1:
                 stop = false;
-                anim.SetBool("stop", stop);break;
+                AnimPlay();
+                break;
             case 2:
-                SwitchStop();break;
+                SwitchStop(); break;
         }
-        
+    }
 
+    private void AnimPlay()
+    {
+        if (stop)
+        {
+            animDB.animation.Play("idle");
+        }
+        else if (isFast)
+        {
+            animDB.animation.Play("run");
+        }
+        else
+        {
+            animDB.animation.Play("walk");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -171,7 +187,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         stop = true;
-        anim.SetTrigger("die");
+        //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
     }
 }
