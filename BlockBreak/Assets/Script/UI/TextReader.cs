@@ -27,19 +27,21 @@ public class TextReader : MonoBehaviour
         bubbleImage = this.gameObject.GetComponent<RawImage>();
         ReadText();
         CloseTalk();
-        UiStatic.TalkKick += TalkKick;
+        
        
     }
     private void OnEnable()
     {
         // 注册场景加载完成时的事件
         SceneManager.sceneLoaded += OnSceneLoaded;
+        UiStatic.TalkKick += TalkKick;
     }
 
     private void OnDisable()
     {
         // 移除场景加载完成时的事件，以避免重复注册
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        UiStatic.TalkKick -= TalkKick;
     }
 
     // 场景加载完成时调用的方法

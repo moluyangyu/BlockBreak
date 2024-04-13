@@ -23,7 +23,8 @@ public class UIControl : MonoBehaviour
         //  lose = GameObject.Find("Lose");
         //   lose?.SetActive(false);
         //levelLock = GameObject.Find("LevelLock");
-        
+        dex = GameObject.Find("GameDex");
+        dexButton = GameObject.Find("OpenGameDex");
         UiStatic.GameDexTrigger += OpenDex;
         dex.SetActive(false);
         dexButton.SetActive(false);
