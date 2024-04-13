@@ -19,7 +19,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     //private Animator anim;
     public bool isTalk = false;
+    public bool isStair = false;
     public string idName;
+
+    private GameObject stairPoint1;
+    private GameObject stairPoint2;
+    private float x1,x2,y1,y2;
+
 
     private DragonBones.UnityArmatureComponent animDB;
     public enum ActionType
@@ -57,6 +63,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+
+
+        stairPoint1 = GameObject.Find("StartPoint1");
+        stairPoint2 = GameObject.Find("StartPoint2");
+        x1 = stairPoint1.transform.position.x;
+        x2 = stairPoint2.transform.position.x;
+        y1 = stairPoint1.transform.position.y;
+        y2 = stairPoint2.transform.position.y;
     }
 
     // Start is called before the first frame update
@@ -96,6 +110,17 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
+
+        if (transform.position.x >= x1 && transform.position.x <= x2)
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(y1, y2, Mathf.InverseLerp(x1, x2, transform.position.x)), 0);
+            isStair = true;
+        }
+        else
+        {
+            isStair = false;
+        }
+
         if(isTalk&&Input.GetMouseButtonDown(0))
         {
             bool i=UiStatic.TalkKickIssue(idName);
@@ -170,6 +195,8 @@ public class PlayerController : MonoBehaviour
             Jump();
         else if (collision.gameObject.tag == "Talk")
             Talk();
+        else if (collision.gameObject.tag == "Stop")
+            SwitchStop(0);
     }
 
     private void Talk()
