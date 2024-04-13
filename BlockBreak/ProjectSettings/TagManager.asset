@@ -13,6 +13,7 @@ TagManager:
   - Win
   - Talk
   - block
+  - Dex
   layers:
   - Default
   - TransparentFX

@@ -134,11 +134,11 @@ public class PlayerController : MonoBehaviour
         switch (a)
         {
             case 0:
-                stop = true;
+                stop = false;
                 AnimPlay();
                 break;
             case 1:
-                stop = false;
+                stop = true;
                 AnimPlay();
                 break;
             case 2:
@@ -165,11 +165,23 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Die")
+        {
             Die();
+        }
         else if (collision.gameObject.tag == "Jump")
+        {
             Jump();
+        }
         else if (collision.gameObject.tag == "Talk")
+        {
+            idName = collision.gameObject.GetComponent<TalkTrigger>().idname;
             Talk();
+        }
+        else if(collision.gameObject.tag=="Dex")
+        {
+            collision.gameObject.GetComponent<GameDexTrigger>().DexON();
+            SwitchStop(1);
+        }
     }
 
     private void Talk()

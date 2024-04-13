@@ -111,6 +111,7 @@
     <Compile Include="Assets\DragonBones\Scripts\armature\Armature.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityFactory.cs" />
     <Compile Include="Assets\Script\开发测试使用的脚本\UIControlTest.cs" />
+    <Compile Include="Assets\Script\UI\ProgressBar.cs" />
     <Compile Include="Assets\Script\CameraController\CameraController.cs" />
     <Compile Include="Assets\DragonBones\Scripts\armature\TransformObject.cs" />
     <Compile Include="Assets\Script\LevelComponent\GroundEvent.cs" />

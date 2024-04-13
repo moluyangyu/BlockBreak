@@ -33,10 +33,10 @@ public class TextReader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))//测试用，最后删除
-        {
-            UiStatic.TalkKickIssue("小蓝测试");
-        }
+        //if (Input.GetMouseButtonDown(0))//测试用，最后删除
+        //{
+        //    UiStatic.TalkKickIssue("小蓝测试");
+        //}
     }
     /// <summary>
     /// 做出和文本名一样的表情
@@ -111,6 +111,7 @@ public class TextReader : MonoBehaviour
             textCut2[i] = line.Split(',');
             i++;
         }
+        id = int.Parse(textCut1[0]);
         NextPage();
       //  int.TryParse(textCut1[0], out id);
     }

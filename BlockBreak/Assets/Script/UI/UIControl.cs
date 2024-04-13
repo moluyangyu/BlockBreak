@@ -88,7 +88,7 @@ public class UIControl : MonoBehaviour
         dex.SetActive(true);
         dex.GetComponent<GameDexControl>().UpdateDex(dex.GetComponent<GameDexControl>().pageNumber);//打开上一次打开的页码
         dexButton.SetActive(false);
-        UiStatic.UiOpenIssue();
+        UiStatic.UiOpenIssue(false);
     }
     /// <summary>
     /// 关闭图鉴
@@ -97,6 +97,6 @@ public class UIControl : MonoBehaviour
     {
         dex.SetActive(false);
         dexButton.SetActive(true);
-        UiStatic.UiOpenIssue();
+        UiStatic.UiOpenIssue(true);
     }
 }
