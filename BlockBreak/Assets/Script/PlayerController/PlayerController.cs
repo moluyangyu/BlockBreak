@@ -196,7 +196,11 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.tag == "Talk")
             Talk();
         else if (collision.gameObject.tag == "Stop")
+        {
             SwitchStop(0);
+            collision.gameObject.SetActive(false);
+        }
+            
     }
 
     private void Talk()
