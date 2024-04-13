@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TextReader : MonoBehaviour
@@ -21,7 +22,7 @@ public class TextReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pageNumber = 0;
+        
         // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         bubbleImage = this.gameObject.GetComponent<RawImage>();
         ReadText();
@@ -29,7 +30,23 @@ public class TextReader : MonoBehaviour
         UiStatic.TalkKick += TalkKick;
        
     }
+    private void OnEnable()
+    {
+        // 注册场景加载完成时的事件
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnDisable()
+    {
+        // 移除场景加载完成时的事件，以避免重复注册
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // 场景加载完成时调用的方法
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        pageNumber = 0;
+    }
     // Update is called once per frame
     void Update()
     {
