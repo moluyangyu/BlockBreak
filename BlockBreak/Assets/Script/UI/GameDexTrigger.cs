@@ -24,12 +24,19 @@ public class GameDexTrigger : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //检测玩家进入就发送自动打开图鉴的信号
-        if(collision.gameObject.tag=="Player")
-        {
-            UiStatic.GameDexTriggerIssue(number);
-          //  PlayerController.Instance.SwitchStop(0);
-        }
+        ////检测玩家进入就发送自动打开图鉴的信号
+        //if(collision.gameObject.tag=="Player")
+        //{
+        //    
+        //  //  PlayerController.Instance.SwitchStop(0);
+        //}
+    }
+    /// <summary>
+    /// 打开图鉴
+    /// </summary>
+    public void DexON()
+    {
+        UiStatic.GameDexTriggerIssue(number);
     }
     /// <summary>
     /// 设置碰撞体大小

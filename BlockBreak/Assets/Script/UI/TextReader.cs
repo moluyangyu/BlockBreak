@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TextReader : MonoBehaviour
@@ -21,22 +22,40 @@ public class TextReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pageNumber = 0;
+        
         // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         bubbleImage = this.gameObject.GetComponent<RawImage>();
         ReadText();
         CloseTalk();
-        UiStatic.TalkKick += TalkKick;
+        
        
     }
+    private void OnEnable()
+    {
+        // 注册场景加载完成时的事件
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        UiStatic.TalkKick += TalkKick;
+    }
 
+    private void OnDisable()
+    {
+        // 移除场景加载完成时的事件，以避免重复注册
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        UiStatic.TalkKick -= TalkKick;
+    }
+
+    // 场景加载完成时调用的方法
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        pageNumber = 0;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))//测试用，最后删除
-        {
-            UiStatic.TalkKickIssue("小蓝测试");
-        }
+        //if (Input.GetMouseButtonDown(0))//测试用，最后删除
+        //{
+        //    UiStatic.TalkKickIssue("小蓝测试");
+        //}
     }
     /// <summary>
     /// 做出和文本名一样的表情
@@ -111,6 +130,7 @@ public class TextReader : MonoBehaviour
             textCut2[i] = line.Split(',');
             i++;
         }
+        id = int.Parse(textCut1[0]);
         NextPage();
       //  int.TryParse(textCut1[0], out id);
     }

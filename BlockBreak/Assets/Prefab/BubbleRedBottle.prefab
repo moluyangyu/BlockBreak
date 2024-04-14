@@ -168,7 +168,7 @@ MonoBehaviour:
   isOpen: 0
   bubbleImage: {fileID: 99342783462744880}
   profile: {fileID: 63456516714512754}
-  c_speed: 2
+  c_speed: 0.1
 --- !u!114 &99342783462744880
 MonoBehaviour:
   m_ObjectHideFlags: 0

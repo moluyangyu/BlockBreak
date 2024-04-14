@@ -25,11 +25,11 @@ public class TalkTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //检测玩家进入就发开始对话的信号
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.gameObject.GetComponent<PlayerController>().idName = idname;
-          //  PlayerController.Instance.stop = true;
-        }
+        //if (collision.gameObject.tag == "Player")
+        //{
+        //    collision.gameObject.GetComponent<PlayerController>().idName = idname;
+        //  //  PlayerController.Instance.stop = true;
+        //}
     }
     /// <summary>
     /// 设置碰撞体大小

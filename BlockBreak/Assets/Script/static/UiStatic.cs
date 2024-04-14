@@ -142,9 +142,16 @@ public static class UiStatic
     //激活UI的事件
     public delegate void UiOpenHandler(int a);//用于主角状态机器，传入0就设置为true，1为false，2就是直接反转
     public static event UiOpenHandler UiOpen;
+    /// <summary>
+    /// false就是停下来，true就是走
+    /// </summary>
+    /// <param name="a"></param>
     public static void UiOpenIssue(bool a)
     {
         if (a)
+        {
+            UiOpen?.Invoke(1);
+        }else
         {
             UiOpen?.Invoke(0);
         }
