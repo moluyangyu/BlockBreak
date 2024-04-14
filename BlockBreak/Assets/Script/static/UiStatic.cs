@@ -150,10 +150,10 @@ public static class UiStatic
     {
         if (a)
         {
-            UiOpen?.Invoke(0);
+            UiOpen?.Invoke(1);
         }else
         {
-            UiOpen?.Invoke(1);
+            UiOpen?.Invoke(0);
         }
 
     }

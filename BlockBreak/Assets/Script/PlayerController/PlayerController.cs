@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
 
 
-        stairPoint1 = GameObject.Find("StartPoint1");
-        stairPoint2 = GameObject.Find("StartPoint2");
+        stairPoint1 = GameObject.Find("StairPoint1");
+        stairPoint2 = GameObject.Find("StairPoint2");
         x1 = stairPoint1.transform.position.x;
         x2 = stairPoint2.transform.position.x;
         y1 = stairPoint1.transform.position.y;
@@ -194,11 +194,19 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.tag == "Jump")
             Jump();
         else if (collision.gameObject.tag == "Talk")
+        {
             Talk();
+            idName = collision.gameObject.GetComponent<TalkTrigger>().idname;
+        }
+
         else if (collision.gameObject.tag == "Stop")
         {
             SwitchStop(0);
             collision.gameObject.SetActive(false);
+        }else if(collision.gameObject.tag=="Dex")
+        {
+            SwitchStop(0);
+            collision.gameObject.GetComponent<GameDexTrigger>().DexON();
         }
             
     }
