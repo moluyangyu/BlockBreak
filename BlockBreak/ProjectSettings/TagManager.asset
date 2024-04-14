@@ -13,6 +13,7 @@ TagManager:
   - Win
   - Talk
   - block
+  - Stop
   layers:
   - Default
   - TransparentFX

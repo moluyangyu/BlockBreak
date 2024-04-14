@@ -67,7 +67,11 @@ public class ProgressBar : MonoBehaviour
     public void SetImage()
     {
         if(nowState)nowState.SetActive(false);
-        if (playerC.stop)
+        if (playerC.isStair)
+        {
+            nowState = upstairs;
+        }
+        else if (playerC.stop)
         {
             nowState = pause;
         }
