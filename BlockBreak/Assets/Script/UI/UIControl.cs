@@ -25,11 +25,31 @@ public class UIControl : MonoBehaviour
         //levelLock = GameObject.Find("LevelLock");
         dex = GameObject.Find("GameDex");
         dexButton = GameObject.Find("OpenGameDex");
-        UiStatic.GameDexTrigger += OpenDex;
         dex.SetActive(false);
         dexButton.SetActive(false);
+       // Debug.Log("关闭完成");
+
+
     }
-    
+    private void OnEnable()
+    {
+        // 注册事件
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        UiStatic.GameDexTrigger += OpenDex;
+    }
+
+    private void OnDisable()
+    {
+        // 移除事件，以避免重复注册
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        UiStatic.GameDexTrigger -= OpenDex;
+    }
+
+    // 场景加载完成时调用的方法
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+    }
     /// <summary>
     /// 开关胜负界面
     /// </summary>

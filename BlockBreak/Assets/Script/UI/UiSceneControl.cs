@@ -40,7 +40,7 @@ public class UiSceneControl : MonoBehaviour
     {
         a = true;
 #if UNITY_EDITOR
-        a = false;
+       // a = false;
 #endif
         if (a)
         {

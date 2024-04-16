@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
 
     private DragonBones.UnityArmatureComponent animDB;
+    private DragonBones.UnityArmatureComponent animDB2;
     public enum ActionType
     {
         turn,
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         speed = originSpeed;
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
-        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        
 
 
         stairPoint1 = GameObject.Find("StairPoint1");
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         UiStatic.UiOpen += SwitchStop;
+        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
         AnimPlay();
     }
 
@@ -173,18 +175,24 @@ public class PlayerController : MonoBehaviour
 
     private void AnimPlay()
     {
-        if (stop)
+       if(animDB!=null)
         {
-            animDB.animation.Play("idle");
+            // animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+            if (stop)
+            {
+                animDB.animation.Play("idle");
+            }
+            else if (isFast)
+            {
+                animDB.animation.Play("run");
+            }
+            else
+            {
+                animDB.animation.Play("walk");
+            }
         }
-        else if (isFast)
-        {
-            animDB.animation.Play("run");
-        }
-        else
-        {
-            animDB.animation.Play("walk");
-        }
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -195,8 +203,8 @@ public class PlayerController : MonoBehaviour
             Jump();
         else if (collision.gameObject.tag == "Talk")
         {
-            Talk();
             idName = collision.gameObject.GetComponent<TalkTrigger>().idname;
+            Talk();
         }
 
         else if (collision.gameObject.tag == "Stop")
