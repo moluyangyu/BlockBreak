@@ -120,4 +120,18 @@ public class UIControl : MonoBehaviour
         dexButton.SetActive(true);
         UiStatic.UiOpenIssue(true);
     }
+    /// <summary>
+    /// 图鉴加载下一页的内容
+    /// </summary>
+    public void DexNextPage()
+    {
+        dex.GetComponent<GameDexControl>().NextPage();
+    }
+    /// <summary>
+    /// 图鉴加载上一页的内容
+    /// </summary>
+    public void DexLastPage()
+    {
+        dex.GetComponent<GameDexControl>().LastPage();
+    }
 }

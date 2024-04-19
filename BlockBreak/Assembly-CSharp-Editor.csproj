@@ -67,6 +67,7 @@
     <Compile Include="Assets\Editor\UnityEditor.cs" />
     <Compile Include="Assets\Editor\GroundEventEditor.cs" />
     <Compile Include="Assets\Editor\UnityArmatureEditor.cs" />
+    <Compile Include="Assets\Editor\ChageSpineVersion.cs" />
     <Compile Include="Assets\Editor\ActivityGroundEditor.cs" />
     <Compile Include="Assets\Editor\DragonBonesIcons.cs" />
     <Compile Include="Assets\Editor\GameDexControlEditor.cs" />
@@ -1147,6 +1148,10 @@
       <Project>{C9C4DE5F-5F76-82E7-1013-CA31BC3076BF}</Project>
       <Name>PPv2URPConverters</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity.csproj">
+      <Project>{280FBC69-EFF2-86A3-C9B7-9105FE0C0BE9}</Project>
+      <Name>spine-unity</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{917855FE-E99E-F3F6-08B7-E8A4AB1AEB23}</Project>
       <Name>Unity.TextMeshPro</Name>
@@ -1190,6 +1195,10 @@
     <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
       <Project>{098A86EE-6B21-0996-B790-F33C0B75BD8C}</Project>
       <Name>Unity.ShaderGraph.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples.csproj">
+      <Project>{9793EEC1-6983-6F5C-0F82-893D6F9F0660}</Project>
+      <Name>spine-unity-examples</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
       <Project>{4B5489FC-87CB-9645-BC96-50D0B8D7E20B}</Project>
@@ -1259,6 +1268,10 @@
       <Project>{062ACE07-B1EF-0AC3-8A36-168B11F8EFE1}</Project>
       <Name>Unity.VisualScripting.State.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity-examples-editor.csproj">
+      <Project>{8974678C-9E0D-86AA-78E6-390C9A3C8A7B}</Project>
+      <Name>spine-unity-examples-editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
       <Project>{4E2228D3-7422-67C6-FD1D-8F1555E14D61}</Project>
       <Name>Unity.Mathematics</Name>
@@ -1266,6 +1279,10 @@
     <ProjectReference Include="Unity.2D.Common.Editor.csproj">
       <Project>{BBDC0199-08A3-4AD1-7A16-30204FCE9C02}</Project>
       <Name>Unity.2D.Common.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-editor.csproj">
+      <Project>{8A96F918-21B4-2D5B-9AB1-927EC4AAD69B}</Project>
+      <Name>spine-unity-editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
       <Project>{2966B98F-1B6F-CCA2-4A7D-230B6EEB31ED}</Project>

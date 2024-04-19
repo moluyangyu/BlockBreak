@@ -1,0 +1,195 @@
+
+pingzi_npc.png
+size: 840,524
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+小红_右夹克
+  rotate: false
+  xy: 675, 157
+  size: 41, 68
+  orig: 41, 68
+  offset: 0, 0
+  index: -1
+小红_右脚
+  rotate: true
+  xy: 273, 38
+  size: 55, 42
+  orig: 56, 42
+  offset: 0, 0
+  index: -1
+小红_头
+  rotate: false
+  xy: 329, 22
+  size: 163, 140
+  orig: 163, 140
+  offset: 0, 0
+  index: -1
+小红_左夹克
+  rotate: false
+  xy: 782, 76
+  size: 52, 71
+  orig: 52, 71
+  offset: 0, 0
+  index: -1
+小红_左脚
+  rotate: false
+  xy: 2, 12
+  size: 54, 41
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+小红_手杖
+  rotate: true
+  xy: 2, 144
+  size: 112, 325
+  orig: 112, 325
+  offset: 0, 0
+  index: -1
+小红_手臂
+  rotate: true
+  xy: 329, 221
+  size: 35, 21
+  orig: 35, 22
+  offset: 0, 1
+  index: -1
+小红_眼睛右
+  rotate: false
+  xy: 762, 102
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1
+小红_眼睛左
+  rotate: false
+  xy: 762, 86
+  size: 12, 14
+  orig: 12, 14
+  offset: 0, 0
+  index: -1
+小蓝_右眼
+  rotate: true
+  xy: 692, 3
+  size: 11, 14
+  orig: 11, 14
+  offset: 0, 0
+  index: -1
+小蓝_右脚
+  rotate: true
+  xy: 675, 87
+  size: 58, 85
+  orig: 58, 85
+  offset: 0, 0
+  index: -1
+小蓝_右飘带
+  rotate: false
+  xy: 718, 239
+  size: 117, 282
+  orig: 117, 282
+  offset: 0, 0
+  index: -1
+小蓝_头
+  rotate: false
+  xy: 518, 2
+  size: 155, 223
+  orig: 155, 223
+  offset: 0, 0
+  index: -1
+小蓝_左眼
+  rotate: true
+  xy: 675, 3
+  size: 11, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+小蓝_左脚
+  rotate: false
+  xy: 782, 149
+  size: 53, 88
+  orig: 60, 88
+  offset: 7, 0
+  index: -1
+小蓝_左飘带
+  rotate: true
+  xy: 2, 55
+  size: 87, 269
+  orig: 88, 270
+  offset: 0, 0
+  index: -1
+小蓝_手杖
+  rotate: true
+  xy: 2, 383
+  size: 138, 525
+  orig: 138, 525
+  offset: 0, 0
+  index: -1
+小蓝_手臂右
+  rotate: true
+  xy: 675, 16
+  size: 58, 161
+  orig: 58, 163
+  offset: 0, 1
+  index: -1
+小蓝_手臂左
+  rotate: false
+  xy: 273, 95
+  size: 47, 47
+  orig: 47, 47
+  offset: 0, 0
+  index: -1
+小蓝_披风后
+  rotate: false
+  xy: 2, 258
+  size: 349, 123
+  orig: 359, 134
+  offset: 10, 11
+  index: -1
+小蓝_身体
+  rotate: false
+  xy: 529, 227
+  size: 187, 294
+  orig: 187, 294
+  offset: 0, 0
+  index: -1
+瓶子npc_小红_身体
+  rotate: true
+  xy: 353, 164
+  size: 217, 163
+  orig: 220, 163
+  offset: 3, 0
+  index: -1
+瓶子npc小红_牌子
+  rotate: false
+  xy: 718, 147
+  size: 62, 90
+  orig: 62, 90
+  offset: 0, 0
+  index: -1
+红闪1
+  rotate: true
+  xy: 146, 30
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+红闪2
+  rotate: true
+  xy: 104, 27
+  size: 26, 40
+  orig: 26, 40
+  offset: 0, 0
+  index: -1
+蓝闪1
+  rotate: false
+  xy: 762, 119
+  size: 17, 26
+  orig: 17, 26
+  offset: 0, 0
+  index: -1
+蓝闪2
+  rotate: true
+  xy: 58, 27
+  size: 26, 44
+  orig: 26, 44
+  offset: 0, 0
+  index: -1

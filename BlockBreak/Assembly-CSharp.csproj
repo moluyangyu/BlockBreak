@@ -170,8 +170,10 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Art\空文件夹不会上传用这个填一下.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Resources\Spine\猫头鹰-右\提交\maotouying_you.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
+    <None Include="Assets\Resources\Spine\猫头鹰-左\猫头鹰程序\maotouying_zuo.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -189,8 +191,10 @@
     <None Include="Assets\DragonBones\Resources\Shaders\DB_BlendMode_Grab.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Resources\Spine\瓶子\瓶子npc\pingzi_npc.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Resources\Spine\猫头鹰-中\maotouying_zhong\maotouying_zhong.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials\3500汉字+符号+英文字符集.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
@@ -1099,6 +1103,10 @@
       <Project>{C9C4DE5F-5F76-82E7-1013-CA31BC3076BF}</Project>
       <Name>PPv2URPConverters</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity.csproj">
+      <Project>{280FBC69-EFF2-86A3-C9B7-9105FE0C0BE9}</Project>
+      <Name>spine-unity</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{917855FE-E99E-F3F6-08B7-E8A4AB1AEB23}</Project>
       <Name>Unity.TextMeshPro</Name>
@@ -1142,6 +1150,10 @@
     <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
       <Project>{098A86EE-6B21-0996-B790-F33C0B75BD8C}</Project>
       <Name>Unity.ShaderGraph.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples.csproj">
+      <Project>{9793EEC1-6983-6F5C-0F82-893D6F9F0660}</Project>
+      <Name>spine-unity-examples</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
       <Project>{4B5489FC-87CB-9645-BC96-50D0B8D7E20B}</Project>
@@ -1211,6 +1223,10 @@
       <Project>{062ACE07-B1EF-0AC3-8A36-168B11F8EFE1}</Project>
       <Name>Unity.VisualScripting.State.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity-examples-editor.csproj">
+      <Project>{8974678C-9E0D-86AA-78E6-390C9A3C8A7B}</Project>
+      <Name>spine-unity-examples-editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
       <Project>{4E2228D3-7422-67C6-FD1D-8F1555E14D61}</Project>
       <Name>Unity.Mathematics</Name>
@@ -1218,6 +1234,10 @@
     <ProjectReference Include="Unity.2D.Common.Editor.csproj">
       <Project>{BBDC0199-08A3-4AD1-7A16-30204FCE9C02}</Project>
       <Name>Unity.2D.Common.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-editor.csproj">
+      <Project>{8A96F918-21B4-2D5B-9AB1-927EC4AAD69B}</Project>
+      <Name>spine-unity-editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
       <Project>{2966B98F-1B6F-CCA2-4A7D-230B6EEB31ED}</Project>
