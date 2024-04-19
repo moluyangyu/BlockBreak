@@ -94,6 +94,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Script\UI\GameDexControl.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\MeshBuffer.cs" />
+    <Compile Include="Assets\Script\LevelComponent\NewTeach.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\AnimationData.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\Transform.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityArmatureComponent.cs" />

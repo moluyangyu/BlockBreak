@@ -146,8 +146,9 @@ public class TextReader : MonoBehaviour
             if (b)
             {
                 CloseTalk();
-                return true;
+                return false;
             }
+            return true;
         }
         return false;
     }
