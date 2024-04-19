@@ -14,7 +14,8 @@ public class CameraController : MonoBehaviour
     {
         player = GameObject.Find("Player");
         SceneBlacking=GameObject.Find("SceneBlacking");
-        SceneBlacking.SetActive(false);
+        if (SceneBlacking != null )
+            SceneBlacking.SetActive(false);
     }
 
     // Start is called before the first frame update
