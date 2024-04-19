@@ -1,0 +1,55 @@
+
+maotouying_you.png
+size: 704,264
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+猫头鹰右_右瞳孔
+  rotate: true
+  xy: 17, 252
+  size: 10, 14
+  orig: 10, 14
+  offset: 0, 0
+  index: -1
+猫头鹰右_呆毛
+  rotate: true
+  xy: 156, 192
+  size: 70, 102
+  orig: 73, 102
+  offset: 3, 0
+  index: -1
+猫头鹰右_左瞳孔
+  rotate: true
+  xy: 2, 255
+  size: 7, 13
+  orig: 7, 13
+  offset: 0, 0
+  index: -1
+猫头鹰右_披风后
+  rotate: true
+  xy: 85, 214
+  size: 48, 69
+  orig: 66, 69
+  offset: 0, 0
+  index: -1
+猫头鹰右_披风尾部
+  rotate: true
+  xy: 260, 165
+  size: 97, 401
+  orig: 97, 401
+  offset: 0, 0
+  index: -1
+猫头鹰右_眼白
+  rotate: false
+  xy: 33, 237
+  size: 50, 25
+  orig: 50, 25
+  offset: 0, 0
+  index: -1
+猫头鹰右_身体
+  rotate: true
+  xy: 2, 2
+  size: 161, 698
+  orig: 161, 750
+  offset: 0, 0
+  index: -1

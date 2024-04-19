@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1868002276878138930, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
+      propertyPath: id
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4798904366829903095, guid: 2c745b7d2dbfb314a939d4479757240d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -740,7 +744,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1831492038}
-  - {fileID: 1331674023}
   - {fileID: 174263078}
   - {fileID: 1847345058}
   - {fileID: 1339877507}
@@ -751,6 +754,7 @@ RectTransform:
   - {fileID: 2309891}
   - {fileID: 4462848858602708960}
   - {fileID: 770229883}
+  - {fileID: 1331674023}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1252,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -261, y: -138}
+  m_AnchoredPosition: {x: -368, y: -246}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878947448
@@ -1299,9 +1303,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331674026}
-        m_TargetAssemblyTypeName: GameDexControl, Assembly-CSharp
-        m_MethodName: LastPage
+      - m_Target: {fileID: 527478472}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: DexLastPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1460,7 +1464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 237, y: -138}
+  m_AnchoredPosition: {x: 302, y: -239}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246309646
@@ -1507,9 +1511,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1331674026}
-        m_TargetAssemblyTypeName: GameDexControl, Assembly-CSharp
-        m_MethodName: NextPage
+      - m_Target: {fileID: 527478472}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: DexNextPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1728,14 +1732,14 @@ RectTransform:
   - {fileID: 1229854300}
   - {fileID: 1649125499}
   - {fileID: 1536334583}
-  - {fileID: 1246309645}
   - {fileID: 878947447}
+  - {fileID: 1246309645}
   m_Father: {fileID: 527478471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 34, y: -1}
-  m_SizeDelta: {x: 500, y: 300}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1331674026
 MonoBehaviour:
@@ -1752,8 +1756,8 @@ MonoBehaviour:
   readedText: {fileID: 4900000, guid: 3eee99f431b37f746b1af82f9c834599, type: 3}
   textCut1: []
   sprites:
-  - {fileID: 21300000, guid: 38a02930c9c036a49b8d3328ef2cc9d4, type: 3}
-  - {fileID: 21300000, guid: 5cfad51171c89bc4fab637b5fb3e2826, type: 3}
+  - {fileID: 21300000, guid: a0065256daa16864cbe59bba1e4e66d0, type: 3}
+  - {fileID: 21300000, guid: 41aec221bca91b54ca25c3f9a1ba6f77, type: 3}
   tmpText: {fileID: 0}
   pageNumber: 0
   lockNumber: 0
@@ -1885,7 +1889,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 306.39008, y: 0, z: 105.381226, w: 211.30336}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2214,7 +2218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 263, y: 160}
+  m_AnchoredPosition: {x: 355, y: 225}
   m_SizeDelta: {x: 88.4771, y: 67.2745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536334584
@@ -2338,15 +2342,15 @@ RectTransform:
   m_GameObject: {fileID: 1649125498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.438, y: 0.438, z: 0.438}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1331674023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -14.4, y: 9.1}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 2024, y: 1278}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1649125501
 CanvasRenderer:
@@ -2376,7 +2380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 41aec221bca91b54ca25c3f9a1ba6f77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
