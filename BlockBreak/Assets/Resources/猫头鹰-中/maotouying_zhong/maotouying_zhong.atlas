@@ -1,0 +1,69 @@
+
+maotouying_zhong.png
+size: 190,543
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+猫头鹰2呆毛
+  rotate: true
+  xy: 2, 2
+  size: 42, 63
+  orig: 43, 63
+  offset: 0, 0
+  index: -1
+猫头鹰2牌子
+  rotate: true
+  xy: 2, 111
+  size: 20, 111
+  orig: 20, 111
+  offset: 0, 0
+  index: -1
+猫头鹰2眼睛
+  rotate: true
+  xy: 86, 45
+  size: 64, 7
+  orig: 64, 7
+  offset: 0, 0
+  index: -1
+猫头鹰2眼睛2
+  rotate: true
+  xy: 156, 184
+  size: 67, 30
+  orig: 67, 30
+  offset: 0, 0
+  index: -1
+猫头鹰2眼睛3
+  rotate: true
+  xy: 156, 115
+  size: 67, 29
+  orig: 67, 30
+  offset: 0, 0
+  index: -1
+猫头鹰2翅膀
+  rotate: true
+  xy: 2, 46
+  size: 63, 82
+  orig: 79, 99
+  offset: 6, 16
+  index: -1
+猫头鹰2脚
+  rotate: false
+  xy: 2, 253
+  size: 186, 288
+  orig: 186, 289
+  offset: 0, 0
+  index: -1
+猫头鹰2身体
+  rotate: true
+  xy: 2, 133
+  size: 118, 152
+  orig: 123, 178
+  offset: 2, 18
+  index: -1
+猫头鹰翅膀2
+  rotate: false
+  xy: 115, 16
+  size: 73, 97
+  orig: 79, 99
+  offset: 5, 2
+  index: -1
