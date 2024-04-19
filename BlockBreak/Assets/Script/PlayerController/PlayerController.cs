@@ -156,6 +156,10 @@ public class PlayerController : MonoBehaviour
         //anim.SetBool("stop", stop);
         PlayAnim();
     }
+    /// <summary>
+    /// 0是停下来，1是走起来，2是切换状态
+    /// </summary>
+    /// <param name="a"></param>
     public void SwitchStop(int a)
     {
         switch (a)
@@ -211,6 +215,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.tag == "Talk")
         {
             idName = collision.gameObject.GetComponent<TalkTrigger>().idname;
+            collision.gameObject.SetActive(false);
             Talk();
         }
 
@@ -223,7 +228,22 @@ public class PlayerController : MonoBehaviour
             SwitchStop(0);
             collision.gameObject.GetComponent<GameDexTrigger>().DexON();
         }
-            
+        else if (collision.gameObject.tag == "Teach")
+        {
+            SwitchStop(0);
+            collision.gameObject.GetComponent<NewTeach>().OpenTeach();
+            //collision.gameObject.SetActive(false);
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Teach")
+        {
+            //SwitchStop(0);
+            collision.gameObject.GetComponent<NewTeach>().CloseTeach();
+            //collision.gameObject.SetActive(false);
+        }
     }
 
     private void Talk()

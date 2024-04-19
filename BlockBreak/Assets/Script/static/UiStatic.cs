@@ -181,9 +181,10 @@ public static class UiStatic
     /// <param name="idName"></param>
     public static bool TalkKickIssue(string idName)
     {
+        int TalkResult = 0;
         foreach (TalkKickHandler handler in TalkKick.GetInvocationList())
         {
-            int TalkResult = 0;
+
             for (int j = 0; j < textNamesStatic.Length; j++)
             {
                 if (textNamesStatic[j].Equals(idName))
@@ -191,19 +192,20 @@ public static class UiStatic
                     bool i = TalkKick(j);//将标识名转化为int的id然后送去对比
                     if (i)
                     {
-                        TalkResult += 0;
+                        TalkResult += 1;
                     }
                     else
                     {
-                        TalkResult += 1;
+                        TalkResult += 0;
                     }
-                    if (TalkResult == 0)
-                    {
-                        return true;
-                    }
+
                 }
             }
 
+        }
+        if (TalkResult == 0)
+        {
+            return true;
         }
         return false;
     }
