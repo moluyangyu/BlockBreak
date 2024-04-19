@@ -18,7 +18,7 @@ public class GameDexControl : MonoBehaviour
     public GameObject pageImage;//图鉴的配图
     private void Awake()
     {
-        UiStatic.GameDexTrigger += UpdateDex;
+
         tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         ReadText();
     }
@@ -30,6 +30,17 @@ public class GameDexControl : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnEnable()
+    {
+        // 注册场景加载完成时的事件
+        UiStatic.GameDexTrigger += UpdateDex;
+    }
+
+    private void OnDisable()
+    {
+        // 移除场景加载完成时的事件，以避免重复注册
+        UiStatic.GameDexTrigger -= UpdateDex;
     }
     /// <summary>
     /// 将图鉴翻到指定的内容

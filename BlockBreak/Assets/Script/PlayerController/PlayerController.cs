@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     private DragonBones.UnityArmatureComponent animDB;
+    private DragonBones.UnityArmatureComponent animDB2;
     public enum ActionType
     {
         turn,
@@ -62,7 +64,7 @@ public class PlayerController : MonoBehaviour
         speed = originSpeed;
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
-        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        
 
 
         stairPoint1 = GameObject.Find("StairPoint1");
@@ -77,14 +79,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         UiStatic.UiOpen += SwitchStop;
-        AnimPlay();
+        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        PlayAnim();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        
     }
 
     private void Move()
@@ -145,14 +147,14 @@ public class PlayerController : MonoBehaviour
         if (isFast) speed = fastSpeed;
         else speed = originSpeed;
         //anim.SetBool("isFast", isFast);
-        AnimPlay();
+        PlayAnim();
     }
 
     public void SwitchStop()
     {
         stop = !stop;
         //anim.SetBool("stop", stop);
-        AnimPlay();
+        PlayAnim();
     }
     public void SwitchStop(int a)
     {
@@ -160,31 +162,44 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 stop = true;
-                AnimPlay();
+                PlayAnim();
                 break;
             case 1:
                 stop = false;
-                AnimPlay();
+                PlayAnim();
                 break;
             case 2:
                 SwitchStop(); break;
         }
     }
 
-    private void AnimPlay()
+    public void PlayAnim(string name = null)
     {
-        if (stop)
+       if(animDB!=null)
         {
-            animDB.animation.Play("idle");
+            // animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+            if (name == null)
+            {
+                if (stop)
+                {
+                    animDB.animation.Play("idle");
+                }
+                else if (isFast)
+                {
+                    animDB.animation.Play("run");
+                }
+                else
+                {
+                    animDB.animation.Play("walk");
+                }
+            }
+            else
+            {
+                animDB.animation.Play(name, 1);
+            }
         }
-        else if (isFast)
-        {
-            animDB.animation.Play("run");
-        }
-        else
-        {
-            animDB.animation.Play("walk");
-        }
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -195,8 +210,8 @@ public class PlayerController : MonoBehaviour
             Jump();
         else if (collision.gameObject.tag == "Talk")
         {
-            Talk();
             idName = collision.gameObject.GetComponent<TalkTrigger>().idname;
+            Talk();
         }
 
         else if (collision.gameObject.tag == "Stop")
@@ -229,4 +244,5 @@ public class PlayerController : MonoBehaviour
         //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
     }
+
 }
