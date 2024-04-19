@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -79,14 +80,13 @@ public class PlayerController : MonoBehaviour
     {
         UiStatic.UiOpen += SwitchStop;
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
-        AnimPlay();
+        PlayAnim();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        
     }
 
     private void Move()
@@ -147,14 +147,14 @@ public class PlayerController : MonoBehaviour
         if (isFast) speed = fastSpeed;
         else speed = originSpeed;
         //anim.SetBool("isFast", isFast);
-        AnimPlay();
+        PlayAnim();
     }
 
     public void SwitchStop()
     {
         stop = !stop;
         //anim.SetBool("stop", stop);
-        AnimPlay();
+        PlayAnim();
     }
     public void SwitchStop(int a)
     {
@@ -162,33 +162,40 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 stop = true;
-                AnimPlay();
+                PlayAnim();
                 break;
             case 1:
                 stop = false;
-                AnimPlay();
+                PlayAnim();
                 break;
             case 2:
                 SwitchStop(); break;
         }
     }
 
-    private void AnimPlay()
+    public void PlayAnim(string name = null)
     {
        if(animDB!=null)
         {
             // animDB = GetComponent<DragonBones.UnityArmatureComponent>();
-            if (stop)
+            if (name == null)
             {
-                animDB.animation.Play("idle");
-            }
-            else if (isFast)
-            {
-                animDB.animation.Play("run");
+                if (stop)
+                {
+                    animDB.animation.Play("idle");
+                }
+                else if (isFast)
+                {
+                    animDB.animation.Play("run");
+                }
+                else
+                {
+                    animDB.animation.Play("walk");
+                }
             }
             else
             {
-                animDB.animation.Play("walk");
+                animDB.animation.Play(name, 1);
             }
         }
 
@@ -237,4 +244,5 @@ public class PlayerController : MonoBehaviour
         //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
     }
+
 }
