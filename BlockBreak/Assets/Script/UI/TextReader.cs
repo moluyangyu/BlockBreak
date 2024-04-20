@@ -19,6 +19,7 @@ public class TextReader : MonoBehaviour
     public RawImage bubbleImage;//气泡的图片
     public GameObject profile;//人物头像
     public float c_speed;//显示间隔秒数
+    public bool textLock;//只有文字输出完了才能点击下一个对话的锁
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class TextReader : MonoBehaviour
         bubbleImage = this.gameObject.GetComponent<RawImage>();
         ReadText();
         CloseTalk();
+        textLock = false;
         
        
     }
@@ -74,11 +76,15 @@ public class TextReader : MonoBehaviour
     public IEnumerator UpdateText(string _text)
     {
         tmpText.text = "";
+        UiStatic.textLock = true;
+        textLock = true;
         foreach(char letter in _text.ToCharArray())
         {
             tmpText.text += letter;
             yield return new WaitForSeconds(c_speed);
         }
+        textLock = false;
+        UiStatic.textLock = false;
     }
     /// <summary>
     /// 加载下一页的内容
@@ -137,20 +143,25 @@ public class TextReader : MonoBehaviour
     /// <summary>
     /// 订阅突推进对话的函数
     /// </summary>
-    public bool TalkKick(int i)
+    public int TalkKick(int i)
     {
-        if(i==id)
+        int a = 0;
+        if(i==id )
         {
             
             bool b = NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
             if (b)
             {
                 CloseTalk();
-                return false;
+                //return false;
+                this.gameObject.SetActive(false);
             }
-            return true;
+            else
+            {
+                a += 1;
+            }
         }
-        return false;
+        return a;
     }
     /// <summary>
     /// 关闭对话框用的

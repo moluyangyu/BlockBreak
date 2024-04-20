@@ -7,7 +7,7 @@ using UnityEngine;
 public static class UiStatic
 {
     private static string[] textNamesStatic;//静态的标识数组
-
+    public static bool textLock;//只有文字输出完了才能点击下一个对话的锁
     public static string[] TextNamesStatic
     {
         get { return textNamesStatic; }
@@ -173,7 +173,7 @@ public static class UiStatic
         GameDexTrigger?.Invoke(i);
     }
     //鼠标点击推进对话的事件
-    public delegate bool TalkKickHandler(int id);
+    public delegate int TalkKickHandler(int id);
     public static event TalkKickHandler TalkKick;
     /// <summary>
     /// 鼠标点击以后就推进所有相同标识名的对话框往下进行一步
@@ -181,6 +181,7 @@ public static class UiStatic
     /// <param name="idName"></param>
     public static bool TalkKickIssue(string idName)
     {
+        if (textLock==true) return false;
         int TalkResult = 0;
         foreach (TalkKickHandler handler in TalkKick.GetInvocationList())
         {
@@ -189,16 +190,7 @@ public static class UiStatic
             {
                 if (textNamesStatic[j].Equals(idName))
                 {
-                    bool i = TalkKick(j);//将标识名转化为int的id然后送去对比
-                    if (i)
-                    {
-                        TalkResult += 1;
-                    }
-                    else
-                    {
-                        TalkResult += 0;
-                    }
-
+                    TalkResult += handler(j);//将标识名转化为int的id然后送去对比
                 }
             }
 

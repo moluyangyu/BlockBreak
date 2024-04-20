@@ -5066,6 +5066,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214404268105970108, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6066911288284372403, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
       propertyPath: m_Name
       value: StopZone (2)
@@ -9310,6 +9314,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214404268105970108, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 214404268105970108, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6066911288284372403, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
       propertyPath: m_Name
       value: StopZone
@@ -22176,6 +22188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214404268105970108, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6066911288284372403, guid: d6599ee26c5087d41b51607a05ea2a72, type: 3}
       propertyPath: m_Name
       value: StopZone (1)
