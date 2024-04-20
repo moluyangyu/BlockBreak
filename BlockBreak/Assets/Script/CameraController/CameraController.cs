@@ -13,9 +13,8 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
-        SceneBlacking=GameObject.Find("SceneBlacking");
-        if (SceneBlacking != null )
-            SceneBlacking.SetActive(false);
+        SceneBlacking=GameObject.Find("变暗特效");
+        SceneBlacking.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -34,7 +33,7 @@ public class CameraController : MonoBehaviour
     /// 让场景变暗与否
     /// </summary>
     /// <param name="a"></param>决定开关状态的变量
-    public static void SceneBlack(bool a)
+    public  void SceneBlack(bool a)
     {
         if (a)
         {

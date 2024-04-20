@@ -48,12 +48,16 @@ public class GameDexControl : MonoBehaviour
     /// <param name="i"></param>
     public void UpdateDex(int i)
     {
-        if(lockNumber<=i)//新激活的图鉴编号
+        pageNumber = i;
+
+        //  tmpText.text = textCut1[pageNumber];
+        pageImage.GetComponent<Image>().sprite = sprites[i];
+        if (lockNumber<=i)//新激活的图鉴编号
         {
             nextPage.SetActive(false);
             lastPage.SetActive(true);
             lockNumber = i;
-        }else if(i==1)
+        }else if(i<=1)
         {
             nextPage.SetActive(true);
             lastPage.SetActive(false);
@@ -62,10 +66,7 @@ public class GameDexControl : MonoBehaviour
             nextPage.SetActive(true);
             lastPage.SetActive(true);
         }
-        pageNumber = i;
 
-      //  tmpText.text = textCut1[pageNumber];
-        pageImage.GetComponent<Image>().sprite = sprites[i];
     }
     /// <summary>
     /// 加载下一页的内容
