@@ -26,9 +26,7 @@ public class BlockEliminator : MonoBehaviour
     private const int BLOCK_LAYER = 1 << 8;
 
     public float moveDuration;
-
-    public float nextScenePos;
-    private bool nextScene = false;
+    private int sceneCount = 0;
 
     private int activatedBlocksCount = 0;
     private int actingBlocksCount = 0;
@@ -40,7 +38,19 @@ public class BlockEliminator : MonoBehaviour
     private GameObject[] eliminatePoints = new GameObject[ELIMINATE_COUNT];
     private bool[] eliminatejudge = new bool[ELIMINATE_COUNT];
     private GameObject player;
-    private GameObject nextArea;
+
+    private static BlockEliminator instance;
+    public static BlockEliminator Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = GameObject.Find("BlockEliminateArea").GetComponent<BlockEliminator>();
+            return instance;
+        }
+    }
+
+
     private void Awake()
     {
         Initialize();
@@ -61,6 +71,8 @@ public class BlockEliminator : MonoBehaviour
 
     private void Initialize()
     {
+        activatedBlocksCount = 0;
+        actingBlocksCount = 0;
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             eliminatejudge[i] = true;
@@ -77,16 +89,6 @@ public class BlockEliminator : MonoBehaviour
     void Update()
     {
         CheckClick();
-        if(player.transform.position.x >= nextScenePos && !nextScene)
-        {
-            nextArea = GameObject.Find("NextArea");
-            for (int i = 0; i < ELIMINATE_COUNT; i++)
-            {
-                //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
-              //  eliminatePoints[i].transform.position = nextArea.transform.GetChild(i).position;
-            }
-        }
-        
     }
 
     private void CheckClick()
@@ -245,6 +247,17 @@ public class BlockEliminator : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void NextScene()
+    {
+        Initialize();
+        sceneCount++;
+        for (int i = 0; i < ELIMINATE_COUNT; i++)
+        {
+            //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
+            eliminatePoints[i] = eliminateArea.transform.GetChild((sceneCount - 1) * ELIMINATE_COUNT + i).gameObject;
+        }
     }
 
 }

@@ -222,6 +222,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.tag == "Stop")
         {
             SwitchStop(0);
+            BlockEliminator.Instance.NextScene();
             collision.gameObject.SetActive(false);
         }else if(collision.gameObject.tag=="Dex")
         {
