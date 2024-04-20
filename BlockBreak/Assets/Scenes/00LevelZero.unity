@@ -24493,7 +24493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.5
-  nextScenePos: 0
 --- !u!4 &2056032802
 Transform:
   m_ObjectHideFlags: 0
