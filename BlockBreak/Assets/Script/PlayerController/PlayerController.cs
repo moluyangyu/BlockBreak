@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     private DragonBones.UnityArmatureComponent animDB;
-    private DragonBones.UnityArmatureComponent animDB2;
+ //   private DragonBones.UnityArmatureComponent animDB2;
     public enum ActionType
     {
         turn,
@@ -130,6 +130,12 @@ public class PlayerController : MonoBehaviour
             {
                 isTalk = false;
                 stop = false;
+                //第一关的通关条件写在这里
+                if(idName== "小蓝测试")
+                {
+                    UiStatic.NextLevelIssue();
+                    SwitchStop(0);
+                }
             }
         }
     }

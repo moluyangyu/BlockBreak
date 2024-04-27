@@ -201,4 +201,13 @@ public static class UiStatic
         }
         return false;
     }
+    public delegate void NextLevelHandler();
+    public static event NextLevelHandler NextLevel;
+    /// <summary>
+    /// 发出这关通关的信号
+    /// </summary>
+    public static void NextLevelIssue()
+    {
+        NextLevel?.Invoke();
+    }
 }

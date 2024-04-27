@@ -132,6 +132,7 @@
     <Compile Include="Assets\Script\LevelComponent\ActivityGround.cs" />
     <Compile Include="Assets\Script\LevelComponent\BriageCut.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\Point.cs" />
+    <Compile Include="Assets\Script\NPC\NPCAnimation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\DragonBones\Scripts\armature\DeformVertices.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />

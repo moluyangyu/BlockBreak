@@ -16,6 +16,7 @@ public class UIControl : MonoBehaviour
     //public int checkNumber;
     public GameObject dex;//图鉴游戏体
     public GameObject dexButton;//打开图鉴的按钮
+    public GameObject nextLevel;//下一关按钮的游戏体
     void Start()
     {
         //  win = GameObject.Find("Win");
@@ -25,8 +26,13 @@ public class UIControl : MonoBehaviour
         //levelLock = GameObject.Find("LevelLock");
         dex = GameObject.Find("GameDex");
         dexButton = GameObject.Find("OpenGameDex");
-        dex.SetActive(false);
-        dexButton.SetActive(false);
+        nextLevel = GameObject.Find("NextLevel");
+        if(dex!=null)
+        {
+            dex.SetActive(false);
+            dexButton.SetActive(false);
+            nextLevel.SetActive(false);
+        }
        // Debug.Log("关闭完成");
 
 
@@ -36,6 +42,7 @@ public class UIControl : MonoBehaviour
         // 注册事件
         SceneManager.sceneLoaded += OnSceneLoaded;
         UiStatic.GameDexTrigger += OpenDex;
+        UiStatic.NextLevel += OpenNextButton;
     }
 
     private void OnDisable()
@@ -43,6 +50,7 @@ public class UIControl : MonoBehaviour
         // 移除事件，以避免重复注册
         SceneManager.sceneLoaded -= OnSceneLoaded;
         UiStatic.GameDexTrigger -= OpenDex;
+        UiStatic.NextLevel -= OpenNextButton;
     }
 
     // 场景加载完成时调用的方法
@@ -133,5 +141,12 @@ public class UIControl : MonoBehaviour
     public void DexLastPage()
     {
         dex.GetComponent<GameDexControl>().LastPage();
+    }
+    /// <summary>
+    /// 打开通关的按钮
+    /// </summary>
+    public void OpenNextButton()
+    {
+        nextLevel.SetActive(true);
     }
 }

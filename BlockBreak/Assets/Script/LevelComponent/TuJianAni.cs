@@ -10,7 +10,10 @@ public class TuJianAni : MonoBehaviour
     void Start()
     {
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
-
+        if(animDB!=null)
+        {
+            animDB.animation.Play("start",0);
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +36,6 @@ public class TuJianAni : MonoBehaviour
     // 场景加载完成时调用的方法
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        animDB.animation.Play("start");
+
     }
 }
