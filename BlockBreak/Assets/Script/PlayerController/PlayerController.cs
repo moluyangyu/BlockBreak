@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
                 isTalk = false;
                 stop = false;
                 //第一关的通关条件写在这里
-                if(idName== "小蓝测试")
+                if(idName== "第3章-2")
                 {
                     UiStatic.NextLevelIssue();
                     SwitchStop(0);

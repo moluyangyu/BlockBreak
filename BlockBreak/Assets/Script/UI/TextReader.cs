@@ -66,7 +66,7 @@ public class TextReader : MonoBehaviour
     public void MakePhiZ(string name)
     {
         name = name.Replace("\r", "");//去除多余的回车
-        profile.gameObject.GetComponent<Animator>().SetTrigger(name) ;
+        if (profile != null) profile.gameObject.GetComponent<Animator>().SetTrigger(name) ;
     }
     /// <summary>
     /// 实现打字机效果
@@ -101,7 +101,7 @@ public class TextReader : MonoBehaviour
             else if (!isOpen)
             {
                 // tmpText.text = textCut2[pageNumber][0];//旧版效果淘汰了
-                nameText.text = textCut2[1][1];//这里是放入对话的玩家的名字
+                if (nameText != null) nameText.text = textCut2[1][1];//这里是放入对话的玩家的名字
                 OpenTalk();//如果有字了还关着就打开
                 StartCoroutine(UpdateText(textCut2[pageNumber][0]));
             }
@@ -170,10 +170,10 @@ public class TextReader : MonoBehaviour
     {
         isOpen = false;
         tmpText.text = "";
-        nameText.text = "";
-        bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
+        if(nameText!=null)nameText.text = "";
+        if(bubbleImage!=null) bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
         //profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
-        profile.SetActive(false);
+        if(profile!=null)profile.SetActive(false);
     }
     /// <summary>
     /// 打开对话框
@@ -181,8 +181,8 @@ public class TextReader : MonoBehaviour
     public void OpenTalk()
     {
         isOpen = true;
-        bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+        if (bubbleImage != null) bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
         // profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
-        profile.SetActive(true);
+        if (profile != null) profile.SetActive(true);
     }
 }

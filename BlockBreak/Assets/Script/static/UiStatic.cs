@@ -34,7 +34,7 @@ public static class UiStatic
                 // 写入数据行
                 for (int i = 0; i < textNamesStatic.Length; i++)
                 {
-                    writer.WriteLine(textNamesStatic[i]);
+                    writer.WriteLine(textNamesStatic[i], Encoding.UTF8);
                 }
             }
 
