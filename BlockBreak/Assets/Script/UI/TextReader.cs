@@ -17,6 +17,7 @@ public class TextReader : MonoBehaviour
     public string textName;//用来存储识别代码谨防被编辑器初始化
     public bool isOpen;//对话框的开关
     public RawImage bubbleImage;//气泡的图片
+    public Image bubbleImageAni;//动画气泡的图片
     public GameObject profile;//人物头像
     public float c_speed;//显示间隔秒数
     public bool textLock;//只有文字输出完了才能点击下一个对话的锁
@@ -26,6 +27,14 @@ public class TextReader : MonoBehaviour
         
         // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         bubbleImage = this.gameObject.GetComponent<RawImage>();
+        if (bubbleImage != null)
+        {
+
+        }
+        else
+        {
+            bubbleImageAni = this.gameObject.GetComponent<Image>();
+        }
         ReadText();
         CloseTalk();
         textLock = false;
@@ -100,9 +109,10 @@ public class TextReader : MonoBehaviour
             }
             else if (!isOpen)
             {
+                OpenTalk();//如果有字了还关着就打开
                 // tmpText.text = textCut2[pageNumber][0];//旧版效果淘汰了
                 if (nameText != null) nameText.text = textCut2[1][1];//这里是放入对话的玩家的名字
-                OpenTalk();//如果有字了还关着就打开
+               
                 StartCoroutine(UpdateText(textCut2[pageNumber][0]));
             }
             else
@@ -174,6 +184,11 @@ public class TextReader : MonoBehaviour
         if(bubbleImage!=null) bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
         //profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
         if(profile!=null)profile.SetActive(false);
+        if (bubbleImageAni != null)
+        {
+            this.gameObject.GetComponent<Animator>().SetTrigger("隐藏");
+            // bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
+        } 
     }
     /// <summary>
     /// 打开对话框
@@ -182,6 +197,11 @@ public class TextReader : MonoBehaviour
     {
         isOpen = true;
         if (bubbleImage != null) bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+        if (bubbleImageAni != null)
+        {
+            //bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+            this.gameObject.GetComponent<Animator>().SetTrigger("对话框弹出");
+        } 
         // profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
         if (profile != null) profile.SetActive(true);
     }
