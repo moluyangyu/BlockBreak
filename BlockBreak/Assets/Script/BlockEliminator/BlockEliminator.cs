@@ -38,7 +38,6 @@ public class BlockEliminator : MonoBehaviour
     private GameObject[] eliminatePoints = new GameObject[ELIMINATE_COUNT];
     private bool[] eliminatejudge = new bool[ELIMINATE_COUNT];
     private GameObject player;
-
     private static BlockEliminator instance;
     public static BlockEliminator Instance
     {
@@ -89,6 +88,8 @@ public class BlockEliminator : MonoBehaviour
     void Update()
     {
         CheckClick();
+        
+        
     }
 
     private void CheckClick()
@@ -248,7 +249,6 @@ public class BlockEliminator : MonoBehaviour
         }
         return -1;
     }
-
     public void NextScene()
     {
         Initialize();

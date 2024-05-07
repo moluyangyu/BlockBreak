@@ -132,6 +132,7 @@
     <Compile Include="Assets\Script\LevelComponent\ActivityGround.cs" />
     <Compile Include="Assets\Script\LevelComponent\BriageCut.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\Point.cs" />
+    <Compile Include="Assets\Script\NPC\NPCAnimation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\DragonBones\Scripts\armature\DeformVertices.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -195,6 +196,7 @@
     <None Include="Assets\Resources\Spine\瓶子\瓶子npc\pingzi_npc.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials\7000汉字+符号+英文字符集.txt" />
     <None Include="Assets\Resources\Spine\猫头鹰-中\maotouying_zhong\maotouying_zhong.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials\3500汉字+符号+英文字符集.txt" />

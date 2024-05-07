@@ -139,7 +139,9 @@ namespace DragonBones
             Material newMaterial = new Material(shader);
 #else
            // var newMaterial = new Material(Resources.Load<Shader>(SHADER_PATH + SHADER_GRAP));
-            var newMaterial = new Material(Resources.Load<Shader>("Sprites/Default"));
+           // var newMaterial = new Material(Resources.Load<Shader>("Sprites/Default"));
+            Shader shader = Shader.Find("Sprites/Default");
+            Material newMaterial = new Material(shader);
 #endif
             var texture = (this.parent as UnityTextureAtlasData).texture.mainTexture;
             newMaterial.name = texture.name + "_" + SHADER_GRAP + "_Mat";

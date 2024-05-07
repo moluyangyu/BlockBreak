@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     private DragonBones.UnityArmatureComponent animDB;
-    private DragonBones.UnityArmatureComponent animDB2;
+ //   private DragonBones.UnityArmatureComponent animDB2;
     public enum ActionType
     {
         turn,
@@ -130,6 +130,12 @@ public class PlayerController : MonoBehaviour
             {
                 isTalk = false;
                 stop = false;
+                //第一关的通关条件写在这里
+                if(idName== "第3章-2")
+                {
+                    UiStatic.NextLevelIssue();
+                    SwitchStop(0);
+                }
             }
         }
     }
@@ -232,6 +238,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.tag == "Teach")
         {
             SwitchStop(0);
+            BlockEliminator.Instance.NextScene();
             collision.gameObject.GetComponent<NewTeach>().OpenTeach();
             //collision.gameObject.SetActive(false);
         }

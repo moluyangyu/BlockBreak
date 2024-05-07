@@ -17,16 +17,27 @@ public class TextReader : MonoBehaviour
     public string textName;//用来存储识别代码谨防被编辑器初始化
     public bool isOpen;//对话框的开关
     public RawImage bubbleImage;//气泡的图片
+    public Image bubbleImageAni;//动画气泡的图片
     public GameObject profile;//人物头像
     public float c_speed;//显示间隔秒数
+    public bool textLock;//只有文字输出完了才能点击下一个对话的锁
     // Start is called before the first frame update
     void Start()
     {
         
         // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         bubbleImage = this.gameObject.GetComponent<RawImage>();
+        if (bubbleImage != null)
+        {
+
+        }
+        else
+        {
+            bubbleImageAni = this.gameObject.GetComponent<Image>();
+        }
         ReadText();
         CloseTalk();
+        textLock = false;
         
        
     }
@@ -64,7 +75,7 @@ public class TextReader : MonoBehaviour
     public void MakePhiZ(string name)
     {
         name = name.Replace("\r", "");//去除多余的回车
-        profile.gameObject.GetComponent<Animator>().SetTrigger(name) ;
+        if (profile != null) profile.gameObject.GetComponent<Animator>().SetTrigger(name) ;
     }
     /// <summary>
     /// 实现打字机效果
@@ -74,11 +85,15 @@ public class TextReader : MonoBehaviour
     public IEnumerator UpdateText(string _text)
     {
         tmpText.text = "";
+        UiStatic.textLock = true;
+        textLock = true;
         foreach(char letter in _text.ToCharArray())
         {
             tmpText.text += letter;
             yield return new WaitForSeconds(c_speed);
         }
+        textLock = false;
+        UiStatic.textLock = false;
     }
     /// <summary>
     /// 加载下一页的内容
@@ -94,9 +109,10 @@ public class TextReader : MonoBehaviour
             }
             else if (!isOpen)
             {
-                // tmpText.text = textCut2[pageNumber][0];//旧版效果淘汰了
-                nameText.text = textCut2[1][1];//这里是放入对话的玩家的名字
                 OpenTalk();//如果有字了还关着就打开
+                // tmpText.text = textCut2[pageNumber][0];//旧版效果淘汰了
+                if (nameText != null) nameText.text = textCut2[1][1];//这里是放入对话的玩家的名字
+               
                 StartCoroutine(UpdateText(textCut2[pageNumber][0]));
             }
             else
@@ -137,20 +153,25 @@ public class TextReader : MonoBehaviour
     /// <summary>
     /// 订阅突推进对话的函数
     /// </summary>
-    public bool TalkKick(int i)
+    public int TalkKick(int i)
     {
-        if(i==id)
+        int a = 0;
+        if(i==id )
         {
             
             bool b = NextPage();//如果后期有动画了就把这一步移到动画后触发就可以了，还有逐个字读出的效果倒时候整
             if (b)
             {
                 CloseTalk();
-                return false;
+                //return false;
+                this.gameObject.SetActive(false);
             }
-            return true;
+            else
+            {
+                a += 1;
+            }
         }
-        return false;
+        return a;
     }
     /// <summary>
     /// 关闭对话框用的
@@ -159,10 +180,15 @@ public class TextReader : MonoBehaviour
     {
         isOpen = false;
         tmpText.text = "";
-        nameText.text = "";
-        bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
+        if(nameText!=null)nameText.text = "";
+        if(bubbleImage!=null) bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
         //profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
-        profile.SetActive(false);
+        if(profile!=null)profile.SetActive(false);
+        if (bubbleImageAni != null)
+        {
+            this.gameObject.GetComponent<Animator>().SetTrigger("隐藏");
+            // bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
+        } 
     }
     /// <summary>
     /// 打开对话框
@@ -170,8 +196,13 @@ public class TextReader : MonoBehaviour
     public void OpenTalk()
     {
         isOpen = true;
-        bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+        if (bubbleImage != null) bubbleImage.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+        if (bubbleImageAni != null)
+        {
+            //bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
+            this.gameObject.GetComponent<Animator>().SetTrigger("对话框弹出");
+        } 
         // profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
-        profile.SetActive(true);
+        if (profile != null) profile.SetActive(true);
     }
 }
