@@ -58,7 +58,7 @@ AnimatorController:
   m_Name: "\u74F6\u5B50\u5C0F\u7EA2"
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: "\u74F6\u5B50\u5C0F\u7EA2\u62AC\u5934"
+  - m_Name: "Rittob\u62AC\u5934"
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

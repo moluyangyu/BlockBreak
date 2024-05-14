@@ -6,11 +6,12 @@ public class GuardController : MonoBehaviour
 {
     public float speed;
     private int dir = 1;
-
+    private DragonBones.UnityArmatureComponent animDB;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        if(animDB!=null) animDB.animation.Play("run");
     }
 
     // Update is called once per frame
