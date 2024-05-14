@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private GameObject stairPoint1;
     private GameObject stairPoint2;
     private float x1,x2,y1,y2;
-
+    private GameObject Cat;//Ã¨µñÏñ
 
     private DragonBones.UnityArmatureComponent animDB;
  //   private DragonBones.UnityArmatureComponent animDB2;
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         UiStatic.UiOpen += SwitchStop;
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        Cat = GameObject.Find("¹Ý³¤µñÏñ");
         PlayAnim();
     }
 
@@ -241,6 +242,9 @@ public class PlayerController : MonoBehaviour
             BlockEliminator.Instance.NextScene();
             collision.gameObject.GetComponent<NewTeach>().OpenTeach();
             //collision.gameObject.SetActive(false);
+        }else if(collision.gameObject.tag=="DropTrigger")
+        {
+            Cat.GetComponent<Animator>().SetTrigger("µôÂä");
         }
 
     }

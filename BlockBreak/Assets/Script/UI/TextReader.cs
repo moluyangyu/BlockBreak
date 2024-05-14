@@ -40,8 +40,8 @@ public class TextReader : MonoBehaviour
         ReadText();
         CloseTalk();
         textLock = false;
-        
-       
+        DialogueMask.SetActive(false);
+
     }
     private void OnEnable()
     {
@@ -166,6 +166,10 @@ public class TextReader : MonoBehaviour
             {
                 CloseTalk();
                 //return false;
+                if (DialogueMask != null)
+                {
+                    DialogueMask.SetActive(false);//关闭对话遮罩
+                }
                 this.gameObject.SetActive(false);
             }
             else
@@ -191,10 +195,7 @@ public class TextReader : MonoBehaviour
             this.gameObject.GetComponent<Animator>().SetTrigger("隐藏");
             // bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
         }
-        if (DialogueMask != null)
-        {
-            DialogueMask.SetActive(false);//关闭对话遮罩
-        }
+
     }
     /// <summary>
     /// 打开对话框

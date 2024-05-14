@@ -108,6 +108,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\DragonBones\Scripts\core\BaseObject.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\ConstraintData.cs" />
+    <Compile Include="Assets\Script\LevelComponent\Drop.cs" />
     <Compile Include="Assets\DragonBones\Scripts\parser\BinaryDataWriter.cs" />
     <Compile Include="Assets\DragonBones\Scripts\armature\Armature.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityFactory.cs" />
