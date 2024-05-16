@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
         }else if(collision.gameObject.tag=="Dex")
         {
-            SwitchStop(0);
+           // SwitchStop(0);
             collision.gameObject.GetComponent<GameDexTrigger>().DexON();
         }
         else if (collision.gameObject.tag == "Teach")

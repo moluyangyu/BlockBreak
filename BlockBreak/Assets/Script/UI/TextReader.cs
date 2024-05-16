@@ -23,12 +23,16 @@ public class TextReader : MonoBehaviour
     public bool textLock;//只有文字输出完了才能点击下一个对话的锁
     public GameObject DialogueMask;//对话贴上的蒙版
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DialogueMask = GameObject.Find("对话蒙版");
+    }
     void Start()
     {
         
         // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         bubbleImage = this.gameObject.GetComponent<RawImage>();
-        DialogueMask = GameObject.Find("对话蒙版");
+
         if (bubbleImage != null)
         {
 
@@ -40,7 +44,7 @@ public class TextReader : MonoBehaviour
         ReadText();
         CloseTalk();
         textLock = false;
-        DialogueMask.SetActive(false);
+        if(DialogueMask!=null)DialogueMask.SetActive(false);
 
     }
     private void OnEnable()

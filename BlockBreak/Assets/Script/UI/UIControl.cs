@@ -17,6 +17,7 @@ public class UIControl : MonoBehaviour
     public GameObject dex;//图鉴游戏体
     public GameObject dexButton;//打开图鉴的按钮
     public GameObject nextLevel;//下一关按钮的游戏体
+    //public GameObject DialogueMask;//对话遮罩
     void Start()
     {
         //  win = GameObject.Find("Win");
@@ -27,7 +28,8 @@ public class UIControl : MonoBehaviour
         dex = GameObject.Find("GameDex");
         dexButton = GameObject.Find("OpenGameDex");
         nextLevel = GameObject.Find("NextLevel");
-        if(dex!=null)
+       // DialogueMask = GameObject.Find("对话蒙版");
+        if (dex!=null)
         {
             dex.SetActive(false);
             dexButton.SetActive(false);
@@ -118,6 +120,7 @@ public class UIControl : MonoBehaviour
         dex.GetComponent<GameDexControl>().UpdateDex(dex.GetComponent<GameDexControl>().pageNumber);//打开上一次打开的页码
         dexButton.SetActive(false);
         UiStatic.UiOpenIssue(false);
+      //  dex.GetComponent<MonoBehaviour>().enabled = true;
     }
     /// <summary>
     /// 关闭图鉴
@@ -127,6 +130,7 @@ public class UIControl : MonoBehaviour
         dex.SetActive(false);
         dexButton.SetActive(true);
         UiStatic.UiOpenIssue(true);
+        //dex.GetComponent<MonoBehaviour>().enabled = true;
     }
     /// <summary>
     /// 图鉴加载下一页的内容

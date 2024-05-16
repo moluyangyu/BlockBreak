@@ -140,7 +140,7 @@ public static class UiStatic
         }
     }
     //激活UI的事件
-    public delegate void UiOpenHandler(int a);//用于主角状态机器，传入0就设置为true，1为false，2就是直接反转
+    public delegate void UiOpenHandler(int a);//用于主角状态机器，传入0就设置为true，1为false，2就是直接反转(新的使用控制时间来实现)
     public static event UiOpenHandler UiOpen;
     /// <summary>
     /// false就是停下来，true就是走
@@ -150,16 +150,19 @@ public static class UiStatic
     {
         if (a)
         {
-            UiOpen?.Invoke(1);
-        }else
+            //UiOpen?.Invoke(1);
+            Time.timeScale = 1;
+        }
+        else
         {
-            UiOpen?.Invoke(0);
+            //UiOpen?.Invoke(0);
+            Time.timeScale = 0;
         }
 
     }
     public static void UiOpenIssue()
     {
-        UiOpen?.Invoke(2);
+       // UiOpen?.Invoke(2);
     }
     //激活图鉴的事件
     public delegate void GameDexTriggerHandler(int i);
@@ -171,6 +174,7 @@ public static class UiStatic
     public static void GameDexTriggerIssue(int i)
     {
         GameDexTrigger?.Invoke(i);
+        Time.timeScale = 0;
     }
     //鼠标点击推进对话的事件
     public delegate int TalkKickHandler(int id);

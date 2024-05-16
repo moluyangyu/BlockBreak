@@ -172,6 +172,7 @@ MonoBehaviour:
   profile: {fileID: 63456516714512754}
   c_speed: 0.1
   textLock: 0
+  DialogueMask: {fileID: 0}
 --- !u!114 &411071935610617122
 MonoBehaviour:
   m_ObjectHideFlags: 0
