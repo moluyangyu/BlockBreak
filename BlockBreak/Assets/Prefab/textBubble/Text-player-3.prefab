@@ -167,6 +167,7 @@ MonoBehaviour:
   textName: 
   isOpen: 0
   bubbleImage: {fileID: 99342783462744880}
+  bubbleImageAni: {fileID: 0}
   profile: {fileID: 63456516714512754}
   c_speed: 0.1
   textLock: 0
@@ -398,15 +399,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c0c0b9682d415584cbc2642253cb5f81, type: 2}
-  m_sharedMaterial: {fileID: -5216611488776047370, guid: c0c0b9682d415584cbc2642253cb5f81, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e562ba604fb03c408a8ad2c42612b71, type: 2}
+  m_sharedMaterial: {fileID: 844786675282123480, guid: 7e562ba604fb03c408a8ad2c42612b71, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4284198131
+  m_fontColor: {r: 0.9529412, g: 0.6745098, b: 0.35686275, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
