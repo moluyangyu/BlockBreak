@@ -173,15 +173,16 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 stop = true;
-                PlayAnim();
+
                 break;
             case 1:
                 stop = false;
-                PlayAnim();
+                
                 break;
             case 2:
                 SwitchStop(); break;
         }
+        PlayAnim();
     }
 
     public void PlayAnim(string name = null)
@@ -260,7 +261,7 @@ public class PlayerController : MonoBehaviour
 
     private void Talk()
     {
-        stop = true;
+        SwitchStop(0);
         isTalk = true;
         UiStatic.TalkKickIssue(idName);
     }
@@ -272,7 +273,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        stop = true;
+        SwitchStop(0);
         //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
     }

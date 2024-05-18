@@ -95,6 +95,14 @@ public class UIControl : MonoBehaviour
         }
     }
     /// <summary>
+    /// 主界面开始按钮调用的函数
+    /// </summary>
+    public void StartButton()
+    {
+        SceneManager.LoadScene(2);
+        GameObject.Find("start").GetComponent<Animator>().SetTrigger("点击");
+    }
+    /// <summary>
     /// 退出游戏
     /// </summary>
     public void QuitGame()

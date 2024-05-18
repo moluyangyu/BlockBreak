@@ -75,40 +75,58 @@ public class GameDexControl : MonoBehaviour
             {
                 nextPage.SetActive(false);
             }
-        }else
+        }else if(lockNumber==i)
+        {
+            nextPage.SetActive(false);
+            lastPage.SetActive(true);
+        }
+        else
         {
             nextPage.SetActive(true);
             lastPage.SetActive(true);
         }
-        if(aniPlay)
+        if (aniPlay)
         {
             this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());//播放动画
         }
-        aniPlay = true;
+      //  aniPlay = true;
 
     }
     /// <summary>
     /// 加载下一页的内容
     /// </summary>
     public void NextPage()
-    {
-        nextPage.SetActive(false);
+    {      
         pageNumber++;
-        aniPlay = false;
-        this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());
-        UpdateDex(pageNumber);
-        aniPlay = true;
+        nextPage.GetComponent<Animator>().SetTrigger("点击");
+        if(aniPlay)
+        {
+            aniPlay = false;
+            this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());
+            UpdateDex(pageNumber);
+          //  aniPlay = true;
+        }
     }
     /// <summary>
     /// 加载上一页的内容
     /// </summary>
     public void LastPage()
     {
-        lastPage.SetActive(false);
         pageNumber--;
-        aniPlay = false;
-        this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString()+"l");
-        UpdateDex(pageNumber);
+        lastPage.GetComponent<Animator>().SetTrigger("点击");
+        if (aniPlay)
+        {
+            aniPlay = false;
+            this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString() + "l");
+            UpdateDex(pageNumber);
+          //  aniPlay = true;
+        }
+    }
+    /// <summary>
+    /// 动画结束调用这个函数
+    /// </summary>
+    public void AniEnd()
+    {
         aniPlay = true;
     }
     /// <summary>
