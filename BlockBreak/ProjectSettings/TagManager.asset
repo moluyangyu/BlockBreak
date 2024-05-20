@@ -16,6 +16,7 @@ TagManager:
   - Stop
   - Dex
   - Teach
+  - DropTrigger
   layers:
   - Default
   - TransparentFX
@@ -52,4 +53,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UiLayer
+    uniqueID: 1485982413
     locked: 0

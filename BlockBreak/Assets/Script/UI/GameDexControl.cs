@@ -16,14 +16,18 @@ public class GameDexControl : MonoBehaviour
     public GameObject nextPage;//下一页按钮
     public GameObject lastPage;//上一页按钮
     public GameObject pageImage;//图鉴的配图
+    public bool aniPlay;//是否播放动画
     private void Awake()
     {
 
-        tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
-        ReadText();
+       // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
+     //   ReadText();
     }
     void Start()
     {
+        lockNumber = 0;
+        Animator animator = GetComponent<Animator>();
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     // Update is called once per frame
@@ -51,30 +55,57 @@ public class GameDexControl : MonoBehaviour
         pageNumber = i;
 
         //  tmpText.text = textCut1[pageNumber];
-        pageImage.GetComponent<Image>().sprite = sprites[i];
-        if (lockNumber<=i)//新激活的图鉴编号
+       // pageImage.GetComponent<Image>().sprite = sprites[i];
+        if (lockNumber<i)//新激活的图鉴编号
         {
             nextPage.SetActive(false);
             lastPage.SetActive(true);
+            if(lockNumber==0)
+            {
+                lastPage.SetActive(false);
+            }
+            aniPlay = false;
+            this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString()+"n");//播放动画
             lockNumber = i;
         }else if(i<=1)
         {
             nextPage.SetActive(true);
             lastPage.SetActive(false);
-        }else
+            if(lockNumber==1)
+            {
+                nextPage.SetActive(false);
+            }
+        }else if(lockNumber==i)
+        {
+            nextPage.SetActive(false);
+            lastPage.SetActive(true);
+        }
+        else
         {
             nextPage.SetActive(true);
             lastPage.SetActive(true);
         }
+        if (aniPlay)
+        {
+            this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());//播放动画
+        }
+      //  aniPlay = true;
 
     }
     /// <summary>
     /// 加载下一页的内容
     /// </summary>
     public void NextPage()
-    {
+    {      
         pageNumber++;
-        UpdateDex(pageNumber);
+        nextPage.GetComponent<Animator>().SetTrigger("点击");
+        if(aniPlay)
+        {
+            aniPlay = false;
+            this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());
+            UpdateDex(pageNumber);
+          //  aniPlay = true;
+        }
     }
     /// <summary>
     /// 加载上一页的内容
@@ -82,14 +113,28 @@ public class GameDexControl : MonoBehaviour
     public void LastPage()
     {
         pageNumber--;
-        UpdateDex(pageNumber);
+        lastPage.GetComponent<Animator>().SetTrigger("点击");
+        if (aniPlay)
+        {
+            aniPlay = false;
+            this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString() + "l");
+            UpdateDex(pageNumber);
+          //  aniPlay = true;
+        }
+    }
+    /// <summary>
+    /// 动画结束调用这个函数
+    /// </summary>
+    public void AniEnd()
+    {
+        aniPlay = true;
     }
     /// <summary>
     /// 依据预设分割获取文本
     /// </summary>
     public void ReadText()
     {
-        textCut1 = readedText.text.Split('\n');//按行分割文本
+        //textCut1 = readedText.text.Split('\n');//按行分割文本
         //  int.TryParse(textCut1[0], out id);
     }
 }

@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private GameObject stairPoint1;
     private GameObject stairPoint2;
     private float x1,x2,y1,y2;
-
+    private GameObject Cat;//Ã¨µñÏñ
 
     private DragonBones.UnityArmatureComponent animDB;
  //   private DragonBones.UnityArmatureComponent animDB2;
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         UiStatic.UiOpen += SwitchStop;
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        Cat = GameObject.Find("¹Ý³¤µñÏñ");
         PlayAnim();
     }
 
@@ -172,15 +173,16 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 stop = true;
-                PlayAnim();
+
                 break;
             case 1:
                 stop = false;
-                PlayAnim();
+                
                 break;
             case 2:
                 SwitchStop(); break;
         }
+        PlayAnim();
     }
 
     public void PlayAnim(string name = null)
@@ -232,7 +234,7 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
         }else if(collision.gameObject.tag=="Dex")
         {
-            SwitchStop(0);
+           // SwitchStop(0);
             collision.gameObject.GetComponent<GameDexTrigger>().DexON();
         }
         else if (collision.gameObject.tag == "Teach")
@@ -241,6 +243,9 @@ public class PlayerController : MonoBehaviour
             BlockEliminator.Instance.NextScene();
             collision.gameObject.GetComponent<NewTeach>().OpenTeach();
             //collision.gameObject.SetActive(false);
+        }else if(collision.gameObject.tag=="DropTrigger")
+        {
+            Cat.GetComponent<Animator>().SetTrigger("µôÂä");
         }
 
     }
@@ -256,7 +261,7 @@ public class PlayerController : MonoBehaviour
 
     private void Talk()
     {
-        stop = true;
+        SwitchStop(0);
         isTalk = true;
         UiStatic.TalkKickIssue(idName);
     }
@@ -268,7 +273,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        stop = true;
+        SwitchStop(0);
         //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
     }

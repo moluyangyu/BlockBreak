@@ -56,7 +56,7 @@ AnimatorController:
   m_Name: "\u74F6\u5B50\u5C0F\u84DD"
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: "\u74F6\u5B50\u5C0F\u84DD\u5FAE\u7B11"
+  - m_Name: "Bittob\u5FAE\u7B11"
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

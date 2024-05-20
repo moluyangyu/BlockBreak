@@ -6,17 +6,25 @@ public class GuardController : MonoBehaviour
 {
     public float speed;
     private int dir = 1;
-
+    private DragonBones.UnityArmatureComponent animDB;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        if(animDB!=null) animDB.animation.Play("run");
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(dir * speed * Time.deltaTime, 0f, 0f);
+        if(transform.position.x<94&&transform.position.x > 89)
+        {
+            transform.GetChild(21).gameObject.SetActive(true);//攻击判定体位于第10个顺位
+        }else
+        {
+            transform.GetChild(21).gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

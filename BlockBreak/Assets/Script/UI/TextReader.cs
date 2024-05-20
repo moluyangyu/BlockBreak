@@ -21,12 +21,18 @@ public class TextReader : MonoBehaviour
     public GameObject profile;//人物头像
     public float c_speed;//显示间隔秒数
     public bool textLock;//只有文字输出完了才能点击下一个对话的锁
+    public GameObject DialogueMask;//对话贴上的蒙版
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DialogueMask = GameObject.Find("对话蒙版");
+    }
     void Start()
     {
         
         // tmpText = this.gameObject.GetComponent<TextMeshProUGUI>();
         bubbleImage = this.gameObject.GetComponent<RawImage>();
+
         if (bubbleImage != null)
         {
 
@@ -38,8 +44,8 @@ public class TextReader : MonoBehaviour
         ReadText();
         CloseTalk();
         textLock = false;
-        
-       
+        if(DialogueMask!=null)DialogueMask.SetActive(false);
+
     }
     private void OnEnable()
     {
@@ -164,6 +170,10 @@ public class TextReader : MonoBehaviour
             {
                 CloseTalk();
                 //return false;
+                if (DialogueMask != null)
+                {
+                    DialogueMask.SetActive(false);//关闭对话遮罩
+                }
                 this.gameObject.SetActive(false);
             }
             else
@@ -188,7 +198,8 @@ public class TextReader : MonoBehaviour
         {
             this.gameObject.GetComponent<Animator>().SetTrigger("隐藏");
             // bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 0f);
-        } 
+        }
+
     }
     /// <summary>
     /// 打开对话框
@@ -202,6 +213,10 @@ public class TextReader : MonoBehaviour
             //bubbleImageAni.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
             this.gameObject.GetComponent<Animator>().SetTrigger("对话框弹出");
         } 
+        if(DialogueMask!=null)
+        {
+            DialogueMask.SetActive(true);//关闭对话遮罩
+        }
         // profile.color = new Vector4(bubbleImage.color.r, bubbleImage.color.g, bubbleImage.color.b, 255f);
         if (profile != null) profile.SetActive(true);
     }
