@@ -76,6 +76,7 @@
     <Compile Include="Assets\DragonBones\Scripts\armature\Constraint.cs" />
     <Compile Include="Assets\Script\static\UiStatic.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+    <Compile Include="Assets\Script\CameraController\OpenAnim.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityTextureAtlasData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />

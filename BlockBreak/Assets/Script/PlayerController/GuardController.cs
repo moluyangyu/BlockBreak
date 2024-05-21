@@ -18,12 +18,12 @@ public class GuardController : MonoBehaviour
     void Update()
     {
         transform.Translate(dir * speed * Time.deltaTime, 0f, 0f);
-        if(transform.position.x<94&&transform.position.x > 89)
+        if(transform.position.x < 94 && transform.position.x > 89)
         {
-            transform.GetChild(21).gameObject.SetActive(true);//攻击判定体位于第10个顺位
+            transform.GetChild(0).gameObject.SetActive(true);//攻击判定体位于第10个顺位
         }else
         {
-            transform.GetChild(21).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
