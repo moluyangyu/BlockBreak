@@ -95,6 +95,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Script\UI\GameDexControl.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\MeshBuffer.cs" />
+    <Compile Include="Assets\Script\NPC\NpcSpineAniControl.cs" />
     <Compile Include="Assets\Script\LevelComponent\NewTeach.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\AnimationData.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\Transform.cs" />
@@ -200,6 +201,7 @@
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials\7000汉字+符号+英文字符集.txt" />
     <None Include="Assets\Resources\Spine\猫头鹰-中\maotouying_zhong\maotouying_zhong.atlas.txt" />
+    <None Include="Assets\Script\Shader\OutlineGlowShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials\3500汉字+符号+英文字符集.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

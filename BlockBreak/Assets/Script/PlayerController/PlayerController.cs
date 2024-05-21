@@ -130,9 +130,9 @@ public class PlayerController : MonoBehaviour
             if(i)
             {
                 isTalk = false;
-                stop = false;
+                SwitchStop(1);
                 //第一关的通关条件写在这里
-                if(idName== "第3章-2")
+                if (idName== "第3章-2")
                 {
                     UiStatic.NextLevelIssue();
                     SwitchStop(0);
