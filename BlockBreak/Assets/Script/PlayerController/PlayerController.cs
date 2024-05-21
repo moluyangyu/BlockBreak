@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private GameObject stairPoint2;
     private float x1,x2,y1,y2;
     private GameObject Cat;//猫雕像
+    private int catmiss;//计数用于第二次触发消除猫
 
     private DragonBones.UnityArmatureComponent animDB;
  //   private DragonBones.UnityArmatureComponent animDB2;
@@ -245,7 +246,16 @@ public class PlayerController : MonoBehaviour
             //collision.gameObject.SetActive(false);
         }else if(collision.gameObject.tag=="DropTrigger")
         {
-            Cat.GetComponent<Animator>().SetTrigger("掉落");
+            if (catmiss == 0)
+            { 
+                Cat.GetComponent<Animator>().SetTrigger("掉落");
+                catmiss++;
+            }else
+            {
+                Cat.SetActive(false);
+                collision.gameObject.SetActive(false);
+            }
+ 
         }
 
     }
