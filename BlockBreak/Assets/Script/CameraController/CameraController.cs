@@ -11,10 +11,6 @@ public class CameraController : MonoBehaviour
     public float x_min;
     public float x_max;
     static GameObject SceneBlacking;
-    public float openSpeed;
-    public Image Image0;
-    public Image Image1;
-    public string idName;
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -27,7 +23,6 @@ public class CameraController : MonoBehaviour
     {
         //offset = transform.position - player.transform.position;
 
-        StartCoroutine(open());
     }
 
     // Update is called once per frame
@@ -52,28 +47,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private IEnumerator open()
-    {
-        print(Image0.rectTransform.position.y);
-        while (Image0.rectTransform.position.y < 620)
-        {
-            Image0.rectTransform.Translate(0, openSpeed, 0);
-            Image1.rectTransform.Translate(0, -openSpeed, 0);
-            yield return null;
-        }
-        while (Image0.rectTransform.position.y > 470)
-        {
-            Image0.rectTransform.Translate(0, -openSpeed, 0);
-            Image1.rectTransform.Translate(0, openSpeed, 0);
-            yield return null;
-        }
-        while (Image0.rectTransform.position.y < 1000)
-        {
-            Image0.rectTransform.Translate(0, openSpeed, 0);
-            Image1.rectTransform.Translate(0, -openSpeed, 0);
-            yield return null;
-        }
-        UiStatic.TalkKickIssue(idName);
-    }
+    
 
 }
