@@ -12,6 +12,7 @@ public class GuardController : MonoBehaviour
     {
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
         if(animDB!=null) animDB.animation.Play("run");
+        
     }
 
     // Update is called once per frame
@@ -20,10 +21,10 @@ public class GuardController : MonoBehaviour
         transform.Translate(dir * speed * Time.deltaTime, 0f, 0f);
         if(transform.position.x < 94 && transform.position.x > 89)
         {
-            transform.GetChild(0).gameObject.SetActive(true);//攻击判定体位于第10个顺位
+            transform.GetChild(21).gameObject.SetActive(true);//攻击判定体位于第21个顺位
         }else
         {
-            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(21).gameObject.SetActive(false);
         }
     }
 

@@ -214,4 +214,10 @@ public static class UiStatic
     {
         NextLevel?.Invoke();
     }
+    public delegate void PlayerDieHandler(bool a);
+    public static event PlayerDieHandler PlayerDie;
+    public static void PlayerDieIssue(bool a)
+    {
+        PlayerDie?.Invoke(a);
+    }
 }

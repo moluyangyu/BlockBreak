@@ -286,6 +286,8 @@ public class PlayerController : MonoBehaviour
         SwitchStop(0);
         //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
+        transform.position = new Vector3(69, transform.position.y, transform.position.z);//น้ฮป
+        UiStatic.PlayerDieIssue(false);
     }
 
 }
