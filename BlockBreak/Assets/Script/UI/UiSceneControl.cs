@@ -16,7 +16,7 @@ public class UiSceneControl : MonoBehaviour
     private void Awake()
     {
         //ceneManager.LoadScene(1, LoadSceneMode.Additive);//∂ÓÕ‚º”‘ÿUI≥°æ∞
-        UpdateTextNames(false);
+       // UpdateTextNames(false);
         UpdateTextNames(true);
     }
     void Start()

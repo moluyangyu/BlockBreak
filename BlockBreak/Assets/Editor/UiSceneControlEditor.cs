@@ -35,7 +35,7 @@ public class UiSceneControlEditor : Editor
         if (GUILayout.Button("读取标识名"))
         {
             uiSceneControl.UpdateTextNames(true);
-            Debug.Log("更改成功");
+            Debug.Log("读取成功");
         }
         serializedObject.Update();
         EditorGUILayout.PropertyField(textNames, new GUIContent("对话气泡标识名"));
