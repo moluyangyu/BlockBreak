@@ -18,8 +18,8 @@ public class ProgressBar : MonoBehaviour
     public Sprite smallStar;
     public Sprite largeStar;
 
-    private GameObject player;
-    private PlayerController playerC;
+    private static GameObject player;
+    private static PlayerController playerC;
 
     private GameObject nowState = null;
     private float t;
@@ -71,7 +71,7 @@ public class ProgressBar : MonoBehaviour
         {
             nowState = upstairs;
         }
-        else if (playerC.stop)
+        else if (PlayerController.stop)
         {
             nowState = pause;
         }
@@ -79,7 +79,7 @@ public class ProgressBar : MonoBehaviour
         {
             nowState = turn;
         }
-        else if (playerC.isFast)
+        else if (PlayerController.isFast)
         {
             nowState = speedUp;
         }

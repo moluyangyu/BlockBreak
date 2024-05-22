@@ -10341,10 +10341,6 @@ MonoBehaviour:
   offset_max: 6
   x_min: -19
   x_max: 130
-  openSpeed: 0.5
-  Image0: {fileID: 2057418095}
-  Image1: {fileID: 463407150}
-  idName: 
 --- !u!114 &872827054
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     //public float stateDuration;
     public float jumpForce;
     public int direction = 1;
-    public bool isFast = false;
-    public bool stop = false;
+    public static bool isFast = false;
+    public static bool stop = false;
     private Rigidbody2D rb;
     //private Animator anim;
     public bool isTalk = false;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private float x1,x2,y1,y2;
     private GameObject Cat;//Ã¨µñÏñ
 
-    private DragonBones.UnityArmatureComponent animDB;
+    private static DragonBones.UnityArmatureComponent animDB;
  //   private DragonBones.UnityArmatureComponent animDB2;
     public enum ActionType
     {
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
         PlayAnim();
     }
 
-    public void PlayAnim(string name = null)
+    public static void PlayAnim(string name = null)
     {
        if(animDB!=null)
         {
