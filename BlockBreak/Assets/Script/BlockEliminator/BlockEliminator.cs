@@ -122,7 +122,8 @@ public class BlockEliminator : MonoBehaviour
             {
                 status.state = BlockState.original;
                 activatedBlocks.Remove(block);
-                actingBlocksCount--;
+
+                if(actingBlocksCount>0) actingBlocksCount--;
                 StartCoroutine(Move(block, block.transform.position, moveDuration, -1));
             }
         }
@@ -217,6 +218,7 @@ public class BlockEliminator : MonoBehaviour
                 yield return null;
                 elapsedTime += Time.deltaTime;
             }
+            activatedBlocksCount++;
         }
         else if (dir == -1)
         {
@@ -228,10 +230,11 @@ public class BlockEliminator : MonoBehaviour
                 yield return null;
                 elapsedTime += Time.deltaTime;
             }
+            if (activatedBlocksCount > 0) activatedBlocksCount--;
         }
         
         status.moving = false;
-        activatedBlocksCount += dir;
+        //activatedBlocksCount += dir;
         if (activatedBlocksCount == ELIMINATE_COUNT)
         {
             TryEliminate();
@@ -253,6 +256,19 @@ public class BlockEliminator : MonoBehaviour
     {
         Initialize();
         sceneCount++;
+        for (int i = 0; i < ELIMINATE_COUNT; i++)
+        {
+            //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
+            eliminatePoints[i] = eliminateArea.transform.GetChild((sceneCount - 1) * ELIMINATE_COUNT + i).gameObject;
+        }
+    }
+    /// <summary>
+    /// 死亡了跳转回上一个场景
+    /// </summary>
+    public void LastScene()
+    {
+        Initialize();
+        sceneCount--;
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;

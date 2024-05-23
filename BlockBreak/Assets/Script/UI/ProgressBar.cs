@@ -46,13 +46,13 @@ public class ProgressBar : MonoBehaviour
             t -= 1;
         }
 
-        slider.value = Mathf.InverseLerp(-30f, 140f, player.transform.position.x);
+        slider.value = Mathf.InverseLerp(-30f, 133f, player.transform.position.x);
         if (!check[0] && slider.value >= 0.33)
         {
             check[0] = true;
             StartCoroutine(Star(star1));
         }
-        if (!check[1] && slider.value >= 0.67)
+        if (!check[1] && slider.value >= 0.75)
         {
             check[1] = true;
             StartCoroutine(Star(star2));

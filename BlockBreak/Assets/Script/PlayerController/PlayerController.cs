@@ -286,7 +286,8 @@ public class PlayerController : MonoBehaviour
         SwitchStop(0);
         //anim.SetTrigger("die");
         BlockRefresher.Instance.RefreshAll();
-        transform.position = new Vector3(69, transform.position.y, transform.position.z);//归位
+        transform.position = new Vector3(72, transform.position.y, transform.position.z);//在第一关归位
+        BlockEliminator.Instance.LastScene();
         UiStatic.PlayerDieIssue(false);
     }
 
