@@ -114,6 +114,7 @@
     <Compile Include="Assets\Script\LevelComponent\Drop.cs" />
     <Compile Include="Assets\DragonBones\Scripts\parser\BinaryDataWriter.cs" />
     <Compile Include="Assets\DragonBones\Scripts\armature\Armature.cs" />
+    <Compile Include="Assets\Script\VideoPlayer\WUIStarVideoPanel.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityFactory.cs" />
     <Compile Include="Assets\Script\开发测试使用的脚本\UIControlTest.cs" />
     <Compile Include="Assets\Script\UI\ProgressBar.cs" />

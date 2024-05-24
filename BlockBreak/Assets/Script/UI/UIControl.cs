@@ -109,7 +109,7 @@ public class UIControl : MonoBehaviour
     /// </summary>
     public void StartButton()
     {
-        SceneManager.LoadScene(2);
+       // SceneManager.LoadScene(2);
         GameObject.Find("start").GetComponent<Animator>().SetTrigger("µã»÷");
     }
     /// <summary>
