@@ -43,6 +43,10 @@ public class GroundEvent : MonoBehaviour
             case FloorClass.bollard: MoveStart?.Invoke(nowBollardNumber,a);nowBollardNumber++; break;
         }
     }
+    public void MoveStarIssue(int i,FloorClass a)
+    {
+        MoveStart?.Invoke(i, a);
+    }
     //触发彩蛋的事件
     public delegate void TriggerEggHandler(string finishName);
     public event TriggerEggHandler TriggerEgg;

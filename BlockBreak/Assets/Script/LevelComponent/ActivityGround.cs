@@ -16,7 +16,14 @@ public enum Direction
 public enum FloorClass
 {
     step,
-    bollard
+    bollard,
+    dragon,
+    tiger,
+    ribbit,
+    cow,
+    monkey,
+    snake,
+    horse
 }
 
 public class ActivityGround : MonoBehaviour
@@ -41,6 +48,7 @@ public class ActivityGround : MonoBehaviour
     public GameObject groundEvent;//地板事件
     public float t;//插值因子
     public float direction;
+    public bool height;//位于高位置的
     // Start is called before the first frame update
     void Start()
     {
@@ -48,11 +56,16 @@ public class ActivityGround : MonoBehaviour
         groundEvent.GetComponent<GroundEvent>().MoveStart += MoveStart;
         moveSpeed = (moveSpeed <= 0) ? 3 : moveSpeed;//如果小于1就等于3
         moveSpeed /= (distance*100);//将速度归一化用于计算
+        height = false;
     }
     // Update is called once per frame
     void Update()
     {
  
+    }
+    private void OnDisable()
+    {
+        groundEvent.GetComponent<GroundEvent>().MoveStart -= MoveStart;
     }
     /// <summary>
     /// 订阅移动事件，根据预设值计算出目的地然后启动移动的函数，移动一次后更改可通过状态然后取消订阅
@@ -62,11 +75,35 @@ public class ActivityGround : MonoBehaviour
     {
         if(i==serialNumber&&a==floorClass)
         {
-            Debug.Log("移动开始第" + serialNumber + "号"+"类型："+floorClass);
-            startPoint = this.gameObject.transform.position;
-            endPoint = this.gameObject.transform.position;//计算单次移动需要的两个位置
-            float radiaAngle = Mathf.Deg2Rad * direction;
-            endPoint += new Vector3(distance * Mathf.Cos(radiaAngle), distance*Mathf.Sin(radiaAngle), 0f);
+            if(((int)floorClass)>=2)
+            {
+                if(height)
+                {
+                    Debug.Log("移动开始第" + serialNumber + "号" + "类型：" + floorClass);
+                    float distance1 = -distance;
+                    startPoint = this.gameObject.transform.position;
+                    endPoint = this.gameObject.transform.position;//计算单次移动需要的两个位置
+                    float radiaAngle = Mathf.Deg2Rad * direction;
+                    endPoint += new Vector3(distance1 * Mathf.Cos(radiaAngle), distance * Mathf.Sin(radiaAngle), 0f);
+                    height = false;
+                }else
+                {
+                    Debug.Log("移动开始第" + serialNumber + "号" + "类型：" + floorClass);
+                    startPoint = this.gameObject.transform.position;
+                    endPoint = this.gameObject.transform.position;//计算单次移动需要的两个位置
+                    float radiaAngle = Mathf.Deg2Rad * direction;
+                    endPoint += new Vector3(distance * Mathf.Cos(radiaAngle), distance * Mathf.Sin(radiaAngle), 0f);
+                    height = true;
+                }
+            }else
+            {
+                Debug.Log("移动开始第" + serialNumber + "号" + "类型：" + floorClass);
+                startPoint = this.gameObject.transform.position;
+                endPoint = this.gameObject.transform.position;//计算单次移动需要的两个位置
+                float radiaAngle = Mathf.Deg2Rad * direction;
+                endPoint += new Vector3(distance * Mathf.Cos(radiaAngle), distance * Mathf.Sin(radiaAngle), 0f);
+            }
+
             //switch (direction)
             //{
             //    case Direction.Up: endPoint += new Vector3(0f * distance, 1.0f * distance, 0f * distance); break;

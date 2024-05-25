@@ -98,13 +98,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  direction: 0
+  floorClass: 0
   moveSpeed: 3
   distance: 0
   serialNumber: 0
   delayTime: 0
+  a: 
+  isPlay: 0
   startPoint: {x: 0, y: 0, z: 0}
   endPoint: {x: 0, y: 0, z: 0}
   canCross: 0
   groundEvent: {fileID: 0}
   t: 0
+  direction: 0
