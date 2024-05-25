@@ -162,6 +162,7 @@
     <Compile Include="Assets\DragonBones\Scripts\parser\BinaryDataReader.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityDragonBonesData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\Script\Mouse.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\BoundingBoxData.cs" />
