@@ -65,7 +65,7 @@ public class ActivityGround : MonoBehaviour
     }
     private void OnDisable()
     {
-        groundEvent.GetComponent<GroundEvent>().MoveStart -= MoveStart;
+        //groundEvent.GetComponent<GroundEvent>().MoveStart -= MoveStart;
     }
     /// <summary>
     /// 订阅移动事件，根据预设值计算出目的地然后启动移动的函数，移动一次后更改可通过状态然后取消订阅
