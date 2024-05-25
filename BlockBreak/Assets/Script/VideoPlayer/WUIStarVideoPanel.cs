@@ -61,7 +61,7 @@ public class WUIStarVideoPanel : MonoBehaviour
     public void OnSkipBtnClick()
     {
         mVideoPlayer.Stop();
-        EndReached(mVideoPlayer);
+        //  EndReached(mVideoPlayer);
         SceneManager.LoadScene(2);
     }
 }

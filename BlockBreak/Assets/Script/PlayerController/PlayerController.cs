@@ -243,7 +243,8 @@ public class PlayerController : MonoBehaviour
             SwitchStop(0);
             BlockEliminator.Instance.NextScene();
             collision.gameObject.GetComponent<NewTeach>().OpenTeach();
-            //collision.gameObject.SetActive(false);
+
+            collision.gameObject.SetActive(false);
         }else if(collision.gameObject.tag=="DropTrigger")
         {
             if (catmiss == 0)
