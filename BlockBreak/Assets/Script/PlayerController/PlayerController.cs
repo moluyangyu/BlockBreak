@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+   // public bool 
     public void Turn()
     {
         direction = -direction;
@@ -209,6 +209,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animDB.animation.Play(name, 1);
+
             }
         }
 
@@ -258,6 +259,7 @@ public class PlayerController : MonoBehaviour
             }
  
         }
+ 
 
     }
     private void OnTriggerExit2D(Collider2D collision)

@@ -17,6 +17,8 @@ TagManager:
   - Dex
   - Teach
   - DropTrigger
+  - surprise
+  - problem
   layers:
   - Default
   - TransparentFX
