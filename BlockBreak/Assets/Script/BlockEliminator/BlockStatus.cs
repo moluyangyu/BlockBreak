@@ -25,7 +25,7 @@ public class BlockStatus : MonoBehaviour
             }
             else
             {
-                transform.position = refreshPoint.transform.position;
+                if(refreshPoint!=null)transform.position = refreshPoint.transform.position;
             }
         }
         

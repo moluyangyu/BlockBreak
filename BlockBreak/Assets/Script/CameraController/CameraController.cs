@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     public float x_min;
     public float x_max;
     static GameObject SceneBlacking;
+    public float cameraHeight;//摄像机高度
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -29,7 +30,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, player.transform.position.x + offset_min, player.transform.position.x + offset_max), transform.position.y, transform.position.z);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, x_min, x_max), player.transform.position.y+7.0f, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, x_min, x_max), player.transform.position.y+ cameraHeight, transform.position.z);
     }
     /// <summary>
     /// 让场景变暗与否

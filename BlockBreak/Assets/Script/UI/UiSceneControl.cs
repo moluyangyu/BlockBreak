@@ -12,7 +12,7 @@ public class UiSceneControl : MonoBehaviour
     public string[] textNames;
     public int textInt;
     public int[] testInts;
-    private bool a;//切换打包和编辑器环境的
+    public bool a;//切换打包和编辑器环境的
     private void Awake()
     {
         //ceneManager.LoadScene(1, LoadSceneMode.Additive);//额外加载UI场景
@@ -43,7 +43,7 @@ public class UiSceneControl : MonoBehaviour
     {
         a = true;
 #if UNITY_EDITOR
-        //a = false;
+        a = false;
 #endif
         if (a)
         {
