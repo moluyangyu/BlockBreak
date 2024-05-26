@@ -131,17 +131,37 @@ public class PlayerController : MonoBehaviour
             if(i)
             {
                 isTalk = false;
-                SwitchStop(1);
+
                 //第一关的通关条件写在这里
                 if (idName== "第3章-2")
                 {
                     UiStatic.NextLevelIssue();
                     SwitchStop(0);
                 }
+                if (idName == "序章-2")
+                {
+                    PlayAnim("problem");
+                    StartCoroutine(PauseAndExecute(1.5f));
+                }
+                SwitchStop(1);
+                if (idName=="序章")
+                {
+                    idName = "序章-2";
+                    PlayAnim("surprise");
+                    StartCoroutine(PauseAndExecute(1.5f));
+                    Talk();
+                }
+
             }
         }
     }
-   // public bool 
+    // 协程函数
+    IEnumerator PauseAndExecute(float a)
+    {
+        yield return new WaitForSeconds(a); // 暂停3秒
+
+    }
+    // public bool 
     public void Turn()
     {
         direction = -direction;
