@@ -205,6 +205,23 @@ public static class UiStatic
         }
         return false;
     }
+    public static void TalkKickIssue(int id)
+    {
+        int TalkResult = 0;
+        foreach (TalkKickHandler handler in TalkKick.GetInvocationList())
+        {
+
+            for (int j = 0; j < textNamesStatic.Length; j++)
+            {
+                if (id==j)//如果是目标跳过的对象
+                {
+                    TalkResult += handler(j);
+                }
+            }
+
+        }
+
+    }
     public delegate void NextLevelHandler();
     public static event NextLevelHandler NextLevel;
     /// <summary>

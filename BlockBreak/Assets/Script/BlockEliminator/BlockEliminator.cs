@@ -268,7 +268,7 @@ public class BlockEliminator : MonoBehaviour
     public void LastScene()
     {
         Initialize();
-        sceneCount--;
+       // sceneCount--;
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;

@@ -171,4 +171,21 @@ public class UIControl : MonoBehaviour
     {
         nextLevel.SetActive(true);
     }
+    /// <summary>
+    /// 跳过对话，史诗级功能（）
+    /// </summary>
+    public void SkipTalk()
+    {
+        // 遍历每个子对象
+        foreach (Transform child in this.gameObject.transform)
+        {
+            // 处理子对象
+            if (child.GetComponent<TextReader>() != null)
+            {
+                child.GetComponent<TextReader>().SkipTalk();
+            }
+
+        }
+        // UiStatic.TalkKickIssue(id);
+    }
 }

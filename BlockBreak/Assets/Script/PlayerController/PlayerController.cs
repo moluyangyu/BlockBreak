@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private GameObject stairPoint2;
     private float x1,x2,y1,y2;
     private GameObject Cat;//猫雕像
+    public GameObject elevatorTrigger;//用于记录当前踩上的电梯组件
     private int catmiss;//计数用于第二次触发消除猫
 
     private static DragonBones.UnityArmatureComponent animDB;
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour
         UiStatic.UiOpen += SwitchStop;
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
         Cat = GameObject.Find("馆长雕像");
-        PlayAnim();
+        SwitchStop(1);
     }
 
     // Update is called once per frame
@@ -131,7 +134,7 @@ public class PlayerController : MonoBehaviour
             if(i)
             {
                 isTalk = false;
-
+                SwitchStop(1);
                 //第一关的通关条件写在这里
                 if (idName== "第3章-2")
                 {
@@ -140,28 +143,28 @@ public class PlayerController : MonoBehaviour
                 }
                 if (idName == "序章-2")
                 {
+                    SwitchStop(0);
                     PlayAnim("problem");
-                    StartCoroutine(PauseAndExecute(1.5f));
+                    //调用通用延时函数
+                    CoroutineHelper.WaitForSeconds(this, 1.5f, () =>
+                    {
+                        SwitchStop(1);
+                    });
                 }
-                SwitchStop(1);
                 if (idName=="序章")
                 {
+                    SwitchStop(0);
                     idName = "序章-2";
                     PlayAnim("surprise");
-                    StartCoroutine(PauseAndExecute(1.5f));
-                    Talk();
+                    CoroutineHelper.WaitForSeconds(this, 1.5f, () =>
+                    {
+                        Talk();
+                    });
                 }
-
             }
         }
     }
-    // 协程函数
-    IEnumerator PauseAndExecute(float a)
-    {
-        yield return new WaitForSeconds(a); // 暂停3秒
 
-    }
-    // public bool 
     public void Turn()
     {
         direction = -direction;
@@ -278,10 +281,28 @@ public class PlayerController : MonoBehaviour
                 collision.gameObject.SetActive(false);
             }
  
+        }else if (collision.gameObject.tag == "Elevator")
+        {
+            SwitchStop(0);
+            BlockEliminator.Instance.NextScene();
+            elevatorTrigger = collision.gameObject;
         }
- 
+
 
     }
+    /// <summary>
+    /// 三消组件电梯触发这个函数,InvokeRepeating(nameof(MoveFollow()), 0f, 0.01f);调用语句
+    /// </summary>
+    public void MoveFollow()
+    {
+        if (this.gameObject.transform.position == elevatorTrigger.transform.position)
+        {
+            CancelInvoke(nameof(MoveFollow));//取消调用
+        }
+
+        this.gameObject.transform.position = elevatorTrigger.transform.position;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Teach")
@@ -289,7 +310,12 @@ public class PlayerController : MonoBehaviour
             //SwitchStop(0);
             collision.gameObject.GetComponent<NewTeach>().CloseTeach();
             //collision.gameObject.SetActive(false);
+        }else if (collision.gameObject.CompareTag("Elevator"))
+        {
+            elevatorTrigger = null;
+            collision.gameObject.SetActive(false);
         }
+
     }
 
     private void Talk()
@@ -308,10 +334,18 @@ public class PlayerController : MonoBehaviour
     {
         SwitchStop(0);
         //anim.SetTrigger("die");
-        BlockRefresher.Instance.RefreshAll();
-        transform.position = new Vector3(72, transform.position.y, transform.position.z);//在第一关归位
-        BlockEliminator.Instance.LastScene();
-        UiStatic.PlayerDieIssue(false);
+        PlayAnim("die");
+        // 调用通用暂停方法
+        CoroutineHelper.WaitForSeconds(this, 1.5f, () =>
+        {
+            BlockRefresher.Instance.RefreshAll();
+            transform.position = new Vector3(72, transform.position.y, transform.position.z);//在第一关归位
+            BlockEliminator.Instance.LastScene();
+            PlayAnim("idie");
+            // UiStatic.PlayerDieIssue(false);
+        });
+        
     }
+ 
 
 }

@@ -65,6 +65,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Script\UI\UIControl.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\Matrix.cs" />
+    <Compile Include="Assets\Script\static\CoroutineHelper.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\ColorTransform.cs" />
     <Compile Include="Assets\DragonBones\Scripts\animation\Animation.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityUGUIDisplay.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Assets\Script\BlockEliminator\BlockRefresher.cs" />
     <Compile Include="Assets\DragonBones\Scripts\parser\BinaryDataReader.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityDragonBonesData.cs" />
+    <Compile Include="Assets\Script\LevelComponent\ElevatorTrigger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Script\Mouse.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />

@@ -19,6 +19,7 @@ TagManager:
   - DropTrigger
   - surprise
   - problem
+  - Elevator
   layers:
   - Default
   - TransparentFX

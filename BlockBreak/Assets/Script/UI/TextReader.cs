@@ -184,6 +184,14 @@ public class TextReader : MonoBehaviour
         return a;
     }
     /// <summary>
+    /// 跳过对话，史诗级功能（）
+    /// </summary>
+    public void SkipTalk()
+    {
+        if(pageNumber>=2) pageNumber = (textCut1.Length - 1);
+       // UiStatic.TalkKickIssue(id);
+    }
+    /// <summary>
     /// 关闭对话框用的
     /// </summary>
     public void CloseTalk()

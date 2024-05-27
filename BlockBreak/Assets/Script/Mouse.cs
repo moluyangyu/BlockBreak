@@ -19,7 +19,7 @@ public class Mouse : MonoBehaviour
     void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition = new Vector3(mousePosition.x+15,mousePosition.y-15,0);
+        mousePosition = new Vector3(mousePosition.x+20,mousePosition.y-20,0);
         
         hammer.rectTransform.position = mousePosition; //图片的位置跟随鼠标的位置
     }
