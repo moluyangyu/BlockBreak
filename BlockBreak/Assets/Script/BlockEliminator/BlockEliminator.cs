@@ -194,6 +194,7 @@ public class BlockEliminator : MonoBehaviour
                 break;
             case BlockType.landform:
                 //landform();
+                PlayerController.Player.GetComponent<PlayerController>().Dianti();
                 break;
             case BlockType.easterEgg:
                 //easterEgg();

@@ -303,6 +303,11 @@ public class PlayerController : MonoBehaviour
         this.gameObject.transform.position = elevatorTrigger.transform.position;
     }
 
+    public void Dianti()
+    {
+        InvokeRepeating(nameof(MoveFollow), 0f, 0.01f);
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Teach")
