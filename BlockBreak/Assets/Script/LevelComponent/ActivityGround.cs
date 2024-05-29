@@ -73,7 +73,7 @@ public class ActivityGround : MonoBehaviour
     /// <param name="i"></param>传入移动编号，验证是否应该移动
     public void MoveStart(int i, FloorClass a)
     {
-        if(i==serialNumber&&a==floorClass)
+        if((i == serialNumber && a ==floorClass)||(i == 0 && a == floorClass))
         {
             if(((int)floorClass)>=2)
             {
@@ -95,7 +95,7 @@ public class ActivityGround : MonoBehaviour
                     endPoint += new Vector3(distance * Mathf.Cos(radiaAngle), distance * Mathf.Sin(radiaAngle), 0f);
                     height = true;
                 }
-            }else
+            }else if(i == serialNumber )
             {
                 Debug.Log("移动开始第" + serialNumber + "号" + "类型：" + floorClass);
                 startPoint = this.gameObject.transform.position;

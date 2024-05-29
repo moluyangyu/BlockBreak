@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class PlayerController : MonoBehaviour
     public bool isTalk = false;
     public bool isStair = false;
     public string idName;
-
     private GameObject stairPoint1;
     private GameObject stairPoint2;
     private float x1,x2,y1,y2;
@@ -277,7 +277,8 @@ public class PlayerController : MonoBehaviour
                 catmiss++;
             }else
             {
-                Cat.SetActive(false);
+                Cat.GetComponent<Animator>().SetTrigger("变猫");
+               // Cat.SetActive(false);
                 collision.gameObject.SetActive(false);
             }
  
@@ -286,6 +287,12 @@ public class PlayerController : MonoBehaviour
             SwitchStop(0);
             BlockEliminator.Instance.NextScene();
             elevatorTrigger = collision.gameObject;
+        }else if(collision.gameObject.tag=="end")//回归基本水平线的组件
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, -2.86f, 0f);
+        }else if(collision.gameObject.tag=="endGame")
+        {
+            SceneManager.LoadScene(4);
         }
 
 
@@ -305,7 +312,7 @@ public class PlayerController : MonoBehaviour
 
     public void Dianti()
     {
-        InvokeRepeating(nameof(MoveFollow), 0f, 0.01f);
+        if(elevatorTrigger!=null) InvokeRepeating(nameof(MoveFollow), 0f, 0.01f);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -318,6 +325,10 @@ public class PlayerController : MonoBehaviour
         }else if (collision.gameObject.CompareTag("Elevator"))
         {
             elevatorTrigger = null;
+            collision.gameObject.SetActive(false);
+        }else if (collision.gameObject.tag == "Dex")
+        {
+            // SwitchStop(0);
             collision.gameObject.SetActive(false);
         }
 
