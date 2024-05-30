@@ -52,6 +52,7 @@ public class WUIStarVideoPanel : MonoBehaviour
         GameObject start = GameObject.Find("start");
         start.GetComponent<Animator>().SetTrigger("µã»÷");
         start.SetActive(false);
+        
         skip.SetActive(true);
         GameObject.Find("EXIT").SetActive(false);
         mVideoPlayer.Play();

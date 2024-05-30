@@ -66,6 +66,7 @@ public class GameDexControl : MonoBehaviour
             }
             aniPlay = false;
             this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString()+"n");//播放动画
+            this.gameObject.GetComponent<MusicController>().PlayMusic();
             lockNumber = i;
         }else if(i<=1)
         {
@@ -88,6 +89,7 @@ public class GameDexControl : MonoBehaviour
         if (aniPlay)
         {
             this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());//播放动画
+            GameObject.Find("OpenGameDex").GetComponent<MusicController>().PlayMusic();
         }
       //  aniPlay = true;
 

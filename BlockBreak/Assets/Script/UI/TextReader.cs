@@ -93,11 +93,13 @@ public class TextReader : MonoBehaviour
         tmpText.text = "";
         UiStatic.textLock = true;
         textLock = true;
-        foreach(char letter in _text.ToCharArray())
+        this.GetComponent<MusicController>().PlayMusic();
+        foreach (char letter in _text.ToCharArray())
         {
             tmpText.text += letter;
             yield return new WaitForSeconds(c_speed);
         }
+        this.GetComponent<MusicController>().StopMusic();
         textLock = false;
         UiStatic.textLock = false;
     }

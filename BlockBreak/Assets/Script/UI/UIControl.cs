@@ -129,6 +129,7 @@ public class UIControl : MonoBehaviour
         UiStatic.GameDexTrigger -= OpenDex;
         //UiStatic.UiOpenIssue(true);
         UiStatic.GameDexTriggerIssue(i);//在图鉴游戏体打开以后再传一次消息才能接收到
+
         UiStatic.GameDexTrigger += OpenDex;
         
     }

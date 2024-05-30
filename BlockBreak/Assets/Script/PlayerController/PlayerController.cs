@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour
         if(isTalk&&Input.GetMouseButtonDown(0))
         {
             bool i=UiStatic.TalkKickIssue(idName);
+
             if(i)
             {
                 isTalk = false;
@@ -186,6 +187,7 @@ public class PlayerController : MonoBehaviour
         stop = !stop;
         //anim.SetBool("stop", stop);
         PlayAnim();
+        this.GetComponent<MusicController>().TogglePlayPause();
     }
     /// <summary>
     /// 0是停下来，1是走起来，2是切换状态
@@ -197,11 +199,11 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 stop = true;
-
+                this.GetComponent<MusicController>().StopMusic();
                 break;
             case 1:
                 stop = false;
-                
+                this.GetComponent<MusicController>().PlayMusic();
                 break;
             case 2:
                 SwitchStop(); break;
@@ -274,6 +276,7 @@ public class PlayerController : MonoBehaviour
             if (catmiss == 0)
             { 
                 Cat.GetComponent<Animator>().SetTrigger("掉落");
+                Cat.GetComponent<MusicController>().PlayMusic();
                 catmiss++;
             }else
             {

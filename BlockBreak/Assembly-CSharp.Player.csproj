@@ -171,6 +171,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\DragonBones\Scripts\factory\BaseFactory.cs" />
     <Compile Include="Assets\Script\PlayerController\GuardController.cs" />
+    <Compile Include="Assets\Script\VideoPlayer\MusicController.cs" />
     <Compile Include="Assets\Script\LevelComponent\BigWall.cs" />
     <Compile Include="Assets\DragonBones\Scripts\animation\WorldClock.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\AnimationConfig.cs" />
