@@ -81,6 +81,7 @@ public class BlockEliminator : MonoBehaviour
     {
         activatedBlocksCount = 0;
         actingBlocksCount = 0;
+  
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             eliminatejudge[i] = true;
@@ -289,6 +290,7 @@ public class BlockEliminator : MonoBehaviour
     {
         Initialize();
         sceneCount++;
+        activatedBlocks = new List<GameObject>();//Çå¿ÕÏû³ıÀ¸±ÜÃâbug
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;

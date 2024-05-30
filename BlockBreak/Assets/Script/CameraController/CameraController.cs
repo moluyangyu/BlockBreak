@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     public float x_max;
     static GameObject SceneBlacking;
     public float cameraHeight;//摄像机高度
+    public bool heightLock;//高度锁定
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -29,8 +30,16 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, player.transform.position.x + offset_min, player.transform.position.x + offset_max), transform.position.y, transform.position.z);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, x_min, x_max), player.transform.position.y+ cameraHeight, transform.position.z);
+        if(heightLock==false)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, player.transform.position.x + offset_min, player.transform.position.x + offset_max), transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, x_min, x_max), player.transform.position.y + cameraHeight, transform.position.z);//第一关的y值为2.5
+        }else
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, player.transform.position.x + offset_min, player.transform.position.x + offset_max), 0, transform.position.z);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, x_min, x_max), 0, transform.position.z);//第一关的y值为2.5
+        }
+
     }
     /// <summary>
     /// 让场景变暗与否

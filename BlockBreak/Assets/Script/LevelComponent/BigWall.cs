@@ -31,5 +31,6 @@ public class BigWall : MonoBehaviour
         }
         //ÃÜÂëÕıÈ·
         this.GetComponent<ActivityGround>().MoveStart(this.GetComponent<ActivityGround>().serialNumber, FloorClass.bollard);
+        PlayerController.Instance.SwitchStop(1);
     }
 }

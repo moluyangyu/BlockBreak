@@ -84,8 +84,9 @@ public class PlayerController : MonoBehaviour
     {
         UiStatic.UiOpen += SwitchStop;
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
-        Cat = GameObject.Find("¹Ý³¤µñÏñ");
         SwitchStop(1);
+        Cat = GameObject.Find("¹Ý³¤µñÏñ");
+
     }
 
     // Update is called once per frame
@@ -121,6 +122,13 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x >= x1 && transform.position.x <= x2)
         {
             transform.position = new Vector3(transform.position.x, Mathf.Lerp(y1, y2, Mathf.InverseLerp(x1, x2, transform.position.x)), 0);
+            if(isStair==false)
+            {
+                if(GameObject.Find("ÑÌÎíÇÅ")!=null)
+                {
+                    GameObject.Find("ÑÌÎíÇÅ").GetComponent<Animator>().SetTrigger("Éú³É");
+                }
+            }
             isStair = true;
         }
         else

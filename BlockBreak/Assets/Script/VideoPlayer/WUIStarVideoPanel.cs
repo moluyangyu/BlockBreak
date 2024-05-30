@@ -54,8 +54,9 @@ public class WUIStarVideoPanel : MonoBehaviour
         start.SetActive(false);
         
         skip.SetActive(true);
-        GameObject.Find("EXIT").SetActive(false);
+        //GameObject.Find("EXIT").SetActive(false);
         mVideoPlayer.Play();
+        this.GetComponent<MusicController>().PlayMusic();
     }
 
     // ฬ๘นýสำฦต

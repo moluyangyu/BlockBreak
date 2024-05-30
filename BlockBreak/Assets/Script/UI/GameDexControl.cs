@@ -89,7 +89,7 @@ public class GameDexControl : MonoBehaviour
         if (aniPlay)
         {
             this.gameObject.GetComponent<Animator>().SetTrigger(pageNumber.ToString());//播放动画
-            GameObject.Find("OpenGameDex").GetComponent<MusicController>().PlayMusic();
+            GameObject.Find("OpenGameDex").GetComponent<MusicController>().PlayMusic();//播放普通打开音效
         }
       //  aniPlay = true;
 

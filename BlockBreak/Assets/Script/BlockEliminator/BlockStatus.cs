@@ -11,9 +11,15 @@ public class BlockStatus : MonoBehaviour
     [HideInInspector] public int ePointIndex;
     public BlockType type;
     public int order;
+    public bool auto;//自动匹配回归点
 
-
-
+    void Start()
+    {
+        if(auto)
+        {
+            refreshPoint = GameObject.Find("BlockRefreshArea/" + this.gameObject.name);
+        }
+    }
 
     private void Update()
     {
