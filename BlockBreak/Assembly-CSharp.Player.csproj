@@ -65,6 +65,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Script\UI\UIControl.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\Matrix.cs" />
+    <Compile Include="Assets\Script\static\CoroutineHelper.cs" />
     <Compile Include="Assets\DragonBones\Scripts\geom\ColorTransform.cs" />
     <Compile Include="Assets\DragonBones\Scripts\animation\Animation.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityUGUIDisplay.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\DragonBones\Scripts\armature\Constraint.cs" />
     <Compile Include="Assets\Script\static\UiStatic.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+    <Compile Include="Assets\Script\CameraController\OpenAnim.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityTextureAtlasData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Assets\Script\LevelComponent\Drop.cs" />
     <Compile Include="Assets\DragonBones\Scripts\parser\BinaryDataWriter.cs" />
     <Compile Include="Assets\DragonBones\Scripts\armature\Armature.cs" />
+    <Compile Include="Assets\Script\VideoPlayer\WUIStarVideoPanel.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityFactory.cs" />
     <Compile Include="Assets\Script\开发测试使用的脚本\UIControlTest.cs" />
     <Compile Include="Assets\Script\UI\ProgressBar.cs" />
@@ -159,13 +162,17 @@
     <Compile Include="Assets\Script\BlockEliminator\BlockRefresher.cs" />
     <Compile Include="Assets\DragonBones\Scripts\parser\BinaryDataReader.cs" />
     <Compile Include="Assets\DragonBones\Scripts\unity\UnityDragonBonesData.cs" />
+    <Compile Include="Assets\Script\LevelComponent\ElevatorTrigger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\Script\Mouse.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\BoundingBoxData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\DragonBones\Scripts\factory\BaseFactory.cs" />
     <Compile Include="Assets\Script\PlayerController\GuardController.cs" />
+    <Compile Include="Assets\Script\VideoPlayer\MusicController.cs" />
+    <Compile Include="Assets\Script\LevelComponent\BigWall.cs" />
     <Compile Include="Assets\DragonBones\Scripts\animation\WorldClock.cs" />
     <Compile Include="Assets\DragonBones\Scripts\model\AnimationConfig.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />

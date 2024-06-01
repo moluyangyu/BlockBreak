@@ -12,12 +12,15 @@ public class UiSceneControl : MonoBehaviour
     public string[] textNames;
     public int textInt;
     public int[] testInts;
-    private bool a;//切换打包和编辑器环境的
+    public bool a;//切换打包和编辑器环境的
     private void Awake()
     {
         //ceneManager.LoadScene(1, LoadSceneMode.Additive);//额外加载UI场景
-       // UpdateTextNames(false);
+        // UpdateTextNames(false);
+#if UNITY_EDITOR
         UpdateTextNames(true);
+#endif
+        UpdateTextNames(false);
     }
     void Start()
     {

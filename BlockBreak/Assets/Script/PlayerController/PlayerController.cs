@@ -2,8 +2,11 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,11 +25,11 @@ public class PlayerController : MonoBehaviour
     public bool isTalk = false;
     public bool isStair = false;
     public string idName;
-
     private GameObject stairPoint1;
     private GameObject stairPoint2;
     private float x1,x2,y1,y2;
     private GameObject Cat;//猫雕像
+    public GameObject elevatorTrigger;//用于记录当前踩上的电梯组件
     private int catmiss;//计数用于第二次触发消除猫
 
     private static DragonBones.UnityArmatureComponent animDB;
@@ -81,8 +84,9 @@ public class PlayerController : MonoBehaviour
     {
         UiStatic.UiOpen += SwitchStop;
         animDB = GetComponent<DragonBones.UnityArmatureComponent>();
+        SwitchStop(1);
         Cat = GameObject.Find("馆长雕像");
-        PlayAnim();
+
     }
 
     // Update is called once per frame
@@ -118,6 +122,13 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x >= x1 && transform.position.x <= x2)
         {
             transform.position = new Vector3(transform.position.x, Mathf.Lerp(y1, y2, Mathf.InverseLerp(x1, x2, transform.position.x)), 0);
+            if(isStair==false)
+            {
+                if(GameObject.Find("烟雾桥")!=null)
+                {
+                    GameObject.Find("烟雾桥").GetComponent<Animator>().SetTrigger("生成");
+                }
+            }
             isStair = true;
         }
         else
@@ -128,6 +139,7 @@ public class PlayerController : MonoBehaviour
         if(isTalk&&Input.GetMouseButtonDown(0))
         {
             bool i=UiStatic.TalkKickIssue(idName);
+
             if(i)
             {
                 isTalk = false;
@@ -138,10 +150,30 @@ public class PlayerController : MonoBehaviour
                     UiStatic.NextLevelIssue();
                     SwitchStop(0);
                 }
+                if (idName == "序章-2")
+                {
+                    SwitchStop(0);
+                    PlayAnim("problem");
+                    //调用通用延时函数
+                    CoroutineHelper.WaitForSeconds(this, 1.5f, () =>
+                    {
+                        SwitchStop(1);
+                    });
+                }
+                if (idName=="序章")
+                {
+                    SwitchStop(0);
+                    idName = "序章-2";
+                    PlayAnim("surprise");
+                    CoroutineHelper.WaitForSeconds(this, 1.5f, () =>
+                    {
+                        Talk();
+                    });
+                }
             }
         }
     }
-    
+
     public void Turn()
     {
         direction = -direction;
@@ -163,6 +195,7 @@ public class PlayerController : MonoBehaviour
         stop = !stop;
         //anim.SetBool("stop", stop);
         PlayAnim();
+        this.GetComponent<MusicController>().TogglePlayPause();
     }
     /// <summary>
     /// 0是停下来，1是走起来，2是切换状态
@@ -174,11 +207,11 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 stop = true;
-
+                this.GetComponent<MusicController>().StopMusic();
                 break;
             case 1:
                 stop = false;
-                
+                this.GetComponent<MusicController>().PlayMusic();
                 break;
             case 2:
                 SwitchStop(); break;
@@ -209,6 +242,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animDB.animation.Play(name, 1);
+
             }
         }
 
@@ -243,22 +277,55 @@ public class PlayerController : MonoBehaviour
             SwitchStop(0);
             BlockEliminator.Instance.NextScene();
             collision.gameObject.GetComponent<NewTeach>().OpenTeach();
-            //collision.gameObject.SetActive(false);
+
+            collision.gameObject.SetActive(false);
         }else if(collision.gameObject.tag=="DropTrigger")
         {
             if (catmiss == 0)
             { 
                 Cat.GetComponent<Animator>().SetTrigger("掉落");
+                Cat.GetComponent<MusicController>().PlayMusic();
                 catmiss++;
             }else
             {
-                Cat.SetActive(false);
+                Cat.GetComponent<Animator>().SetTrigger("变猫");
+               // Cat.SetActive(false);
                 collision.gameObject.SetActive(false);
             }
  
+        }else if (collision.gameObject.tag == "Elevator")
+        {
+            SwitchStop(0);
+            BlockEliminator.Instance.NextScene();
+            elevatorTrigger = collision.gameObject;
+        }else if(collision.gameObject.tag=="end")//回归基本水平线的组件
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, -2.86f, 0f);
+        }else if(collision.gameObject.tag=="endGame")
+        {
+            SceneManager.LoadScene(4);
         }
 
+
     }
+    /// <summary>
+    /// 三消组件电梯触发这个函数,InvokeRepeating(nameof(MoveFollow()), 0f, 0.01f);调用语句
+    /// </summary>
+    public void MoveFollow()
+    {
+        if (this.gameObject.transform.position == elevatorTrigger.transform.position)
+        {
+            CancelInvoke(nameof(MoveFollow));//取消调用
+        }
+
+        this.gameObject.transform.position = elevatorTrigger.transform.position;
+    }
+
+    public void Dianti()
+    {
+        if(elevatorTrigger!=null) InvokeRepeating(nameof(MoveFollow), 0f, 0.01f);
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Teach")
@@ -266,7 +333,16 @@ public class PlayerController : MonoBehaviour
             //SwitchStop(0);
             collision.gameObject.GetComponent<NewTeach>().CloseTeach();
             //collision.gameObject.SetActive(false);
+        }else if (collision.gameObject.CompareTag("Elevator"))
+        {
+            elevatorTrigger = null;
+            collision.gameObject.SetActive(false);
+        }else if (collision.gameObject.tag == "Dex")
+        {
+            // SwitchStop(0);
+            collision.gameObject.SetActive(false);
         }
+
     }
 
     private void Talk()
@@ -285,7 +361,18 @@ public class PlayerController : MonoBehaviour
     {
         SwitchStop(0);
         //anim.SetTrigger("die");
-        BlockRefresher.Instance.RefreshAll();
+        PlayAnim("die");
+        // 调用通用暂停方法
+        CoroutineHelper.WaitForSeconds(this, 1.5f, () =>
+        {
+            BlockRefresher.Instance.RefreshAll();
+            transform.position = new Vector3(72, transform.position.y, transform.position.z);//在第一关归位
+            BlockEliminator.Instance.LastScene();
+            PlayAnim("idie");
+            // UiStatic.PlayerDieIssue(false);
+        });
+        
     }
+ 
 
 }

@@ -17,6 +17,7 @@ public class UIControl : MonoBehaviour
     public GameObject dex;//图鉴游戏体
     public GameObject dexButton;//打开图鉴的按钮
     public GameObject nextLevel;//下一关按钮的游戏体
+
     //public GameObject DialogueMask;//对话遮罩
     void Start()
     {
@@ -28,12 +29,14 @@ public class UIControl : MonoBehaviour
         dex = GameObject.Find("GameDex");
         dexButton = GameObject.Find("OpenGameDex");
         nextLevel = GameObject.Find("NextLevel");
+        lose = GameObject.Find("失败");
        // DialogueMask = GameObject.Find("对话蒙版");
         if (dex!=null)
         {
             dex.SetActive(false);
             dexButton.SetActive(false);
             nextLevel.SetActive(false);
+            lose.SetActive(false);
         }
        // Debug.Log("关闭完成");
 
@@ -44,6 +47,7 @@ public class UIControl : MonoBehaviour
         // 注册事件
         SceneManager.sceneLoaded += OnSceneLoaded;
         UiStatic.GameDexTrigger += OpenDex;
+        UiStatic.PlayerDie += End;
         UiStatic.NextLevel += OpenNextButton;
     }
 
@@ -52,6 +56,7 @@ public class UIControl : MonoBehaviour
         // 移除事件，以避免重复注册
         SceneManager.sceneLoaded -= OnSceneLoaded;
         UiStatic.GameDexTrigger -= OpenDex;
+        UiStatic.PlayerDie -= End;
         UiStatic.NextLevel -= OpenNextButton;
     }
 
@@ -76,6 +81,10 @@ public class UIControl : MonoBehaviour
             lose.SetActive(true);
         }
     }
+    public void End()
+    {
+        lose.SetActive(false);
+    }
     /// <summary>
     /// 给UI用的跳转场景的
     /// </summary>
@@ -92,6 +101,7 @@ public class UIControl : MonoBehaviour
         else
         {
             SceneManager.LoadScene(i);
+
         }
     }
     /// <summary>
@@ -99,7 +109,7 @@ public class UIControl : MonoBehaviour
     /// </summary>
     public void StartButton()
     {
-        SceneManager.LoadScene(2);
+       // SceneManager.LoadScene(2);
         GameObject.Find("start").GetComponent<Animator>().SetTrigger("点击");
     }
     /// <summary>
@@ -119,6 +129,7 @@ public class UIControl : MonoBehaviour
         UiStatic.GameDexTrigger -= OpenDex;
         //UiStatic.UiOpenIssue(true);
         UiStatic.GameDexTriggerIssue(i);//在图鉴游戏体打开以后再传一次消息才能接收到
+
         UiStatic.GameDexTrigger += OpenDex;
         
     }
@@ -160,5 +171,22 @@ public class UIControl : MonoBehaviour
     public void OpenNextButton()
     {
         nextLevel.SetActive(true);
+    }
+    /// <summary>
+    /// 跳过对话，史诗级功能（）
+    /// </summary>
+    public void SkipTalk()
+    {
+        // 遍历每个子对象
+        foreach (Transform child in this.gameObject.transform)
+        {
+            // 处理子对象
+            if (child.GetComponent<TextReader>() != null)
+            {
+                child.GetComponent<TextReader>().SkipTalk();
+            }
+
+        }
+        // UiStatic.TalkKickIssue(id);
     }
 }

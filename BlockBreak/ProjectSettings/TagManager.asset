@@ -17,6 +17,11 @@ TagManager:
   - Dex
   - Teach
   - DropTrigger
+  - surprise
+  - problem
+  - Elevator
+  - end
+  - endGame
   layers:
   - Default
   - TransparentFX

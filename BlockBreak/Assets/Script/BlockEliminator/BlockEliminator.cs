@@ -10,7 +10,14 @@ public enum BlockType
     switchStop,
     landform,
     ui,
-    easterEgg
+    easterEgg,
+    dragon,
+    tiger,
+    ribbit,
+    cow,
+    monkey,
+    snake,
+    horse
 }
 
 public enum BlockState
@@ -31,6 +38,7 @@ public class BlockEliminator : MonoBehaviour
     private int activatedBlocksCount = 0;
     private int actingBlocksCount = 0;
     private GameObject eliminateArea;
+    private GameObject groundEvent;
     //private Vector3[] eliminatePos = new Vector3[3]; 
     private List<GameObject> activatedBlocks = new List<GameObject>();
 
@@ -55,6 +63,7 @@ public class BlockEliminator : MonoBehaviour
         Initialize();
         GetEliminateArea();
         player = PlayerController.Player;
+        groundEvent = GameObject.Find("GroundEvent");
     }
 
     private void GetEliminateArea()
@@ -72,6 +81,7 @@ public class BlockEliminator : MonoBehaviour
     {
         activatedBlocksCount = 0;
         actingBlocksCount = 0;
+  
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             eliminatejudge[i] = true;
@@ -122,7 +132,8 @@ public class BlockEliminator : MonoBehaviour
             {
                 status.state = BlockState.original;
                 activatedBlocks.Remove(block);
-                actingBlocksCount--;
+
+                if(actingBlocksCount>0) actingBlocksCount--;
                 StartCoroutine(Move(block, block.transform.position, moveDuration, -1));
             }
         }
@@ -191,11 +202,35 @@ public class BlockEliminator : MonoBehaviour
             case BlockType.switchStop:
                 PlayerController.Instance.SwitchStop();
                 break;
-            case BlockType.landform:
+            case BlockType.landform://电梯触发的代码
                 //landform();
+                PlayerController.Player.GetComponent<PlayerController>().Dianti();
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(sceneCount, FloorClass.step);
                 break;
             case BlockType.easterEgg:
                 //easterEgg();
+                break;
+                //以下是对应生肖触发对应的生肖柱上升下降的部分
+            case BlockType.dragon:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.dragon);
+                break;
+            case BlockType.tiger:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.tiger);
+                break;
+            case BlockType.ribbit:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.ribbit);
+                break;
+            case BlockType.cow:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.cow);
+                break;
+            case BlockType.monkey:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.monkey);
+                break;
+            case BlockType.snake:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.snake);
+                break;
+            case BlockType.horse:
+                groundEvent.GetComponent<GroundEvent>().MoveStarIssue(0, FloorClass.horse);
                 break;
         }
     }
@@ -217,6 +252,7 @@ public class BlockEliminator : MonoBehaviour
                 yield return null;
                 elapsedTime += Time.deltaTime;
             }
+            activatedBlocksCount++;
         }
         else if (dir == -1)
         {
@@ -228,10 +264,11 @@ public class BlockEliminator : MonoBehaviour
                 yield return null;
                 elapsedTime += Time.deltaTime;
             }
+            if (activatedBlocksCount > 0) activatedBlocksCount--;
         }
         
         status.moving = false;
-        activatedBlocksCount += dir;
+        //activatedBlocksCount += dir;
         if (activatedBlocksCount == ELIMINATE_COUNT)
         {
             TryEliminate();
@@ -253,6 +290,20 @@ public class BlockEliminator : MonoBehaviour
     {
         Initialize();
         sceneCount++;
+        activatedBlocks = new List<GameObject>();//清空消除栏避免bug
+        for (int i = 0; i < ELIMINATE_COUNT; i++)
+        {
+            //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
+            eliminatePoints[i] = eliminateArea.transform.GetChild((sceneCount - 1) * ELIMINATE_COUNT + i).gameObject;
+        }
+    }
+    /// <summary>
+    /// 死亡了跳转回上一个场景
+    /// </summary>
+    public void LastScene()
+    {
+        Initialize();
+       // sceneCount--;
         for (int i = 0; i < ELIMINATE_COUNT; i++)
         {
             //eliminatePos[i] = eliminateArea.transform.GetChild(i).position;
